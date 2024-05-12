@@ -1,8 +1,10 @@
 package com.example.demo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @Entity
 public class Data {

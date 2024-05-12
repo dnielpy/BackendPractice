@@ -1,53 +1,38 @@
-# Multiformat Data Application 🌟
+# 🚀 Demo Application
 
-This project demonstrates the versatility of Spring Boot in generating different data formats. It provides practical experience in using Spring MVC annotations and data converters. 🚀
+## 📝 Description
 
-## Requirements 📋
+This is a demo application built with Spring Boot and Java 22. It uses Maven as a build and dependency management system. The application connects to a PostgreSQL database at runtime.
 
-- Java 11 or higher ☕
-- Spring Boot 2.7.x or higher 🌸
-- An IDE compatible with Spring, such as IntelliJ IDEA or Eclipse 💡
+## 🌟 Features
 
-## Specifications 📄
+The application exposes several REST endpoints that allow retrieving information from a database:
 
-### REST API Controller 🌐
+- `/names`: Returns a list of names. 👥
+- `/emails`: Returns a list of emails. 📧
+- `/genders`: Returns a list of genders. ♂️♀️
+- `/numbers`: Returns a list of numbers. 🔢
 
-- Implements GET methods that return data in JSON, XML, and CSV formats. 📊
+## 📋 Requirements
 
-### Data Entity 📦
+- Java 22 ☕
+- Maven 🛠️
+- PostgreSQL 🐘
 
-- Defines a simple object with basic attributes (e.g., name, description, price). 💼
+## 🚀 How to run the application
 
-### Data Converters 🔄
+1. Clone the repository. 📂
+2. Navigate to the project directory. 📁
+3. Run `mvn spring-boot:run` to start the application. 🏃‍♂️
 
-- Creates custom implementations to convert the data entity to different formats. 🎨
+## 🧪 Tests
 
-### Spring Configuration ⚙️
+To run the tests, use the `mvn test` command.
 
-- Utilizes essential Spring components and Spring MVC annotations. 🌿
+## 🤝 Contributing
 
-### Unit Testing ✅
+Contributions are welcome. Please open an issue or make a pull request.
 
-- Performs tests to verify data generation in different formats. 🧪
+## 📜 License
 
-## Steps 🛠️
-
-1. Create a new Spring Boot project.
-2. Configure Spring components and Spring MVC annotations.
-3. Define the data entity.
-4. Create data converters for the desired formats.
-5. Develop the REST API controller.
-6. Test the data generation functionality.
-7. Document the project. 📝
-
-## Deliverables 📦
-
-- Submit the completed Spring Boot project.
-- Include a report describing the design, implementation, and conducted tests.
-- Prepare a presentation demonstrating data generation in different formats. 🎤
-
-## Sample URLs 🌐
-
-- `/json` - Returns data in JSON format.
-- `/xml` - Returns data in XML format.
-- `/csv` - Returns data in CSV format. 📊
+This project is under the MIT license.
