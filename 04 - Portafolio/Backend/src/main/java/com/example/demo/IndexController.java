@@ -9,4 +9,15 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/about")
+    public String about() {return "about";}
+
+    @GetMapping("/index")
+    public String projects() {
+        return "projects";
+    }
+
+    @GetMapping("/about")
+    public String contact() {return "contact";}
 }
