@@ -31,228 +31,220 @@
 
 </head>
 <body class="home-one">
-    <div class="page-wrapper">
+<div class="page-wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader"></div>
+    <!-- Preloader -->
+    <div class="preloader"></div>
 
-        <!-- main header -->
-        <header class="main-header menu-absolute">
-            <!--Header-Upper-->
-            <div class="header-upper">
-                <div class="container container-1620 clearfix">
+    <!-- main header -->
+    <header class="main-header menu-absolute">
+        <!--Header-Upper-->
+        <div class="header-upper">
+            <div class="container container-1620 clearfix">
 
-                    <div class="header-inner rel d-flex align-items-center">
-                        <div class="logo-outer">
-                            <div class="logo"><a href="index.html"><img src="assets/images/logos/logo.png" alt="Logo" title="Logo"></a></div>
-                        </div>
+                <div class="header-inner rel d-flex align-items-center">
+                    <div class="logo-outer">
+                        <div class="logo"><a th:href="@{/}"><img th:src="@{/images/logos/logo.png}" alt="Logo" title="Logo"></a></div>
+                    </div>
 
-                        <div class="nav-outer clearfix mx-auto">
-                            <!-- Main Menu -->
-                            <nav class="main-menu navbar-expand-lg">
-                                <div class="navbar-header">
-                                   <div class="mobile-logo my-15">
-                                       <a href="index.html">
-                                            <img src="assets/images/logos/logo.png" alt="Logo" title="Logo">
-                                       </a>
-                                   </div>
-                                   
-                                    <!-- Toggle Button -->
-                                    <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-
-                                <div class="navbar-collapse collapse clearfix">
-                                    <ul class="navigation clearfix">
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="projects">projects</a></li>
-                                        <li><a href="contact">Contact</a></li>
-                                    </ul>
-                                </div>
-
-                            </nav>
-                            <!-- Main Menu End-->
-                        </div>
-                        
-                        <!-- Menu Button -->
-                        <div class="menu-btns">
-                            <!-- menu sidbar -->
-                            <div class="menu-sidebar">
-                                <button>
-                                    <img src="assets/images/shape/sidebar-tottler.svg" alt="Toggler">
+                    <div class="nav-outer clearfix mx-auto">
+                        <!-- Main Menu -->
+                        <nav class="main-menu navbar-expand-lg">
+                            <div class="navbar-header">
+                                <!-- Toggle Button -->
+                                <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
                                 </button>
                             </div>
+
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li><a th:href="@{/about}">about</a></li>
+                                    <li><a th:href="@{/projects}">projects</a></li>
+                                    <li><a th:href="@{/contact}">Contact</a></li>
+                                </ul>
+                            </div>
+
+                        </nav>
+                        <!-- Main Menu End-->
+                    </div>
+
+                    <!-- Menu Button -->
+                    <div class="menu-btns">
+                        <!-- menu sidbar -->
+                        <div class="menu-sidebar">
+                            <button>
+                                <img th:src="@{/images/sidebar-tottler.svg}" alt="Toggler">
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--End Header Upper-->
-        </header>
-       
-       
-        <!--Form Back Drop-->
-        <div class="form-back-drop"></div>
-        
-        <!-- Hidden Sidebar -->
-        <section class="hidden-bar">
-            <div class="inner-box text-center">
-                <div class="cross-icon"><span class="fa fa-times"></span></div>
-                <div class="title">
-                    <h4>Get Appointment</h4>
-                </div>
+        </div>
+        <!--End Header Upper-->
+    </header>
 
-                <!--Appointment Form-->
-                <div class="appointment-form">
-                    <form method="post" action="contact.html">
-                        <div class="form-group">
-                            <input type="text" name="text" value="" placeholder="Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" value="" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Message" rows="5"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="theme-btn">Submit now</button>
-                        </div>
-                    </form>
-                </div>
+    <!--Form Back Drop-->
+    <div class="form-back-drop"></div>
 
-                <!--Social Icons-->
-                <div class="social-style-one">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
+    <!-- Hidden Sidebar -->
+    <section class="hidden-bar">
+        <div class="inner-box text-center">
+            <div class="cross-icon"><span class="fa fa-times"></span></div>
+            <div class="title">
+                <h4>Get Appointment</h4>
             </div>
-        </section>
-        <!--End Hidden Sidebar -->
-       
-        
-        <!-- Hero Section Start -->
-        <section class="main-hero-area pt-150 pb-80 rel z-1">
-            <div class="container container-1620">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-sm-7">
-                        <div class="hero-content rmb-55 wow fadeInUp delay-0-2s">
-                            <span class="h2">Hello, i’m </span>
-                            <h1><b>Daniel Quesada</b> Backend Developer</h1>
-                            <p>We denounce with righteous indignation dislike demoralized by the charms of pleasure</p>
-                            <div class="hero-btns">
-                                <a href="contact.html" class="theme-btn">Hire Me <i class="far fa-angle-right"></i></a>
-                            </div>
+
+            <!--Appointment Form-->
+            <div class="appointment-form">
+                <form method="post" action="contact.html">
+                    <div class="form-group">
+                        <input type="text" name="text" value="" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" value="" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="theme-btn">Submit now</button>
+                    </div>
+                </form>
+            </div>
+
+            <!--Social Icons-->
+            <div class="social-style-one">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </section>
+    <!--End Hidden Sidebar -->
+
+
+    <!-- Hero Section Start -->
+    <section class="main-hero-area pt-150 pb-80 rel z-1">
+        <div class="container container-1620">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-7">
+                    <div class="hero-content rmb-55 wow fadeInUp delay-0-2s">
+                        <span class="h2">Hello, i’m </span>
+                        <h1><b>Daniel Quesada</b> Backend Developer</h1>
+                        <p>We denounce with righteous indignation dislike demoralized by the charms of pleasure</p>
+                        <div class="hero-btns">
+                            <a th:href="@{/contact}" class="theme-btn">Hire Me <i class="far fa-angle-right"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-5 order-lg-3">
-                        <div class="hero-counter-wrap ms-lg-auto rmb-55 wow fadeInUp delay-0-4s">
-                            <div class="counter-item counter-text-wrap">
-                                <span class="count-text plus" data-speed="3000" data-stop="80">0</span>
-                                <span class="counter-title">Junior Developer</span>
+                </div>
+                <div class="col-lg-3 col-sm-5 order-lg-3">
+                    <div class="hero-counter-wrap ms-lg-auto rmb-55 wow fadeInUp delay-0-4s">
+                        <div class="counter-item counter-text-wrap">
+                            <span class="count-text plus" data-speed="3000" data-stop="80">0</span>
+                            <span class="counter-title">Junior Developer</span>
+                        </div>
+                        <div class="counter-item counter-text-wrap">
+                            <span class="count-text k-plus" data-speed="3000" data-stop="4">0</span>
+                            <span class="counter-title">Project Complete</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="author-image-part wow fadeIn delay-0-3s">
+                        <div class="bg-circle"></div>
+                        <img th:src="@{/images/hero/me.png}" alt="Author">
+                        <div class="progress-shape">
+                            <img th:src="@{/images/hero/progress-shape.png}" alt="Progress">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-lines">
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+
+    <!-- About Area start -->
+    <section class="about-area rel z-1">
+        <div class="for-bgc-black py-130 rpy-100">
+            <div class="container">
+                <div class="row gap-100 align-items-center">
+                    <div class="col-lg-7">
+                        <div class="about-content-part rel z-2 rmb-55 wow fadeInUp delay-0-2s">
+                            <div class="section-title mb-35 wow fadeInUp delay-0-2s">
+                                <span class="sub-title mb-15">About Me</span>
+                                <h2>Junior <span>Backend Developer</span></h2>
+                                <p>Im a 21 years old Softweare Engiennier specialiced on backend development. Agregar descripcion de chatgpt</p>
                             </div>
-                            <div class="counter-item counter-text-wrap">
-                                <span class="count-text k-plus" data-speed="3000" data-stop="4">0</span>
-                                <span class="counter-title">Project Complete</span>
+                            <ul class="list-style-one two-column wow fadeInUp delay-0-2s">
+                                <li>Spring Boot</li>
+                                <li>SOLID principies</li>
+                                <li>Design Patterns</li>
+                                <li>Java Dev</li>
+                            </ul>
+                            <div class="about-info-box mt-25 wow fadeInUp delay-0-2s">
+                                <div class="info-box-item">
+                                    <i class="far fa-envelope"></i>
+                                    <div class="content">
+                                        <span>Email Us</span><br>
+                                        <a th:href="@{mailto:dnielquesada@icloud.com}">dnielquesada@icloud.com</a>
+                                    </div>
+                                </div>
+                                <div class="info-box-item">
+                                    <i class="far fa-phone"></i>
+                                    <div class="content">
+                                        <span>Whatsapp Me</span><br>
+                                        <a th:href="@{callto:+53 55312883}">+53 55312883</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <div class="author-image-part wow fadeIn delay-0-3s">
-                            <div class="bg-circle"></div>
-                            <img src="assets/images/hero/me.png" alt="Author">
-                            <div class="progress-shape">
-                                <img src="assets/images/hero/progress-shape.png" alt="Progress">
+                        <div class="about-image-part wow fadeInUp delay-0-3s">
+                            <img th:src="@{/images/about/about.jpg}" alt="About Me">
+                            <div class="about-btn btn-one wow fadeInRight delay-0-4s">
+                                <img th:src="@{/images/about/btn-image1.png}" alt="Image">
+                                <h6>Experience Designer</h6>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="about-btn btn-two wow fadeInRight delay-0-5s">
+                                <img th:src="@{/images/about/btn-image2.png}" alt="Image">
+                                <h6>Mark J. Collins</h6>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="dot-shape">
+                                <img th:src="@{/images/shape/about-dot.png}" alt="Shape">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-lines">
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-            </div>
-        </section>
-        <!-- Hero Section End -->
-        
-        
-        <!-- About Area start -->
-        <section class="about-area rel z-1">
-            <div class="for-bgc-black py-130 rpy-100">
-                <div class="container">
-                    <div class="row gap-100 align-items-center">
-                        <div class="col-lg-7">
-                            <div class="about-content-part rel z-2 rmb-55">
-                                <div class="section-title mb-35 wow fadeInUp delay-0-2s">
-                                    <span class="sub-title mb-15">About Me</span>
-                                    <h2>Junior <span>Backend Developer</span></h2>
-                                    <p>Im a 21 years old Softweare Engiennier specialiced on backend development. Agregar descripcion de chatgpt</p>
-                                </div>
-                                <ul class="list-style-one two-column wow fadeInUp delay-0-2s">
-                                    <li>Spring Boot</li>
-                                    <li>SOLID principies</li>
-                                    <li>Design Patterns</li>
-                                    <li>Java Dev</li>
-                                </ul>
-                                <div class="about-info-box mt-25 wow fadeInUp delay-0-2s">
-                                    <div class="info-box-item">
-                                        <i class="far fa-envelope"></i>
-                                        <div class="content">
-                                            <span>Email Us</span><br>
-                                            <a href="mailto:dnielquesada@icloud.com">dnielquesada@icloud.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="info-box-item">
-                                        <i class="far fa-phone"></i>
-                                        <div class="content">
-                                            <span>Whatsapp Me</span><br>
-                                            <a href="callto:+53 55312883">+53 55312883</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="about-image-part wow fadeInUp delay-0-3s">
-                                <img src="assets/images/about/about.jpg" alt="About Me">
-                                <div class="about-btn btn-one wow fadeInRight delay-0-4s">
-                                    <img src="assets/images/about/btn-image1.png" alt="Image">
-                                    <h6>Experience Designer</h6>
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                                <div class="about-btn btn-two wow fadeInRight delay-0-5s">
-                                    <img src="assets/images/about/btn-image2.png" alt="Image">
-                                    <h6>Mark J. Collins</h6>
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                                <div class="dot-shape">
-                                    <img src="assets/images/shape/about-dot.png" alt="Shape">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-lines">
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-               <span></span><span></span>
-            </div>
-        </section>
-        <!-- About Area end -->
+        </div>
+        <div class="bg-lines">
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+            <span></span><span></span>
+        </div>
+    </section>
+    <!-- About Area end -->
 
-
-        <!-- Services Area start -->
-        <section class="services-area pt-130 rpt-100 pb-100 rpb-70 rel z-1">
-            <div class="container">
+    <!-- Services Area start -->
+    <section class="services-area pt-130 rpt-100 pb-100 rpb-70 rel z-1">
+        <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-8">
                         <div class="section-title text-center mb-60 wow fadeInUp delay-0-2s">
@@ -355,56 +347,56 @@
                                 <div class="row">
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-2s">
-                                            <img src="assets/images/skills/skill1.png" alt="Skill">
-                                            <h5>Figma</h5>
-                                            <span class="percent"></span>
-                                        </div>
+                                        <img th:src="@{/images/skills/skill1.png}" alt="Skill">
+                                        <h5>Figma</h5>
+                                        <span class="percent"></span>
+                                    </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-3s">
-                                            <img src="assets/images/skills/skill2.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill2.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">83</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-4s">
-                                            <img src="assets/images/skills/skill3.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill3.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">93%</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-5s">
-                                            <img src="assets/images/skills/skill4.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill4.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">84%</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-2s">
-                                            <img src="assets/images/skills/skill5.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill5.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">65%</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-3s">
-                                            <img src="assets/images/skills/skill6.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill6.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">86%</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-4s">
-                                            <img src="assets/images/skills/skill7.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill7.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">62%</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 col-6">
                                         <div class="skill-item wow fadeInUp delay-0-5s">
-                                            <img src="assets/images/skills/skill8.png" alt="Skill">
+                                            <img th:src="@{/images/skills/skill8.png}" alt="Skill">
                                             <h5>Figma</h5>
                                             <span class="percent">94%</span>
                                         </div>
