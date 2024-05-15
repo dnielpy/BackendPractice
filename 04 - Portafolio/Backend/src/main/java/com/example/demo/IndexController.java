@@ -13,11 +13,11 @@ public class IndexController {
     @GetMapping("/about")
     public String about() {return "about";}
 
-    @GetMapping("/index")
+    @GetMapping("/projects")
     public String projects() {
-        return "projects";
+        return "projects-masonry";
     }
 
-    @GetMapping("/about")
+    @GetMapping("/contact")
     public String contact() {return "contact";}
 }
