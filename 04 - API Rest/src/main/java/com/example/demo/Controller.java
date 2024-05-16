@@ -47,4 +47,18 @@ public class Controller {
         }
     }
 
+    //Delete
+    //Delete
+    @DeleteMapping("/students/{id}")
+    public String deleteStudent(@PathVariable int id) {
+        Optional<studentsdatabase> optionalStudent = studentsRepository.findById(id);
+
+        if (optionalStudent.isPresent()) {
+            studentsRepository.deleteById(id);
+            return "Student deleted successfully";
+        } else {
+            return "Student not found";
+        }
+    }
+
 }
