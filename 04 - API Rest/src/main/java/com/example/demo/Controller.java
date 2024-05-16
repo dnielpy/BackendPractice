@@ -13,7 +13,7 @@ public class Controller {
 
     @GetMapping("/")
     public List<String> index(){
-        List<RestApiDatabase> Estudiantes = studentsRepository.findAll();
-        return Estudiantes.stream().map(RestApiDatabase::getName).collect(Collectors.toList());
+        List<studentsdatabase> Estudiantes = studentsRepository.findAll();
+        return Estudiantes.stream().map(studentsdatabase::getName).collect(Collectors.toList());
     }
 }
