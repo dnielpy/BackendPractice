@@ -11,50 +11,12 @@ public class Controller {
     @Autowired
     private StudentsRepository studentsRepository;
 
+    //Get
     @GetMapping("/students/{id}")
     public String getStudent(@PathVariable int id) {
         Optional<studentsdatabase> student = studentsRepository.findById(id);
         if (student.isPresent()) {
             return student.get().toString();
-        } else {
-            return "Student not found";
-        }
-    }
-
-    @GetMapping("/names/{id}")
-    public String getName(@PathVariable int id) {
-        Optional<studentsdatabase> student = studentsRepository.findById(id);
-        if (student.isPresent()) {
-            return student.get().getName();
-        } else {
-            return "Student not found";
-        }
-    }
-    @GetMapping("/emails/{id}")
-    public String getEmail(@PathVariable int id) {
-    Optional<studentsdatabase> student = studentsRepository.findById(id);
-    if (student.isPresent()) {
-        return student.get().getEmail();
-    } else {
-        return "Student not found";
-    }
-    }
-
-    @GetMapping("/genders/{id}")
-    public String getGender(@PathVariable int id) {
-        Optional<studentsdatabase> student = studentsRepository.findById(id);
-        if (student.isPresent()) {
-            return student.get().getGender();
-        } else {
-            return "Student not found";
-        }
-    }
-
-    @GetMapping("/numbers/{id}")
-    public String getNumber(@PathVariable int id) {
-        Optional<studentsdatabase> student = studentsRepository.findById(id);
-        if (student.isPresent()) {
-            return student.get().getNumber();
         } else {
             return "Student not found";
         }
@@ -66,4 +28,6 @@ public class Controller {
         studentsRepository.save(student);
         return "Student added succesfully";
     }
+
+    
 }
