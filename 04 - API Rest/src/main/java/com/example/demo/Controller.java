@@ -1,8 +1,6 @@
 package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +11,14 @@ public class Controller {
     @Autowired
     private StudentsRepository studentsRepository;
 
-    @GetMapping("/students")
-    public List<studentsdatabase> getAllStudents() {
-        return studentsRepository.findAll();
+    @GetMapping("/students/{id}")
+    public String getStudent(@PathVariable int id) {
+        Optional<studentsdatabase> student = studentsRepository.findById(id);
+        if (student.isPresent()) {
+            return student.get().toString();
+        } else {
+            return "Student not found";
+        }
     }
 
     @GetMapping("/names/{id}")
@@ -55,5 +58,12 @@ public class Controller {
         } else {
             return "Student not found";
         }
+    }
+
+    //Post
+    @PostMapping("/students")
+    public String addStudent(@RequestBody studentsdatabase student) {
+        studentsRepository.save(student);
+        return "Student added succesfully";
     }
 }
