@@ -29,5 +29,22 @@ public class Controller {
         return "Student added succesfully";
     }
 
-    
+    //Put
+    @PutMapping("/students/{id}")
+    public String updateStudent(@PathVariable int id, @RequestBody studentsdatabase updatedStudent) {
+        Optional<studentsdatabase> optionalStudent = studentsRepository.findById(id);
+
+        if (optionalStudent.isPresent()) {
+            studentsdatabase student = optionalStudent.get();
+            student.setName(updatedStudent.getName());
+            student.setEmail(updatedStudent.getEmail());
+            student.setGender(updatedStudent.getGender());
+            student.setNumber(updatedStudent.getNumber());
+            studentsRepository.save(student);
+            return "Student updated successfully";
+        } else {
+            return "Student not found";
+        }
+    }
+
 }
