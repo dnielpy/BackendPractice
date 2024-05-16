@@ -13,6 +13,11 @@ public class Controller {
     @Autowired
     private StudentsRepository studentsRepository;
 
+    @GetMapping("/students")
+    public List<studentsdatabase> getAllStudents() {
+        return studentsRepository.findAll();
+    }
+
     @GetMapping("/names/{id}")
     public String getName(@PathVariable int id) {
         Optional<studentsdatabase> student = studentsRepository.findById(id);
@@ -22,33 +27,33 @@ public class Controller {
             return "Student not found";
         }
     }
-@GetMapping("/emails/{id}")
-public String getEmail(@PathVariable int id) {
+    @GetMapping("/emails/{id}")
+    public String getEmail(@PathVariable int id) {
     Optional<studentsdatabase> student = studentsRepository.findById(id);
     if (student.isPresent()) {
         return student.get().getEmail();
     } else {
         return "Student not found";
     }
-}
-
-@GetMapping("/genders/{id}")
-public String getGender(@PathVariable int id) {
-    Optional<studentsdatabase> student = studentsRepository.findById(id);
-    if (student.isPresent()) {
-        return student.get().getGender();
-    } else {
-        return "Student not found";
     }
-}
 
-@GetMapping("/numbers/{id}")
-public String getNumber(@PathVariable int id) {
-    Optional<studentsdatabase> student = studentsRepository.findById(id);
-    if (student.isPresent()) {
-        return student.get().getNumber();
-    } else {
-        return "Student not found";
+    @GetMapping("/genders/{id}")
+    public String getGender(@PathVariable int id) {
+        Optional<studentsdatabase> student = studentsRepository.findById(id);
+        if (student.isPresent()) {
+            return student.get().getGender();
+        } else {
+            return "Student not found";
+        }
     }
-}
+
+    @GetMapping("/numbers/{id}")
+    public String getNumber(@PathVariable int id) {
+        Optional<studentsdatabase> student = studentsRepository.findById(id);
+        if (student.isPresent()) {
+            return student.get().getNumber();
+        } else {
+            return "Student not found";
+        }
+    }
 }
