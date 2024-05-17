@@ -7,11 +7,11 @@ public class SearchEngine {
     private List<String> query_words;
     private List<String> query_information = new ArrayList<>();
     private List<String> important_words = new ArrayList<>();
-    private List<PeopleDatabase> sospechosos = new ArrayList<>();
-    private List<PeopleDatabase> persons_data;
+    private List<Person> sospechosos = new ArrayList<>();
+    private List<Person> persons_data;
 
     //Constructor
-    public SearchEngine(String Query, List<PeopleDatabase>PersonData){
+    public SearchEngine(String Query, List<Person>PersonData){
         this.query = Query;
         this.query_words = List.of(this.query.split(" "));
         this.persons_data = PersonData;
@@ -68,7 +68,7 @@ public class SearchEngine {
         }
     }
 
-    public List<PeopleDatabase> getSospechosos() {
+    public List<Person> getSospechosos() {
         return sospechosos;
     }
 

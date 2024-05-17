@@ -9,12 +9,19 @@ public class Controller {
     @Autowired
     private PeopleRepository peopleRepository;
 
-    List<PeopleDatabase> data = peopleRepository.findAll();
+    private List<Person> data;
+    private SearchEngine searchengine;
 
-    SearchEngine searchengine = new SearchEngine("hombre blanco edad 35", data);
+    public void init() {
+        if (data == null || searchengine == null) {
+            data = peopleRepository.findAll();
+            searchengine = new SearchEngine("hombre blanco edad 35", data);
+        }
+    }
 
     @GetMapping("/")
-    public List<PeopleDatabase> getStudent() {
+    public List<Person> getStudent() {
+        init();
         searchengine.setImportant_words("edad");
         searchengine.filter();
         searchengine.filter_people();
