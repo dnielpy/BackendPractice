@@ -30,6 +30,7 @@
 <body>
 <div class="container">
     <h1>Bienvenido al registro de estudiantes</h1>
+    <!-- Formulario para agregar estudiante -->
     <form action="/students" method="post">
         <input type="text" name="name" placeholder="Ingresa el nombre del estudiante" required>
         <input type="email" name="email" placeholder="Ingresa el correo electrónico del estudiante" required>
@@ -37,22 +38,61 @@
         <input type="text" name="number" placeholder="Ingresa el número del estudiante" required>
         <button type="submit">Agregar estudiante</button>
     </form>
-    <form action="/ruta-de-tu-backend" method="get">
-        <input type="text" name="id" placeholder="Ingresa el ID para obtener" required>
-        <button type="submit">Enviar GET</button>
+
+    <!-- Formulario para obtener estudiante -->
+    <form action="/students" method="get">
+        <input type="text" name="id" placeholder="Ingresa el ID del estudiante" required>
+        <button type="submit">Obtener estudiante</button>
     </form>
-    <form action="/ruta-de-tu-backend" method="post">
-        <input type="hidden" name="_method" value="delete" />
-        <input type="text" name="id" placeholder="Ingresa el ID para eliminar" required>
-        <button type="submit">Enviar DELETE</button>
-    </form>
-    <form action="/ruta-de-tu-backend" method="post">
+
+    <!-- Formulario para actualizar estudiante -->
+    <form action="/students" method="post">
         <input type="hidden" name="_method" value="put" />
-        <input type="text" name="id" placeholder="Ingresa el ID para actualizar" required>
-        <input type="text" name="nombre" placeholder="Nuevo nombre" required>
-        <input type="email" name="email" placeholder="Nuevo email" required>
-        <button type="submit">Enviar PUT</button>
+        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a actualizar" required>
+        <input type="text" name="name" placeholder="Nuevo nombre" required>
+        <input type="email" name="email" placeholder="Nuevo correo electrónico" required>
+        <input type="text" name="gender" placeholder="Nuevo género" required>
+        <input type="text" name="number" placeholder="Nuevo número" required>
+        <button type="submit">Actualizar estudiante</button>
+    </form>
+
+    <!-- Formulario para eliminar estudiante -->
+    <form action="/students" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a eliminar" required>
+        <button type="submit">Eliminar estudiante</button>
     </form>
 </div>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var form = event.target;
+        var formData = new FormData(form);
+
+        var data = {};
+        formData.forEach(function(value, key) {
+            data[key] = value;
+        });
+
+        fetch(form.action, {
+            method: form.method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Error: ' + response.statusText);
+            }
+        }).then(function(text) {
+            console.log('Success:', text);
+        }).catch(function(error) {
+            console.error('Error:', error);
+        });
+    });
+</script>
 </body>
 </html>

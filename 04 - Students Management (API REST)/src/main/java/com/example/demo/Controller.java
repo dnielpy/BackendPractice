@@ -12,7 +12,7 @@ public class Controller {
     private StudentsRepository studentsRepository;
 
     //Get
-    @GetMapping("/students/{id}")
+    @GetMapping("/students?id={id}")
     public String getStudent(@PathVariable int id) {
         Optional<studentsdatabase> student = studentsRepository.findById(id);
         if (student.isPresent()) {
