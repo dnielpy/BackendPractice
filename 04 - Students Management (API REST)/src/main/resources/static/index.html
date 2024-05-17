@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi Aplicación</title>
+    <title>Students Register</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+             font-family: Arial, sans-serif;
         }
         .container {
             width: 100%;
@@ -29,40 +29,48 @@
 </head>
 <body>
 <div class="container">
-    <h1>Bienvenido al registro de estudiantes</h1>
-    <!-- Formulario para agregar estudiante -->
-    <form action="/students" method="post">
-        <input type="text" name="name" placeholder="Ingresa el nombre del estudiante" required>
-        <input type="email" name="email" placeholder="Ingresa el correo electrónico del estudiante" required>
-        <input type="text" name="gender" placeholder="Ingresa el género del estudiante" required>
-        <input type="text" name="number" placeholder="Ingresa el número del estudiante" required>
-        <button type="submit">Agregar estudiante</button>
+    <h1>Welcome to Students Register</h1>
+
+    <!-- Formulario para obtener estudiante -->
+    <form action="/students" method="get">
     </form>
 
     <!-- Formulario para obtener estudiante -->
     <form action="/students" method="get">
-        <input type="text" name="id" placeholder="Ingresa el ID del estudiante" required>
-        <button type="submit">Obtener estudiante</button>
+        <input type="text" name="id" placeholder="Insert Student Id" required>
+        <button type="submit">Get Student</button>
     </form>
 
-    <!-- Formulario para actualizar estudiante -->
+    <!-- Formulario para agregar estudiante -->
     <form action="/students" method="post">
         <input type="hidden" name="_method" value="put" />
-        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a actualizar" required>
-        <input type="text" name="name" placeholder="Nuevo nombre" required>
-        <input type="email" name="email" placeholder="Nuevo correo electrónico" required>
-        <input type="text" name="gender" placeholder="Nuevo género" required>
-        <input type="text" name="number" placeholder="Nuevo número" required>
-        <button type="submit">Actualizar estudiante</button>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="gender" placeholder="Gender" required>
+        <input type="text" name="number" placeholder="Number" required>
+        <button type="submit">Add Student</button>
     </form>
 
-    <!-- Formulario para eliminar estudiante -->
-    <form action="/students" method="post">
-        <input type="hidden" name="_method" value="delete" />
-        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a eliminar" required>
-        <button type="submit">Eliminar estudiante</button>
-    </form>
-</div>
+<!--    Update and delete students code may be added latter-->
+
+<!--    &lt;!&ndash; Formulario para actualizar estudiante &ndash;&gt;-->
+<!--    <form action="/students" method="post">-->
+<!--        <input type="hidden" name="_method" value="put" />-->
+<!--        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a actualizar" required>-->
+<!--        <input type="text" name="name" placeholder="Nuevo nombre" required>-->
+<!--        <input type="email" name="email" placeholder="Nuevo correo electrónico" required>-->
+<!--        <input type="text" name="gender" placeholder="Nuevo género" required>-->
+<!--        <input type="text" name="number" placeholder="Nuevo número" required>-->
+<!--        <button type="submit">Actualizar estudiante</button>-->
+<!--    </form>-->
+
+<!--    &lt;!&ndash; Formulario para eliminar estudiante &ndash;&gt;-->
+<!--    <form action="/students" method="post">-->
+<!--        <input type="hidden" name="_method" value="delete" />-->
+<!--        <input type="text" name="id" placeholder="Ingresa el ID del estudiante a eliminar" required>-->
+<!--        <button type="submit">Eliminar estudiante</button>-->
+<!--    </form>-->
+<!--</div>-->
 <script>
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
