@@ -72,6 +72,23 @@ public class SearchEngine {
         return sospechosos;
     }
 
+    //Crear una lista que contenga todas las palabras claves
+    public void setKeysWords(){
+        List<String> keysWords = new ArrayList<>(Arrays.asList(
+                "hombre", "mujer", "negro", "blanco", "cuba", "españa",
+                "francia", "italia", "alemania", "rusia", "japon", "china",
+                "india", "australia", "canada", "mexico", "brasil", "argentina",
+                "chile", "peru", "colombia", "venezuela", "ecuador", "bolivia",
+                "paraguay", "uruguay", "portugal", "inglaterra", "escocia", "irlanda"
+        ));
+
+        for (int i = 1; i <= 90; i++) {
+            keysWords.add(String.valueOf(i));
+        }
+
+    }
+
+
     public void setImportant_words(String important_words) {
         this.important_words.add(important_words);
     }

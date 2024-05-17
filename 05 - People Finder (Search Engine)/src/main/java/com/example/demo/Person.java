@@ -19,10 +19,10 @@ public class Person {
     public Person(){
 
     }
-    public Person(String Id, String Name, String Age, String Country, String Color, String Gender, String Phone) {
+    public Person(String Id, String Name, int Age, String Country, String Color, String Gender, String Phone) {
         this.id = Id;
         this.name = Name;
-        this.age = Age;
+        this.age = String.valueOf(Age);
         this.country = Country;
         this.color = Color;
         this.gender = Gender;
