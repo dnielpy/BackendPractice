@@ -15,15 +15,14 @@ public class Controller {
     public void init() {
         if (data == null || searchengine == null) {
             data = peopleRepository.findAll();
-            searchengine = new SearchEngine("genero hombre edad 35", data);
+            List<String> query = List.of("Daniel", "", "", "", "", "");
+            searchengine = new SearchEngine(query, data);
         }
     }
 
     @GetMapping("/")
     public List<Person> getStudent() {
-        init();;
-        searchengine.filter();
-        searchengine.filter_people();
-        return searchengine.getSospechosos();
+        init();
+        return searchengine.StartEngine();
     }
 }
