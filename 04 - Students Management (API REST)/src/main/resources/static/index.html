@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Aplicación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        input, button {
+            height: 35px;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            font-size: 18px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bienvenido al registro de estudiantes</h1>
+    <form action="/students" method="post">
+        <input type="text" name="name" placeholder="Ingresa el nombre del estudiante" required>
+        <input type="email" name="email" placeholder="Ingresa el correo electrónico del estudiante" required>
+        <input type="text" name="gender" placeholder="Ingresa el género del estudiante" required>
+        <input type="text" name="number" placeholder="Ingresa el número del estudiante" required>
+        <button type="submit">Agregar estudiante</button>
+    </form>
+    <form action="/ruta-de-tu-backend" method="get">
+        <input type="text" name="id" placeholder="Ingresa el ID para obtener" required>
+        <button type="submit">Enviar GET</button>
+    </form>
+    <form action="/ruta-de-tu-backend" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <input type="text" name="id" placeholder="Ingresa el ID para eliminar" required>
+        <button type="submit">Enviar DELETE</button>
+    </form>
+    <form action="/ruta-de-tu-backend" method="post">
+        <input type="hidden" name="_method" value="put" />
+        <input type="text" name="id" placeholder="Ingresa el ID para actualizar" required>
+        <input type="text" name="nombre" placeholder="Nuevo nombre" required>
+        <input type="email" name="email" placeholder="Nuevo email" required>
+        <button type="submit">Enviar PUT</button>
+    </form>
+</div>
+</body>
+</html>
