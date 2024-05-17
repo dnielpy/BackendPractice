@@ -1,0 +1,1 @@
+La idea de este proyecto es crear un buscador al que le pases una busqueda tipo "hombre blanco, 35 años de edad residente en cuba" y el algoritmo busque en la base de datos esas caracteristicas y te devuelva los resultados
