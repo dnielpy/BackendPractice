@@ -1,17 +1,23 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class SearchEngine {
     private String query;
     private List<String> query_important_words = new ArrayList<>();
     private List<String> important_words = new ArrayList<>();
+    private List<PeopleDatabase> people_data = new ArrayList<>();
 
     //Constructor
     public SearchEngine(String Query){
         this.query = Query;
+
+        //Agregar pa quitar los puntos etc...
     }
 
     //Text Treatment
@@ -28,4 +34,8 @@ public class SearchEngine {
             }
         }
     }
+
+    //Sacar los datos de la bd
+    private PeopleRepository peopleRepository;
+    List<PeopleDatabase> persons_data = peopleRepository.findAll();
 }
