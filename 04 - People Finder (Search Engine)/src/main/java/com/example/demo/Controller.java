@@ -17,7 +17,7 @@ public class Controller {
     public List<Person> getStudent() {
 
         //Change this for http request
-        String name = "Lanie";
+        String name = "lanie";
         int age = 0;
         String country = "";
         String color = "";

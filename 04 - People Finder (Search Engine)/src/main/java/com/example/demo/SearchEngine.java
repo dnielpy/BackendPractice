@@ -46,7 +46,7 @@ public class SearchEngine {
 
         for (int i = 0; i < this.data.size(); i++) {
             int checks = 0;
-            if (data.get(i).getName().equals(this.query.get(0))){
+            if (data.get(i).getName().toLowerCase(Locale.ROOT).equals(this.query.get(0).toLowerCase(Locale.ROOT))){
                 checks++;
             } if (data.get(i).getAge().toLowerCase(Locale.ROOT).equals(this.query.get(1).toLowerCase(Locale.ROOT))) {
                  checks++;
