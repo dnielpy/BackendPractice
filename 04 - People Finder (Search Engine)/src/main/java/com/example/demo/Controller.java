@@ -13,6 +13,11 @@ public class Controller {
     private List<Person> data;
     private SearchEngine searchengine;
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
     @PostMapping("/person")
     public List<Person> addStudent(
             @RequestParam String postName,
