@@ -17,16 +17,21 @@ public class Controller {
     public List<Person> getStudent() {
 
         //Change this for http request
-        String name = "Daniel";
-        int age = 13;
-        String country = "Cuba";
-        String color = "White";
-        String gender = "Black";
-        String phone = "5531122";
+        String name = "Lanie";
+        int age = 0;
+        String country = "";
+        String color = "";
+        String gender = "";
+        String phone = "";
 
         List<String> query = new ArrayList<>();
         query.add(name);
-        query.add(String.valueOf(age));
+        if (age == 0) {
+            query.add("");
+        }
+        else{
+            query.add(String.valueOf(age));
+        }
         query.add(country);
         query.add(color);
         query.add(gender);
@@ -35,6 +40,7 @@ public class Controller {
         data = peopleRepository.findAll();
         searchengine = new SearchEngine(query, data);
 
-        //return searchengine.StartEngine();
+        //System.out.println(searchengine.filter().get(0).getName());
+        return searchengine.filter();
     }
 }
