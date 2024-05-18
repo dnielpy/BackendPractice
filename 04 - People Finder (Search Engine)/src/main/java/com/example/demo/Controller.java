@@ -13,12 +13,10 @@ public class Controller {
     private List<Person> data;
     private SearchEngine searchengine;
 
-    @GetMapping("/")
-    //Post
-    @PostMapping("/")
+    @PostMapping("/person")
     public List<Person> addStudent(
             @RequestParam String postName,
-            @RequestParam int postAge,
+            @RequestParam String postAge,
             @RequestParam String postCountry,
             @RequestParam String postColor,
             @RequestParam String postGender,
@@ -26,12 +24,7 @@ public class Controller {
     ) {
         List<String> query = new ArrayList<>();
         query.add(postName);
-        if (postAge == 0) {
-            query.add("");
-        }
-        else{
-            query.add(String.valueOf(postAge));
-        }
+        query.add(postAge);
         query.add(postCountry);
         query.add(postColor);
         query.add(postGender);

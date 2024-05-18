@@ -36,14 +36,14 @@
     </form>
 
     <!-- Formulario para agregar estudiante -->
-    <form action="/students" method="post">
+    <form action="/person" method="post">
         <input type="hidden" name="_method" value="put" />
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="age" placeholder="Age" required>
-        <input type="text" name="country" placeholder="Country" required>
-        <input type="text" name="color" placeholder="Color" required>
-        <input type="text" name="gender" placeholder="Gender" required>
-        <input type="text" name="phone" placeholder="phone" required>
+        <input type="text" name="postName" placeholder="Name" >
+        <input type="text" name="postAge" placeholder="Age" >
+        <input type="text" name="postCountry" placeholder="Country" >
+        <input type="text" name="postColor" placeholder="Color" >
+        <input type="text" name="postGender" placeholder="Gender" >
+        <input type="text" name="postPhone" placeholder="phone" >
         <button type="submit">Add Student</button>
     </form>
 
