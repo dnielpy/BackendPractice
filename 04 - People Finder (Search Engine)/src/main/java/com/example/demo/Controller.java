@@ -14,28 +14,28 @@ public class Controller {
     private SearchEngine searchengine;
 
     @GetMapping("/")
-    public List<Person> getStudent() {
-
-        //Change this for http request
-        String name = "lanie";
-        int age = 0;
-        String country = "";
-        String color = "";
-        String gender = "";
-        String phone = "";
-
+    //Post
+    @PostMapping("/")
+    public List<Person> addStudent(
+            @RequestParam String postName,
+            @RequestParam int postAge,
+            @RequestParam String postCountry,
+            @RequestParam String postColor,
+            @RequestParam String postGender,
+            @RequestParam String postPhone
+    ) {
         List<String> query = new ArrayList<>();
-        query.add(name);
-        if (age == 0) {
+        query.add(postName);
+        if (postAge == 0) {
             query.add("");
         }
         else{
-            query.add(String.valueOf(age));
+            query.add(String.valueOf(postAge));
         }
-        query.add(country);
-        query.add(color);
-        query.add(gender);
-        query.add(phone);
+        query.add(postCountry);
+        query.add(postColor);
+        query.add(postGender);
+        query.add(postPhone);
 
         data = peopleRepository.findAll();
         searchengine = new SearchEngine(query, data);
@@ -43,4 +43,35 @@ public class Controller {
         //System.out.println(searchengine.filter().get(0).getName());
         return searchengine.filter();
     }
+
+//
+//    @GetMapping("/")
+//    public List<Person> getStudent() {
+//        //Change this for http request
+//        String name = "vallie";
+//        int age = 0;
+//        String country = "";
+//        String color = "";
+//        String gender = "";
+//        String phone = "";
+//
+//        List<String> query = new ArrayList<>();
+//        query.add(name);
+//        if (age == 0) {
+//            query.add("");
+//        }
+//        else{
+//            query.add(String.valueOf(age));
+//        }
+//        query.add(country);
+//        query.add(color);
+//        query.add(gender);
+//        query.add(phone);
+//
+//        data = peopleRepository.findAll();
+//        searchengine = new SearchEngine(query, data);
+//
+//        //System.out.println(searchengine.filter().get(0).getName());
+//        return searchengine.filter();
+//    }
 }
