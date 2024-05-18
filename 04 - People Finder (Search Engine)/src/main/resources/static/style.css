@@ -1,0 +1,116 @@
+body{
+    background-color: rgb(31, 4, 73);
+}
+h1{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 60px;
+}
+h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.897);
+    text-align: center;
+    margin: auto;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+header{
+    margin: auto;
+    padding: 30px 90px;
+    background-image: url("assets/banner.jpg");
+    background-size: cover;  
+    background-position: center; 
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+}
+p{
+    color: aliceblue;
+    font-family: sans-serif;
+    margin: 10px 300px;
+    font-size: 20px;
+}
+.box{
+    background-color: rgb(24, 15, 39);
+    height: 850px;
+    width: 600px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 40px 0 #3627c4;
+    border-radius: 25px;
+}
+h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 70px 50px 0 0px;
+    font-size: 35px;
+    text-shadow: 0px 0px 20px rgb(92, 12, 223);
+}
+
+h4{
+    padding: 0 75px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: none;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 30px;
+}
+a{
+    color: rgba(255, 255, 255, 0.7);
+}
+.name, .email, .number, .creditcard{
+    width: 500px;
+    height: 40px;
+    margin: 0 50px;
+    border-radius: 12px;
+    background-color: rgb(24, 15, 39);
+    box-shadow: 0 0 10px 0 #808080;
+    border: 0px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.email{
+    margin-top: 50px;
+    height: 40px;
+}
+
+.number{
+    width: 200px;
+    margin: 0 0 0 0px;
+}
+h3{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 52px;
+}
+.creditcard{
+    width: 200px;
+}
+.creditcard, .name, .number, .email{
+    color: white;
+}
+button{
+    width: 20%;
+    height: 30px;
+    margin: 40px 0 0 245px;
+    background-color: rgb(23, 14, 38);
+    border-radius: 90px;
+    border-color: rgba(255, 255, 255, 0.0);
+    box-shadow: 0 0 10px 0 #3d10a5;
+    color: aliceblue;
+}
+.link{
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-bottom: none;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+

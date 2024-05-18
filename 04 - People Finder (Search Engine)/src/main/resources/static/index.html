@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Students Register</title>
     <style>
         body {
@@ -27,25 +28,31 @@
         }
     </style>
 </head>
+
 <body>
 <div class="container">
-    <h1>Welcome to Students Register</h1>
-
-    <!-- No tocar -->
-    <form action="/students" method="get">
-    </form>
-
-    <!-- Formulario para agregar estudiante -->
-    <form action="/person" method="post">
-        <input type="hidden" name="_method" value="put" />
-        <input type="text" name="postName" placeholder="Name" >
-        <input type="text" name="postAge" placeholder="Age" >
-        <input type="text" name="postCountry" placeholder="Country" >
-        <input type="text" name="postColor" placeholder="Color" >
-        <input type="text" name="postGender" placeholder="Gender" >
-        <input type="text" name="postPhone" placeholder="phone" >
-        <button type="submit">Add Student</button>
-    </form>
+    <div class="boxes">
+        <div class="box">
+            <h3 class="h3">
+                Search People!
+            </h3>
+            <h4>
+                -- Complete the next form to get people information
+            </h4>
+            <form action="/students" method="get"></form>
+            <form action="/person" method="post">
+                <input class="name" type="hidden" name="_method" value="put">
+                <input class="name" type="text" name="postName" placeholder="Name" >
+                <input class="email" type="text" name="postAge" placeholder="Age" >
+                <input class="email" type="text" name="postCountry" placeholder="Country" >
+                <input class="email" type="text" name="postColor" placeholder="Color" >
+                <input class="email" type="text" name="postGender" placeholder="Gender" >
+                <input class="email" type="text" name="postPhone" placeholder="Phone" >
+                <button class="button" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+<!--    <h1>Seacrh Persons</h1>-->
 
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
