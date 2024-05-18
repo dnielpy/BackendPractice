@@ -2,6 +2,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -12,17 +13,28 @@ public class Controller {
     private List<Person> data;
     private SearchEngine searchengine;
 
-    public void init() {
-        if (data == null || searchengine == null) {
-            data = peopleRepository.findAll();
-            List<String> query = List.of("Daniel", "", "", "", "", "");
-            searchengine = new SearchEngine(query, data);
-        }
-    }
-
     @GetMapping("/")
     public List<Person> getStudent() {
-        init();
-        return searchengine.StartEngine();
+
+        //Change this for http request
+        String name = "Daniel";
+        int age = 13;
+        String country = "Cuba";
+        String color = "White";
+        String gender = "Black";
+        String phone = "5531122";
+
+        List<String> query = new ArrayList<>();
+        query.add(name);
+        query.add(String.valueOf(age));
+        query.add(country);
+        query.add(color);
+        query.add(gender);
+        query.add(phone);
+
+        data = peopleRepository.findAll();
+        searchengine = new SearchEngine(query, data);
+
+        //return searchengine.StartEngine();
     }
 }
