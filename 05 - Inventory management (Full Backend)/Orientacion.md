@@ -1,29 +1,37 @@
-# 📦 ElectroShop Inventory Management Application
+# 🛍️ ElectroShop Online Store
 
-## 🌐 Overview
+ElectroShop es una empresa con varias tiendas físicas que ha decidido dar el salto a las ventas online. La infraestructura de ElectroShop está compuesta por varias sucursales en diferentes lugares, cada una encargada de vender diferentes tipos de productos.
 
-This project is an inventory management application for a fictional electronics store, ElectroShop. The application is designed to help ElectroShop manage its vast array of products, from mobile phones to televisions and computers. With a high demand for its products, ElectroShop needs an efficient way to manage its inventory, and this application aims to provide that solution.
+## 📦 Productos
 
-## 🚀 Features
+Los productos que se venden en ElectroShop son:
 
-1. **Data Models** 📝: The application includes models to represent the products sold by ElectroShop, with attributes such as name, description, price, and quantity in stock. It also includes models to represent customer orders and the customers themselves.
+- 📱 Celulares
+- 🚗 Carros
+- 🍔 Comida
 
-2. **Database** 🗃️: The application uses a database to store all of ElectroShop's information. The database is designed with relationships between the different models in mind. For example, an order is related to a customer and multiple products.
+## 📈 Estadísticas de Ventas
 
-3. **Backend** ⚙️: The backend of the application interacts with the database, providing endpoints for CRUD (Create, Read, Update, Delete) operations for each data model. It also provides endpoints for generating reports and statistics on ElectroShop's inventory performance
+ElectroShop tiene interés en controlar sus estadísticas de ventas, por lo que es importante para ellos guardar información como:
 
-4. **API Documentation** 📚: The application's API is documented using tools like Swagger, making it easier for other developers and the ElectroShop team to use.
+- 👤 Nombres de usuario (clientes)
+- 🛒 Productos comprados
+- 💰 Total gastado en la tienda
 
-5. **User Interface** 🖥️: While the main focus is on the backend, the application also includes a simple user interface. This interface, which can be developed using pure JavaScript or a framework like Svelte, Angular, or React, allows the ElectroShop team to interact with the application in an easy and intuitive way.
+## 🛒 Funcionalidad de la Tienda
 
-6. **Testing** ✔️: The application includes tests to ensure it works as expected and can handle ElectroShop's demand.
+La tienda cuenta con una página de inicio en la que el usuario puede loggearse. Solo se puede comprar una vez se conocen sus datos:
 
-7. **Deployment** 🚀: The application is designed to be deployed so that ElectroShop can use it. Services like Heroku or AWS can be considered for this purpose.
+- 👤 Usuario
+- 📧 Correo
+- 💳 Tarjeta de crédito
 
-## 🎬 Getting Started
+Luego, el usuario puede elegir entre varios productos y al presionar sobre el botón COMPRAR, toda esta información se guardará en la base de datos y se le entregará una factura que refleje los productos comprados, su nombre, correo y total pagado.
 
-To get started with this project, clone the repository and install the necessary dependencies. Then, run the application and navigate to the provided local URL in your web browser.
+## 👮‍♂️ Lado ADMIN
 
-## 📜 License
+La tienda también tendrá un lado ADMIN, su única funcionalidad es ver los datos de los usuarios hasta la fecha en su tienda (nombre, correo) y ver el total de dinero recaudado.
 
-This project is licensed under the terms of the MIT license.
+## 🎯 Misión
+
+Tu misión es construir el backend de una app encargada de autentificar al usuario, gestionar sus compras y generar una factura.
