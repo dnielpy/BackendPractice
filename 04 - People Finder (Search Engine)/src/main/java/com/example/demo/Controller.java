@@ -1,4 +1,5 @@
 package com.example.demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,38 +34,6 @@ public class Controller {
         data = peopleRepository.findAll();
         searchengine = new SearchEngine(query, data);
 
-        //System.out.println(searchengine.filter().get(0).getName());
         return searchengine.filter();
     }
-
-//
-//    @GetMapping("/")
-//    public List<Person> getStudent() {
-//        //Change this for http request
-//        String name = "vallie";
-//        int age = 0;
-//        String country = "";
-//        String color = "";
-//        String gender = "";
-//        String phone = "";
-//
-//        List<String> query = new ArrayList<>();
-//        query.add(name);
-//        if (age == 0) {
-//            query.add("");
-//        }
-//        else{
-//            query.add(String.valueOf(age));
-//        }
-//        query.add(country);
-//        query.add(color);
-//        query.add(gender);
-//        query.add(phone);
-//
-//        data = peopleRepository.findAll();
-//        searchengine = new SearchEngine(query, data);
-//
-//        //System.out.println(searchengine.filter().get(0).getName());
-//        return searchengine.filter();
-//    }
 }

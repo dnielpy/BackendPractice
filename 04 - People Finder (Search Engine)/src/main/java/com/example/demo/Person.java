@@ -16,9 +16,10 @@ public class Person {
 
 
     //Constructors
-    public Person(){
+    public Person() {
 
     }
+
     public Person(String Id, String Name, int Age, String Country, String Color, String Gender, String Phone) {
         this.id = Id;
         this.name = Name;
