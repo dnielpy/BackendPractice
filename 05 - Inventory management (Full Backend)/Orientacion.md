@@ -10,7 +10,7 @@ This project is an inventory management application for a fictional electronics 
 
 2. **Database** 🗃️: The application uses a database to store all of ElectroShop's information. The database is designed with relationships between the different models in mind. For example, an order is related to a customer and multiple products.
 
-3. **Backend** ⚙️: The backend of the application interacts with the database, providing endpoints for CRUD (Create, Read, Update, Delete) operations for each data model. It also provides endpoints for generating reports and statistics on ElectroShop's inventory performance.
+3. **Backend** ⚙️: The backend of the application interacts with the database, providing endpoints for CRUD (Create, Read, Update, Delete) operations for each data model. It also provides endpoints for generating reports and statistics on ElectroShop's inventory performance
 
 4. **API Documentation** 📚: The application's API is documented using tools like Swagger, making it easier for other developers and the ElectroShop team to use.
 
@@ -23,10 +23,6 @@ This project is an inventory management application for a fictional electronics 
 ## 🎬 Getting Started
 
 To get started with this project, clone the repository and install the necessary dependencies. Then, run the application and navigate to the provided local URL in your web browser.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read the contributing guide to learn how you can contribute to this project.
 
 ## 📜 License
 
