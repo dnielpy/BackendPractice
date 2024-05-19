@@ -1,4 +1,4 @@
-# - People Finder (Search Engine) 🚀
+# People Finder (Search Engine) 🚀
 
 ## Description 📝
 This is a demo application that allows searching for people by various criteria. The application is built with Java and Spring Boot, and uses Maven as a project management system.
