@@ -15,7 +15,12 @@ public class Controller {
     private List<Users> users;
 
     @GetMapping("/")
-    public String index() {
+    public String index(){
+        return "index";
+    }
+
+    @PostMapping("/loggin")
+    public String checkLoggin() {
         //All users data
         users = usersRepository.findAll();
 
