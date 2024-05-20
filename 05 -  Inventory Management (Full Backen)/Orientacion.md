@@ -10,13 +10,6 @@ Los productos que se venden en ElectroShop son:
 - 🚗 Carros
 - 🍔 Comida
 
-## 📈 Estadísticas de Ventas
-
-ElectroShop tiene interés en controlar sus estadísticas de ventas, por lo que es importante para ellos guardar información como:
-
-- 👤 Nombres de usuario (clientes)
-- 🛒 Productos comprados
-- 💰 Total gastado en la tienda
 
 ## 🛒 Funcionalidad de la Tienda
 
@@ -27,6 +20,15 @@ La tienda cuenta con una página de inicio en la que el usuario puede loggearse.
 - 💳 Tarjeta de crédito
 
 Luego, el usuario puede elegir entre varios productos y al presionar sobre el botón COMPRAR, toda esta información se guardará en la base de datos y se le entregará una factura que refleje los productos comprados, su nombre, correo y total pagado.
+
+## 📈 Estadísticas de Ventas
+
+ElectroShop tiene interés en controlar sus estadísticas de ventas, por lo que es importante para ellos guardar información como:
+
+- 👤 Nombres de usuario (clientes)
+- 🛒 Productos comprados
+- 💰 Total gastado en la tienda
+
 
 ## 👮‍♂️ Lado ADMIN
 
