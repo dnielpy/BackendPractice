@@ -1,6 +1,11 @@
 package com.example.demo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Phones {
+    @Id
     private String model;
     private String price;
 

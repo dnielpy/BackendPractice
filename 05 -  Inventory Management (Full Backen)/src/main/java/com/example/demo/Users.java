@@ -1,20 +1,28 @@
 package com.example.demo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.List;
 import java.util.Locale;
 
 @Entity
 public class Users {
+    @Id
+    private Integer id;
     private String name;
     private String email;
-    private String credit_card;
+    private String creditcard;
 
-    public Users(String name, String email, String credit_card) {
+    public Users(){
+
+    }
+
+    public Users(Integer id, String name, String email, String creditcard) {
+        this.id = id;
         this.name = name;
         this.email = email;
-        this.credit_card = credit_card;
+        this.creditcard = creditcard;
     }
 
     //Getters
@@ -26,8 +34,8 @@ public class Users {
         return email;
     }
 
-    public String getCredit_card() {
-        return credit_card;
+    public String getcreditcard() {
+        return creditcard;
     }
 
     //Setters
@@ -39,7 +47,7 @@ public class Users {
         this.email = email;
     }
 
-    public void setCredit_card(String credit_card) {
-        this.credit_card = credit_card;
+    public void setcreditcard(String creditcard) {
+        this.creditcard = creditcard;
     }
 }
