@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,17 +15,21 @@ public class Controller {
     private UsersRepository usersRepository;
     private List<Users> users;
 
-    @GetMapping("/")
-    public String index(){
-        return "index";
-    }
+//    @GetMapping("/index")
+//    public String index(){
+//        return "index";
+//    }
 
     @PostMapping("/loggin")
-    public String checkLoggin() {
+    public String checkLoggin(
+            @RequestParam String name
+        ) {
         //All users data
         users = usersRepository.findAll();
 
-        Auth auth = new Auth("lopez", users);
+        String username = name;
+
+        Auth auth = new Auth(username, users);
 
         boolean checkUser = auth.CheckUser();
 

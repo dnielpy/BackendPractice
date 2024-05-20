@@ -33,26 +33,23 @@
 <div class="container">
     <div class="boxes">
         <div class="box">
-            <h3 class="h3">
-                Search People!
-            </h3>
             <h4>
-                Insert your username if you already have an account
+                Insert your username
             </h4>
-            <form action="/students" method="get"></form>
-            <form action="/person" method="post">
+            <form action="/loggin" method="get"></form>
+            <form action="/loggin" method="post">
                 <input class="name" type="hidden" name="_method" value="put">
-                <input class="name" type="text" name="postName" placeholder="Name" >
+                <input class="name" type="text" name="name" placeholder="Name" >
+                <button class="button" type="submit">loggin</button>
 
-                <h4>
-                    Create and account
-                </h4>
+<!--                <input class="name" type="text" name="name" placeholder="name" >-->
+<!--                <input class="email" type="text" name="email" placeholder="email" >-->
+<!--                <input class="creditcard" type="text" name="creditcard" placeholder="creditcard" >-->
 
-                <input class="name" type="text" name="name" placeholder="name" >
-                <input class="email" type="text" name="email" placeholder="email" >
-                <input class="creditcard" type="text" name="creditcard" placeholder="creditcard" >
+                <!--                <h4>-->
+                <!--                    Create and account-->
+                <!--                </h4>-->
 
-                <button class="button" type="submit">Search</button>
             </form>
         </div>
     </div>
