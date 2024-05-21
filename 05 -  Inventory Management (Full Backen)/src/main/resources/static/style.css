@@ -102,7 +102,7 @@ button{
     padding-left: 100px;
     width: 20%;
     height: 30px;
-    margin: 40px 0 0 245px;
+    margin: 40px 0 0 250px;
     background-color: rgb(23, 14, 38);
     border-radius: 90px;
     border-color: rgba(255, 255, 255, 0.0);
@@ -129,3 +129,13 @@ button{
     padding-left: 100px
 }
 
+.boxa{
+    background-color: rgb(24, 15, 39);
+    height: 430px;
+    width: 600px;
+    margin: auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 40px 0 #3627c4;
+    border-radius: 25px;
+}
