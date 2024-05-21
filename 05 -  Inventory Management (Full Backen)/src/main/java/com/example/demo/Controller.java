@@ -22,14 +22,14 @@ public class Controller {
 
     @PostMapping("/loggin")
     public String checkLoggin(
-            @RequestParam String name
+            @RequestParam String email
         ) {
         //All users data
         users = usersRepository.findAll();
 
-        String username = name;
+        String useremail = email;
 
-        Auth auth = new Auth(username, users);
+        Auth auth = new Auth(useremail, users);
 
         boolean checkUser = auth.CheckUser();
 

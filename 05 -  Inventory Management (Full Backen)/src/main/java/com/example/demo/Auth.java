@@ -15,7 +15,7 @@ public class Auth {
     //Implementar la logica para saber si ese usuario esta ne la base de datos
     public boolean CheckUser(){
         for (int i = 0; i < users_data.size(); i++) {
-            if (this.users_data.get(i).getName().toLowerCase(Locale.ROOT).equals(this.user.toLowerCase(Locale.ROOT))) {
+            if (this.users_data.get(i).getEmail().toLowerCase(Locale.ROOT).equals(this.user.toLowerCase(Locale.ROOT))) {
                 return true;
             }
         }
