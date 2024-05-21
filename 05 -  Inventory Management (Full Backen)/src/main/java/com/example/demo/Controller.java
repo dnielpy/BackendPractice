@@ -34,10 +34,10 @@ public class Controller {
         boolean checkUser = auth.CheckUser();
 
         if (checkUser == true) {
-            return "Si Esta";
+            return "Si Esta - pasarlo a la pagina";
         }
         else {
-            return "no esta";
+            return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
         }
     }
 }
