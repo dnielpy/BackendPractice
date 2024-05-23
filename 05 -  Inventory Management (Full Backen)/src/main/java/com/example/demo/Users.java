@@ -9,7 +9,6 @@ import java.util.Locale;
 @Entity
 public class Users {
     @Id
-    private Integer id;
     private String name;
     private String email;
     private String creditcard;
@@ -18,8 +17,7 @@ public class Users {
 
     }
 
-    public Users(Integer id, String name, String email, String creditcard) {
-        this.id = id;
+    public Users(String name, String email, String creditcard) {
         this.name = name;
         this.email = email;
         this.creditcard = creditcard;

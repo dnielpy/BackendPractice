@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zxx">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <title>Loggin</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>adduser</title>
     <style>
         body {
              font-family: Arial, sans-serif;
@@ -36,16 +36,14 @@
             <h4>
                 We almost done
             </h4>
-            <form action="/loggin" method="get"></form>
-            <form action="/loggin" method="post">
+            <form action="/adduser" method="get"></form>
+            <form action="/adduser" method="post">
                 <input class="name" type="hidden" name="_method" value="put">
                 <input class="name" type="text" name="name" placeholder="name" >
                 <input class="email" type="text" name="email" placeholder="email" >
-                <input class="email" type="text" name="email" placeholder="email" >
+                <input class="email" type="text" name="creditcard" placeholder="credit card" >
 
                 <button class="button" type="submit">Create</button>
-
-
             </form>
         </div>
     </div>

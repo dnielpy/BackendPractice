@@ -20,24 +20,33 @@ public class Controller {
 //        return "index";
 //    }
 
-    @PostMapping("/loggin")
-    public String checkLoggin(
-            @RequestParam String email
-        ) {
-        //All users data
-        users = usersRepository.findAll();
+//    @PostMapping("/loggin")
+//    public String checkLoggin(
+//            @RequestParam String email
+//        ) {
+//        //All users data
+//        users = usersRepository.findAll();
+//        String useremail = email;
+//        Auth auth = new Auth(useremail, users);
+//        boolean checkUser = auth.CheckUser();
+//        if (checkUser == true) {
+//            return "Si Esta - pasarlo a la pagina";
+//        }
+//        else {
+//            return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
+//        }
+//    }
 
-        String useremail = email;
+    //AddUser
+    @PostMapping("/adduser")
+    public String addStudent(@RequestParam String name, @RequestParam String email, @RequestParam String creditcard) {
+        Users usuario = new Users(name, email, creditcard);
+        usuario.setName(name);
+        usuario.setEmail(email);
+        usuario.setcreditcard(creditcard);
 
-        Auth auth = new Auth(useremail, users);
-
-        boolean checkUser = auth.CheckUser();
-
-        if (checkUser == true) {
-            return "Si Esta - pasarlo a la pagina";
-        }
-        else {
-            return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
-        }
+       usersRepository.save(usuario);
+        return "Student added successfully";
     }
+
 }

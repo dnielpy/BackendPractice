@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zxx">
 <head>
     <link rel="stylesheet" href="style.css">
     <title>Loggin</title>
@@ -42,7 +42,9 @@
                 <input class="name" type="email" name="email" placeholder="Email" >
                 <button class="button" type="submit">Loggin</button>
                 <h4 class="create">
-                    <a href="adduser.html">Create Account</a>
+                    <a th:href="@{/adduser}">Create </a>
+<!--                    <a href="adduser.html">Create Account</a>-->
+
                 </h4>
 
 
