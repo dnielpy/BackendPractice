@@ -40,11 +40,10 @@
             <form action="/loggin" method="post">
                 <input class="name" type="hidden" name="_method" value="put">
                 <input class="name" type="email" name="email" placeholder="Email" >
-                <button class="button" type="submit">Loggin</button>
+                <button class="button" type="submit">Login</button>
                 <h4 class="create">
-                    <a th:href="@{/adduser}">Create </a>
-<!--                    <a href="adduser.html">Create Account</a>-->
-
+<!--                    <a th:href="@{/adduser}">Create </a>-->
+                    <a href="/adduser">Create Account</a>
                 </h4>
 
 

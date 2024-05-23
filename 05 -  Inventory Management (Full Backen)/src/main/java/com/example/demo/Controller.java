@@ -15,29 +15,34 @@ public class Controller {
     private UsersRepository usersRepository;
     private List<Users> users;
 
-//    @GetMapping("/index")
-//    public String index(){
-//        return "index";
-//    }
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
 
-//    @PostMapping("/loggin")
-//    public String checkLoggin(
-//            @RequestParam String email
-//        ) {
-//        //All users data
-//        users = usersRepository.findAll();
-//        String useremail = email;
-//        Auth auth = new Auth(useremail, users);
-//        boolean checkUser = auth.CheckUser();
-//        if (checkUser == true) {
-//            return "Si Esta - pasarlo a la pagina";
-//        }
-//        else {
-//            return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
-//        }
-//    }
+    @PostMapping("/loggin")
+    public String checkLoggin(
+            @RequestParam String email
+        ) {
+        //All users data
+        users = usersRepository.findAll();
+        String useremail = email;
+        Auth auth = new Auth(useremail, users);
+        boolean checkUser = auth.CheckUser();
+        if (checkUser == true) {
+            return "Si Esta - pasarlo a la pagina";
+        }
+        else {
+            return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
+        }
+    }
 
     //AddUser
+    @GetMapping("/adduser")
+    public String adduser(){
+        return "adduser.html";
+    }
+
     @PostMapping("/adduser")
     public String addStudent(@RequestParam String name, @RequestParam String email, @RequestParam String creditcard) {
         Users usuario = new Users(name, email, creditcard);
