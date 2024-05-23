@@ -37,23 +37,5 @@ public class Controller {
         }
     }
 
-    //AddUser
-    @GetMapping("/adduser")
-    public String adduser(){
-        return "adduser.html";
-    }
 
-    @PostMapping("/adduser")
-    public String adduser(@RequestParam String name, @RequestParam String email, @RequestParam String creditcard) {
-//    public String addStudent() {
-//        Users usuario = new Users(name, email, creditcard);
-        Users usuario = new Users(name, email, creditcard);
-
-        usuario.setName(name);
-        usuario.setEmail(email);
-        usuario.setcreditcard(creditcard);
-
-       usersRepository.save(usuario);
-        return "Student added successfully";
-    }
 }
