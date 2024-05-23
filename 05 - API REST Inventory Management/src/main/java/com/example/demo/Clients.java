@@ -9,15 +9,16 @@ public class Clients {
     private int id;
     private String name;
     private Integer balance;
+    private String products;
 
     public Clients() {
     }
 
-    public Clients(int id, String name, Integer balance){
+    public Clients(int id, String name, Integer balance, String products) {
         this.id = id;
         this.name = name;
         this.balance = balance;
-
+        this.products = products;
     }
 
     public int getId() {
@@ -44,12 +45,21 @@ public class Clients {
         this.balance = balance;
     }
 
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "Clients{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", balance=" + balance +
+                ", products='" + products + '\'' +
                 '}';
     }
 }
