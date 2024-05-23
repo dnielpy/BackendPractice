@@ -36,6 +36,4 @@ public class Controller {
             return "no esta - pedirle un username y una tarjeta - pasarlo a la pagina";
         }
     }
-
-
 }
