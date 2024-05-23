@@ -13,6 +13,8 @@ public class Controller {
     private ProductReository productsRepository;
     @Autowired
     private ClientsRepository clientsRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     @GetMapping("/viewProducts")
     public List<Products> viewProducts(){
@@ -26,14 +28,20 @@ public class Controller {
         return product;
     }
 
-    @PostMapping("/buyProducts")
-    public String buyProducts(@RequestParam int userID, @RequestParam int productID){
-        Products product = productsRepository.findById(productID).orElse(null);
-        Clients client = clientsRepository.findById(userID).orElse(null);
+    @PostMapping("/addToCart")
+        public String addToCart(@RequestParam int userID, @RequestParam int productID){
+            Products product = productsRepository.findById(productID).orElse(null);
 
+            // Crear un nuevo carrito cada vez que se llame a este método
+            Cart cart = new Cart(userID, product.getName());
 
+            cartRepository.save(cart);
 
-        //Verificar si el usuario tiene el dinero para comprar el productto
+            return "Producto agregado al carrito" + cart.getProducts();
+    }
+
+    public String buyProduct(Products product, Clients client) {
+        //Verificar si el usuario tiene el dinero para comprar el producto
         if (product.getPrice() <= client.getBalance()) {
             client.setBalance(client.getBalance() - product.getPrice());
 
@@ -46,7 +54,32 @@ public class Controller {
             clientsRepository.save(client);
         }
         String productos_comprados = "Productos comprados: " + client.getProducts() + "\nSaldo restante: " + client.getBalance();
-
         return productos_comprados;
+    }
+
+    @PostMapping("/buyProducts")
+    public String buyProducts(@RequestParam int userID){
+        Cart cart = cartRepository.findById(userID).orElse(null);
+        Clients client = clientsRepository.findById(userID).orElse(null);
+
+
+        //Recorrer Cart y sacar todos los productos que tengan el id igual al userID
+        List<Cart> carts = cartRepository.findAll();
+        for (Cart c : carts) {
+            if (c.getUserId() == userID) {
+                String[] products = c.getProducts().split(", ");
+                for (String p : products) {
+                    //Aqui tengo todos los productos que ese user annadio al cart
+                    Products product = productsRepository.findByName(p);
+                    client = clientsRepository.findById(userID).orElse(null);
+
+                    buyProduct(product, client);
+                    //Eliminar del carrito
+                    cartRepository.delete(c);
+                }
+            }
+        }
+
+        return "Producto Comprado con exito";
     }
 }
