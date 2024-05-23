@@ -44,14 +44,14 @@ public class Controller {
     }
 
     @PostMapping("/adduser")
-//    public String addStudent(@RequestParam String name, @RequestParam String email, @RequestParam String creditcard) {
-    public String addStudent() {
+    public String adduser(@RequestParam String name, @RequestParam String email, @RequestParam String creditcard) {
+//    public String addStudent() {
 //        Users usuario = new Users(name, email, creditcard);
-        Users usuario = new Users("name", "email", "creditcard");
+        Users usuario = new Users(name, email, creditcard);
 
-        usuario.setName("name");
-        usuario.setEmail("email");
-        usuario.setcreditcard("creditcard");
+        usuario.setName(name);
+        usuario.setEmail(email);
+        usuario.setcreditcard(creditcard);
 
        usersRepository.save(usuario);
         return "Student added successfully";
