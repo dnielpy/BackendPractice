@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class Controller {
@@ -77,5 +78,11 @@ public class Controller {
         }
         cartRepository.deleteAll();
         return "Producto Comprado con exito";
+    }
+
+    @PostMapping("/cancel")
+    public String cancelPurchase(){
+        cartRepository.deleteAll();
+        return "Compra cancelada con exito";
     }
 }
