@@ -35,7 +35,7 @@ public class Controller {
             Products product = productsRepository.findById(productID).orElse(null);
 
             // Crear un nuevo carrito cada vez que se llame a este método
-            Cart cart = new Cart(product.getName());
+            Cart cart = new Cart(0, product.getName());
 
             cartRepository.save(cart);
 
@@ -71,10 +71,10 @@ public class Controller {
                 for (String p : products) {
                     //Aqui tengo todos los productos que ese user annadio al cart
                     Products product = productsRepository.findByName(p);
+
                     buyProduct(product, client);
                     //Eliminar del carrito
                     cartRepository.delete(c);
-
             }
         }
 
