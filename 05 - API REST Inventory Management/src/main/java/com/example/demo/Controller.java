@@ -28,12 +28,13 @@ public class Controller {
         return product;
     }
 
+    //El bug esta en que esta editando, no agregando
     @PostMapping("/addToCart")
-        public String addToCart(@RequestParam int userID, @RequestParam int productID){
+        public String addToCart(@RequestParam int clientID, @RequestParam int productID){
             Products product = productsRepository.findById(productID).orElse(null);
 
             // Crear un nuevo carrito cada vez que se llame a este método
-            Cart cart = new Cart(userID, product.getName());
+            Cart cart = new Cart(clientID, product.getName());
 
             cartRepository.save(cart);
 
@@ -66,7 +67,7 @@ public class Controller {
         //Recorrer Cart y sacar todos los productos que tengan el id igual al userID
         List<Cart> carts = cartRepository.findAll();
         for (Cart c : carts) {
-            if (c.getUserId() == userID) {
+            if (c.getclientid() == userID) {
                 String[] products = c.getProducts().split(", ");
                 for (String p : products) {
                     //Aqui tengo todos los productos que ese user annadio al cart

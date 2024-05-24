@@ -6,23 +6,23 @@ import jakarta.persistence.Id;
 @Entity
 public class Cart {
     @Id
-    private int userId;
+    private int clientid;
     private String products;
 
     public Cart() {
     }
 
-    public Cart(int userId, String products) {
-        this.userId = userId;
+    public Cart(int clientid, String products) {
+        this.clientid = clientid;
         this.products = products;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getclientid() {
+        return clientid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setclientid(int clientid) {
+        this.clientid = clientid;
     }
 
     public String getProducts() {
