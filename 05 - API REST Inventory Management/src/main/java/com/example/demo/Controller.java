@@ -1,4 +1,5 @@
 package com.example.demo;
+import org.hibernate.boot.model.relational.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +31,11 @@ public class Controller {
 
     //El bug esta en que esta editando, no agregando
     @PostMapping("/addToCart")
-        public String addToCart(@RequestParam int clientID, @RequestParam int productID){
+        public String addToCart(@RequestParam int productID){
             Products product = productsRepository.findById(productID).orElse(null);
 
             // Crear un nuevo carrito cada vez que se llame a este método
-            Cart cart = new Cart(clientID, product.getName());
+            Cart cart = new Cart(product.getName());
 
             cartRepository.save(cart);
 
@@ -60,24 +61,20 @@ public class Controller {
 
     @PostMapping("/buyProducts")
     public String buyProducts(@RequestParam int userID){
-        Cart cart = cartRepository.findById(userID).orElse(null);
+        List<Cart> cart = cartRepository.findAll();
         Clients client = clientsRepository.findById(userID).orElse(null);
-
 
         //Recorrer Cart y sacar todos los productos que tengan el id igual al userID
         List<Cart> carts = cartRepository.findAll();
         for (Cart c : carts) {
-            if (c.getclientid() == userID) {
                 String[] products = c.getProducts().split(", ");
                 for (String p : products) {
                     //Aqui tengo todos los productos que ese user annadio al cart
                     Products product = productsRepository.findByName(p);
-                    client = clientsRepository.findById(userID).orElse(null);
-
                     buyProduct(product, client);
                     //Eliminar del carrito
                     cartRepository.delete(c);
-                }
+
             }
         }
 
