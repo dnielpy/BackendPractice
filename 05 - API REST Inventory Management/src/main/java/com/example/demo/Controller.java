@@ -73,11 +73,9 @@ public class Controller {
                     Products product = productsRepository.findByName(p);
 
                     buyProduct(product, client);
-                    //Eliminar del carrito
-                    cartRepository.delete(c);
             }
         }
-
+        cartRepository.deleteAll();
         return "Producto Comprado con exito";
     }
 }
