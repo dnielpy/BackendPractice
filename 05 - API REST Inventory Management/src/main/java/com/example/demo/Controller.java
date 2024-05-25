@@ -17,6 +17,8 @@ public class Controller {
     private ClientsRepository clientsRepository;
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    private AdminsRepository adminsRepository;
 
     @GetMapping("/viewProducts")
     public List<Products> viewProducts(){
@@ -83,7 +85,23 @@ public class Controller {
 
     @GetMapping("/admin")
     public String loginAdmin(@RequestParam int id){
+        boolean itsAnAdmin = false;
 
+        //Check if id is an admin id
+        List<Admins> admins = adminsRepository.findAll();
 
+        for (int i = 0; i < admins.size(); i++) {
+            if (admins.get(i).getId() == (id)) {
+                itsAnAdmin = true;
+                break;
+            }
+        }
+
+        if (itsAnAdmin) {
+            return "Es un admin";
+        }
+        else {
+            return "No es un admin";
+        }
     }
 }
