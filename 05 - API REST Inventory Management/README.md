@@ -1,6 +1,6 @@
 # Project Title
 
-Your project title goes here.
+Inventory Managements API REST
 
 ## Description
 
@@ -46,11 +46,3 @@ Here's a brief description of how to use the API:
 11. **Sales Report**: To get a sales report, make a GET request to the `/salesReport` endpoint with the `id` of the admin as a request parameter.
 
 Please note that the actual usage may vary depending on the client you are using to make these requests (like Postman, curl, etc.) and the actual server configuration.
-
-## Contributing
-
-Instructions on how to contribute to your project.
-
-## License
-
-Information about the license.
