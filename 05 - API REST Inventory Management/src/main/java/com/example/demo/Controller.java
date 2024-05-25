@@ -96,12 +96,19 @@ public class Controller {
                 break;
             }
         }
-
         if (itsAnAdmin) {
             return "Es un admin";
         }
         else {
             return "No es un admin";
         }
+    }
+
+    @PostMapping("/addAdmin")
+    public String addAdmin(@RequestParam int id, @RequestParam String name){
+        Admins new_admin = new Admins(id, name);
+        adminsRepository.save(new_admin);
+
+        return "Admin agregado con exito \n" + "Id: " + id + "\nName: " + name;
     }
 }
