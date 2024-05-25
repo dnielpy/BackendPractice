@@ -137,4 +137,15 @@ public class Controller {
 
         return "Producto actualizado con exito \n" + "Id: " + id + "\nName: " + product.getName() + "\nPrice: " + product.getPrice();
     }
+
+    @PostMapping("/deleteProduct")
+    public String deleteProduct(@RequestParam int id){
+        List<Products> products = productsRepository.findAll();
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId() == id) {
+                productsRepository.delete(products.get(i));
+            }
+        }
+    return "Producto eliminado con exito";
+    }
 }
