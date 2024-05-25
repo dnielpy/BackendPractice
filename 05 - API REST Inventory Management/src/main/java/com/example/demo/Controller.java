@@ -111,4 +111,12 @@ public class Controller {
 
         return "Admin agregado con exito \n" + "Id: " + id + "\nName: " + name;
     }
+
+    @PostMapping("/addProduct")
+    public String addProduct(@RequestParam int id, @RequestParam String name, @RequestParam int price){
+        Products new_product = new Products(id, name, price);
+        productsRepository.save(new_product);
+
+        return "Producto agregado con exito \n" + "Id: " + id + "\nName: " + name + "\nPrice: " + price;
+    }
 }
