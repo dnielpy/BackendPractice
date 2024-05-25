@@ -119,4 +119,22 @@ public class Controller {
 
         return "Producto agregado con exito \n" + "Id: " + id + "\nName: " + name + "\nPrice: " + price;
     }
+
+    @PostMapping("/updateProduct")
+    public String updateProduct(@RequestParam int id, @RequestParam String new_name, @RequestParam int new_price){
+        Products product = null;
+        List<Products> products = productsRepository.findAll();
+
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId() == id) {
+                product = products.get(i);
+                break;
+            }
+        }
+        product.setName(new_name);
+        product.setPrice(new_price);
+        productsRepository.save(product);
+
+        return "Producto actualizado con exito \n" + "Id: " + id + "\nName: " + product.getName() + "\nPrice: " + product.getPrice();
+    }
 }
