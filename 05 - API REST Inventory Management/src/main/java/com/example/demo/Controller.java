@@ -34,12 +34,9 @@ public class Controller {
     @PostMapping("/addToCart")
         public String addToCart(@RequestParam int productID){
             Products product = productsRepository.findById(productID).orElse(null);
-
             // Crear un nuevo carrito cada vez que se llame a este método
             Cart cart = new Cart(0, product.getName());
-
             cartRepository.save(cart);
-
             return "Producto agregado al carrito" + cart.getProducts();
     }
 
@@ -47,7 +44,6 @@ public class Controller {
         //Verificar si el usuario tiene el dinero para comprar el producto
         if (product.getPrice() <= client.getBalance()) {
             client.setBalance(client.getBalance() - product.getPrice());
-
             //Eliminar el null y poner el nombre del producto
             if (client.getProducts() == null) {
                 client.setProducts(product.getName());
@@ -64,7 +60,6 @@ public class Controller {
     public String buyProducts(@RequestParam int userID){
         List<Cart> cart = cartRepository.findAll();
         Clients client = clientsRepository.findById(userID).orElse(null);
-
         //Recorrer Cart y sacar todos los productos que tengan el id igual al userID
         List<Cart> carts = cartRepository.findAll();
         for (Cart c : carts) {
@@ -84,5 +79,11 @@ public class Controller {
     public String cancelPurchase(){
         cartRepository.deleteAll();
         return "Compra cancelada con exito";
+    }
+
+    @GetMapping("/admin")
+    public String loginAdmin(@RequestParam int id){
+
+
     }
 }
