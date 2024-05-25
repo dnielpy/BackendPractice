@@ -1,11 +1,56 @@
-La logística es clave en nuestra vida, en nuestro día a día… De ahí la importancia del siguiente proyecto para programadores junior backend que te voy a proponer. ¡Sigue leyendo!
-Ahora vamos a desarrollar una aplicación de gestión de inventario, que puede ser una gran opción para seguir ampliando tus conocimientos como programador junior de backend. Este tipo de aplicación ayuda a las empresas a hacer un seguimiento de su stock y a gestionar sus inventarios de manera eficiente. Para desarrollar una aplicación de gestión de inventario, sigue con el stack tecnológico de backend y bases de datos que hayas elegido.
+# Project Title
 
-Aquí las bases de datos ya serán más complejas, ya que hay mucha información que manejar: productos, pedidos, clientes etc. y las relaciones entre ellas también son interesantes. En este proyecto, ya sí que vamos a aumentar un poco la dificultad y voy a centrarme en que investigues un poco en la escalabilidad de la base de datos. Ya no me sirve sólo que la base de datos funcione, sino que además implementes buenas prácticas, de cara a cuando tengas que hacer proyectos grandes, ya sea por cuenta propia o ajena.
+Your project title goes here.
 
-Funcionalidades del Backend
-Una vez que la aplicación de gestión de inventario esté construida, los usuarios podrán:
+## Description
 
-Realizar operaciones CRUD sobre productos, pedidos, clientes etc.
-Generar informes y estadísticas sobre el rendimiento del inventario (por ejemplo, facturación total en ventas de un determinado producto a lo largo del último año).
-Quiero que prestes también atención a cómo estructuras tu API REST aquí y, si, pudieras documentarla mediante Swagger, sería maravilloso. Como extra, si quieres poder desarrollar una interfaz de usuario sencillita mediante Vanilla JS o alguno de los frameworks/librerías de moda (Svelte, Angular, React, Svelte…) sumarás una aplicación muy interesante a tu portfolio.
+This project is a Java Spring Boot application that provides a simple e-commerce system. It includes functionalities such as viewing products, adding products to a cart, buying products, cancelling purchases, managing admins, adding and updating products, deleting products, and generating sales reports.
+
+## Technologies Used
+
+- Java
+- Spring Boot
+- Maven
+
+## Setup and Installation
+
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `mvn clean install` to build the project.
+4. Run `mvn spring-boot:run` to start the application.
+
+## Usage
+
+Here's a brief description of how to use the API:
+
+1. **View Products**: To view all the products, make a GET request to the `/viewProducts` endpoint. This will return a list of all the products.
+
+2. **Get a Specific Product**: To get a specific product, make a POST request to the `/viewProducts` endpoint with the `id` of the product as a request parameter.
+
+3. **Add to Cart**: To add a product to the cart, make a POST request to the `/addToCart` endpoint with the `productID` as a request parameter.
+
+4. **Buy Products**: To buy the products in the cart, make a POST request to the `/buyProducts` endpoint with the `userID` as a request parameter.
+
+5. **Cancel Purchase**: To cancel a purchase, make a POST request to the `/cancel` endpoint.
+
+6. **Admin Login**: To login as an admin, make a GET request to the `/admin` endpoint with the `id` of the admin as a request parameter.
+
+7. **Add Admin**: To add an admin, make a POST request to the `/addAdmin` endpoint with the `id` and `name` of the new admin as request parameters.
+
+8. **Add Product**: To add a product, make a POST request to the `/addProduct` endpoint with the `id`, `name`, and `price` of the new product as request parameters.
+
+9. **Update Product**: To update a product, make a POST request to the `/updateProduct` endpoint with the `id`, `new_name`, and `new_price` as request parameters.
+
+10. **Delete Product**: To delete a product, make a POST request to the `/deleteProduct` endpoint with the `id` of the product as a request parameter.
+
+11. **Sales Report**: To get a sales report, make a GET request to the `/salesReport` endpoint with the `id` of the admin as a request parameter.
+
+Please note that the actual usage may vary depending on the client you are using to make these requests (like Postman, curl, etc.) and the actual server configuration.
+
+## Contributing
+
+Instructions on how to contribute to your project.
+
+## License
+
+Information about the license.
