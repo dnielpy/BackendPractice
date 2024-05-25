@@ -148,4 +148,23 @@ public class Controller {
         }
     return "Producto eliminado con exito";
     }
+
+    @GetMapping("/salesReport")
+    public List<Products> salesReport(@RequestParam int id){
+        boolean is_admin = false;
+        //Comprobar que su id sea de un admin
+        List<Admins> admins = adminsRepository.findAll();
+        for (int i = 0; i < admins.size(); i++) {
+            if (admins.get(i).getId() == id) {
+                is_admin = true;
+                break;
+            }
+        }
+        if (is_admin == true) {
+            return productsRepository.findAll();
+        }
+        else {
+            return null;
+        }
+    }
 }
