@@ -19,6 +19,8 @@ public class Controller {
     private CartRepository cartRepository;
     @Autowired
     private AdminsRepository adminsRepository;
+    @Autowired
+    private SalesRepository salesRepository;
 
     @GetMapping("/viewProducts")
     public List<Products> viewProducts(){
@@ -70,6 +72,8 @@ public class Controller {
                     //Aqui tengo todos los productos que ese user annadio al cart
                     Products product = productsRepository.findByName(p);
 
+                    Sales sale = new Sales(client.getName(), client.getProducts(), product.getPrice());
+                    salesRepository.save(sale);
                     buyProduct(product, client);
             }
         }
@@ -150,7 +154,7 @@ public class Controller {
     }
 
     @GetMapping("/salesReport")
-    public List<Products> salesReport(@RequestParam int id){
+    public String salesReport(@RequestParam int id){
         boolean is_admin = false;
         //Comprobar que su id sea de un admin
         List<Admins> admins = adminsRepository.findAll();
@@ -161,7 +165,16 @@ public class Controller {
             }
         }
         if (is_admin == true) {
-            return productsRepository.findAll();
+            List<Sales> sales = salesRepository.findAll();
+            int sales_amount = 0;
+            String report = "";
+
+            for (int i = 0; i < sales.size(); i++) {
+                sales_amount += sales.get(i).getCost();
+                report += "{\nUsuario: " + sales.get(i).getUsername() + "\nProductos: " + sales.get(i).getProducts() + "\nPrecio Total: " + sales.get(i).getCost() + "\n}";
+            }
+            report += "\n\nDinero Total Recaudado: " + String.valueOf(sales_amount);
+            return report;
         }
         else {
             return null;
