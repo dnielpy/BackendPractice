@@ -2,6 +2,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,26 +12,13 @@ public class Controller {
     @Autowired
     private StudentsRepository studentsRepository;
 
-    //Sorry for this
-    String getHTMLStructure(String name,String email,String gender,String number){
-        return "<html>" +
-                "<body>" +
-                "<h1>Student Details</h1>" +
-                "<p><strong>Name:</strong> " + name + "</p>" +
-                "<p><strong>Email:</strong> " + email + "</p>" +
-                "<p><strong>Gender:</strong> " + gender + "</p>" +
-                "<p><strong>Number:</strong> " + number + "</p>" +
-                "</body>" +
-                "</html>";
-    }
-
     //Get
     @GetMapping("/students")
     public String getStudent(@RequestParam int id) {
         Optional<studentsdatabase> student = studentsRepository.findById(id);
         if (student.isPresent()) {
             studentsdatabase s = student.get();
-            return getHTMLStructure(s.getName(), s.getEmail(), s.getGender(), s.getNumber());
+            return s.toString();
         } else {
             return "Student not found";
         }
