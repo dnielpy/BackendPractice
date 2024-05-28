@@ -1,4 +1,5 @@
 package com.example.demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +66,5 @@ public class Controller {
         } else {
             return "Student not found";
         }
-}
+    }
 }

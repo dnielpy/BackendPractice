@@ -86,35 +86,35 @@ public class Controller {
         cartRepository.deleteAll();
         return "Compra cancelada con exito";
     }
-
-    @GetMapping("/admin")
-    public String loginAdmin(@RequestParam int id){
-        boolean itsAnAdmin = false;
-
-        //Check if id is an admin id
-        List<Admins> admins = adminsRepository.findAll();
-
-        for (int i = 0; i < admins.size(); i++) {
-            if (admins.get(i).getId() == (id)) {
-                itsAnAdmin = true;
-                break;
-            }
-        }
-        if (itsAnAdmin) {
-            return "Es un admin";
-        }
-        else {
-            return "No es un admin";
-        }
-    }
-
-    @PostMapping("/addAdmin")
-    public String addAdmin(@RequestParam int id, @RequestParam String name){
-        Admins new_admin = new Admins(id, name);
-        adminsRepository.save(new_admin);
-
-        return "Admin agregado con exito \n" + "Id: " + id + "\nName: " + name;
-    }
+//
+//    @GetMapping("/admin")
+//    public String loginAdmin(@RequestParam int id){
+//        boolean itsAnAdmin = false;
+//
+//        //Check if id is an admin id
+//        List<Admins> admins = adminsRepository.findAll();
+//
+//        for (int i = 0; i < admins.size(); i++) {
+//            if (admins.get(i).getId() == (id)) {
+//                itsAnAdmin = true;
+//                break;
+//            }
+//        }
+//        if (itsAnAdmin) {
+//            return "Es un admin";
+//        }
+//        else {
+//            return "No es un admin";
+//        }
+//    }
+//
+//    @PostMapping("/addAdmin")
+//    public String addAdmin(@RequestParam int id, @RequestParam String name){
+//        Admins new_admin = new Admins(id, name);
+//        adminsRepository.save(new_admin);
+//
+//        return "Admin agregado con exito \n" + "Id: " + id + "\nName: " + name;
+//    }
 
     @PostMapping("/addProduct")
     public String addProduct(@RequestParam int id, @RequestParam String name, @RequestParam int price){
@@ -152,32 +152,32 @@ public class Controller {
         }
     return "Producto eliminado con exito";
     }
-
-    @GetMapping("/salesReport")
-    public String salesReport(@RequestParam int id){
-        boolean is_admin = false;
-        //Comprobar que su id sea de un admin
-        List<Admins> admins = adminsRepository.findAll();
-        for (int i = 0; i < admins.size(); i++) {
-            if (admins.get(i).getId() == id) {
-                is_admin = true;
-                break;
-            }
-        }
-        if (is_admin == true) {
-            List<Sales> sales = salesRepository.findAll();
-            int sales_amount = 0;
-            String report = "";
-
-            for (int i = 0; i < sales.size(); i++) {
-                sales_amount += sales.get(i).getCost();
-                report += "{\nUsuario: " + sales.get(i).getUsername() + "\nProductos: " + sales.get(i).getProducts() + "\nPrecio Total: " + sales.get(i).getCost() + "\n}";
-            }
-            report += "\n\nDinero Total Recaudado: " + String.valueOf(sales_amount);
-            return report;
-        }
-        else {
-            return null;
-        }
-    }
+//
+//    @GetMapping("/salesReport")
+//    public String salesReport(@RequestParam int id){
+//        boolean is_admin = false;
+//        //Comprobar que su id sea de un admin
+//        List<Admins> admins = adminsRepository.findAll();
+//        for (int i = 0; i < admins.size(); i++) {
+//            if (admins.get(i).getId() == id) {
+//                is_admin = true;
+//                break;
+//            }
+//        }
+//        if (is_admin == true) {
+//            List<Sales> sales = salesRepository.findAll();
+//            int sales_amount = 0;
+//            String report = "";
+//
+//            for (int i = 0; i < sales.size(); i++) {
+//                sales_amount += sales.get(i).getCost();
+//                report += "{\nUsuario: " + sales.get(i).getUsername() + "\nProductos: " + sales.get(i).getProducts() + "\nPrecio Total: " + sales.get(i).getCost() + "\n}";
+//            }
+//            report += "\n\nDinero Total Recaudado: " + String.valueOf(sales_amount);
+//            return report;
+//        }
+//        else {
+//            return null;
+//        }
+//    }
 }
