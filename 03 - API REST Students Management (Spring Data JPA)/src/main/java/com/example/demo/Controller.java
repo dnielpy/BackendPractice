@@ -36,19 +36,19 @@ public class Controller {
         return "Student added successfully";
     }
 
-    //Put
+    //Update
     @PutMapping("/students")
-    public String updateStudent(@RequestParam int id, @RequestBody studentsdatabase updatedStudent) {
+    public String updateStudent(@RequestParam int id, @RequestParam String name, @RequestParam String email, @RequestParam String gender, @RequestParam String number) {
         Optional<studentsdatabase> optionalStudent = studentsRepository.findById(id);
 
         if (optionalStudent.isPresent()) {
             studentsdatabase student = optionalStudent.get();
-            student.setName(updatedStudent.getName());
-            student.setEmail(updatedStudent.getEmail());
-            student.setGender(updatedStudent.getGender());
-            student.setNumber(updatedStudent.getNumber());
+            student.setName(name);
+            student.setEmail(email);
+            student.setGender(gender);
+            student.setNumber(number);
             studentsRepository.save(student);
-            return "Student updated successfully";
+            return "Student updated successfully" + "\n" + student.toString();
         } else {
             return "Student not found";
         }
@@ -66,5 +66,4 @@ public class Controller {
             return "Student not found";
         }
 }
-
 }
