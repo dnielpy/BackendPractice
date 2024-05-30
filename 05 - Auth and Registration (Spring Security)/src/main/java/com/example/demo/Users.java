@@ -1,7 +1,11 @@
 package com.example.demo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Users {
@@ -10,8 +14,16 @@ public class Users {
     private String name;
     private String email;
     private String password;
+    private Collection<Rol> roles;
 
     public Users() {
+    }
+
+    public Users(String name, String email, String password, Collection<Rol> roles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     public Users(long id, String name, String email, String password) {
