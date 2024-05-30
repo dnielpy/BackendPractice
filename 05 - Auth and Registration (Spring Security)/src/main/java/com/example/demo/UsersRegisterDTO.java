@@ -17,6 +17,10 @@ public class UsersRegisterDTO {
         this.password = password;
     }
 
+    public UsersRegisterDTO(String email) {
+        this.email = email;
+    }
+
     public UsersRegisterDTO(long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
