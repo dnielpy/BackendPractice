@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,6 +31,13 @@ public class Users {
         this.password = password;
     }
 
+    @ManyToMany(fetch =  FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
     public long getId() {
         return id;
     }
