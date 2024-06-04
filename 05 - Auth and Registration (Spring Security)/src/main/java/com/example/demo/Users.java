@@ -1,11 +1,13 @@
 package com.example.demo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Users {
+    @Id
     private long id;
-    private String username;
+    private String userName;
     private String password;
 
     //Constructors
@@ -14,7 +16,7 @@ public class Users {
 
     public Users(long id, String username, String password) {
         this.id = id;
-        this.username = username;
+        this.userName = username;
         this.password = password;
     }
 
@@ -28,11 +30,11 @@ public class Users {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getPassword() {
@@ -48,7 +50,7 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
