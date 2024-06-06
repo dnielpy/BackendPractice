@@ -1,27 +1,21 @@
 package com.example.demo;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
-
-@Service
 public class WeatherService {
+    private final String latitude;
+    private final String longitude;
 
-    private final WebClient webClient;
-
-    public WeatherService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("https://api.open-meteo.com/v1/forecast").build();
+    public WeatherService(String latitude, String longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public Mono<String> getWeatherData() {
-        return this.webClient.get()
-                .uri(uriBuilder -> uriBuilder
-                        .queryParam("latitude", "52.52")
-                        .queryParam("longitude", "13.41")
-                        .queryParam("current", "temperature_2m,wind_speed_10m")
-                        .queryParam("hourly", "temperature_2m,relative_humidity_2m,wind_speed_10m")
-                        .build())
-                .retrieve()
-                .bodyToMono(String.class);
+    public String getWeather(){
+        //Logica para leer el json
+
+        String url = "api.openweathermap.org/data/2.5/weather?lat={" + latitude + "}&lon={" + longitude + "} ";
+
+
+
+        return null;
     }
 }
