@@ -15,10 +15,9 @@ public class WeatherService {
     }
 
     public Mono<String> getWeather(){
-        String urlTemplate = "http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}";
-
+        String urlTemplate = "http://api.openweathermap.org/data/2.5/weather?lat={" + latitude + "}&lon={" + longitude + "}";
         return webClient.get()
-                .uri(urlTemplate, latitude, longitude)
+                .uri("http://www.google.com")
                 .retrieve()
                 .bodyToMono(String.class);
     }
