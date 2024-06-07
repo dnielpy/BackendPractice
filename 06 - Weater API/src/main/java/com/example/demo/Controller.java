@@ -8,19 +8,29 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class Controller {
-
     @GetMapping("/getWeather")
     public Mono<String> getWeather(@RequestParam String latitude, String longitude){
         WebClient webClient = WebClient.create();
         WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
         return weatherService.getWeather();
     }
-
     @GetMapping("/getTemperature")
     public Mono<String> getTemperature(@RequestParam String latitude, String longitude){
         WebClient webClient = WebClient.create();
         WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
-        return weatherService.getWeather();
+        return weatherService.getTemperature();
+    }
+    @GetMapping("/getHumidity")
+    public Mono<String> getHumidity(@RequestParam String latitude, String longitude){
+        WebClient webClient = WebClient.create();
+        WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
+        return weatherService.getHumidity();
+    }
+    @GetMapping("/getRain")
+    public Mono<String> getRain(@RequestParam String latitude, String longitude){
+        WebClient webClient = WebClient.create();
+        WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
+        return weatherService.getRain();
     }
 }
 

@@ -28,4 +28,15 @@ public class WeatherService {
                 .retrieve()
                 .bodyToMono(String.class);
     }
+    public Mono<String> getHumidity() {
+        return webClient.get()
+                .uri("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude="+longitude+"&hourly=relative_humidity_2m&timezone=auto&forecast_days=1")
+                .retrieve()
+                .bodyToMono(String.class);
+    }public Mono<String> getRain() {
+        return webClient.get()
+                .uri("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude="+longitude+"&hourly=rain&timezone=auto&forecast_days=1")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
 }
