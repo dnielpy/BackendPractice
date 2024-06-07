@@ -15,5 +15,12 @@ public class Controller {
         WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
         return weatherService.getWeather();
     }
+
+    @GetMapping("/getTemperature")
+    public Mono<String> getTemperature(@RequestParam String latitude, String longitude){
+        WebClient webClient = WebClient.create();
+        WeatherService weatherService = new WeatherService( webClient, latitude, longitude);
+        return weatherService.getWeather();
+    }
 }
 

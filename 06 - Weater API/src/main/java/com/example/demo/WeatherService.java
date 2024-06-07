@@ -16,7 +16,14 @@ public class WeatherService {
 
     public Mono<String> getWeather() {
         return webClient.get()
-                .uri("https://api.open-meteo.com/v1/forecast?latitude="+ latitude +"&longitude="+longitude+"&current=temperature_2m,wind_speed_10m")
+                .uri("https://api.open-meteo.com/v1/forecast?latitude="+ latitude +"&longitude="+longitude+"&current=temperature_2m")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
+    public Mono<String> getTemperature() {
+        return webClient.get()
+                .uri("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude="+longitude+"&hourly=temperature_2m&timezone=auto&forecast_days=1")
                 .retrieve()
                 .bodyToMono(String.class);
     }
