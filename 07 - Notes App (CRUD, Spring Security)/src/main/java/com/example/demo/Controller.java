@@ -47,4 +47,20 @@ public class Controller {
             return "Usuario actualizado con exito";
         }
     }
+    @PutMapping("/deleteUser")
+    public String deleteUser(@RequestParam String username, @RequestParam String password){
+        Users user = userRepository.findByUserName(username);
+        if (user == null) {
+            return "El usuario no existe";
+        }
+        else {
+            if (user.getPassword().equals(password)) {
+                userRepository.delete(user);
+                return "Usuario eliminado con exito";
+            }
+            else {
+                return "Contrasenna incorrecta";
+            }
+        }
+    }
 }
