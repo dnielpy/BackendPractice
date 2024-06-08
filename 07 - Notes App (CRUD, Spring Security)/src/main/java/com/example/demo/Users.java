@@ -14,8 +14,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(long id, String username, String password) {
-        this.id = id;
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -23,10 +22,6 @@ public class Users {
     //Getters and setters
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getUsername() {
