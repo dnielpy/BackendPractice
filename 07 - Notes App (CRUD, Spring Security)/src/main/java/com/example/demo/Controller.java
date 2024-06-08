@@ -16,9 +16,15 @@ public class Controller {
     @PostMapping("/createUser")
     public String createUser(@RequestParam String username, @RequestParam String password){
         Users user = new Users(username, password);
-        userRepository.save(user);
-        return "Usuario guardado con exito";
+        if (userRepository.findByUserName(username) == null) {
+            userRepository.save(user);
+            return "Usuario guardado con exito";
+        }
+        else {
+            return "Nombre de Usuario ya existe en la base de datos";
+        }
     }
+
     @GetMapping("/getUser")
     public String getUser(@RequestParam String username){
         Users user = userRepository.findByUserName(username);
