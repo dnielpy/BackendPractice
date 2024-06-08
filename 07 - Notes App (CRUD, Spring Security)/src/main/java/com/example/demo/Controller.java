@@ -2,10 +2,7 @@ package com.example.demo;
 
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
@@ -28,7 +25,6 @@ public class Controller {
     @GetMapping("/getUser")
     public String getUser(@RequestParam String username){
         Users user = userRepository.findByUserName(username);
-
         if (user == null) {
             return "El usuario no existe";
         }
@@ -36,6 +32,19 @@ public class Controller {
             //Rellenar esto
             String user_info = "Name: \n " + user.getUsername() + "\nNotes: ";
             return user_info;
+        }
+    }
+    @PutMapping("/updateUser")
+    public String updateUser(@RequestParam String username, @RequestParam String password){
+        Users user = userRepository.findByUserName(username);
+        if (user == null) {
+            return "El usuario no existe";
+        }
+        else {
+            user.setUsername(username);
+            user.setPassword(password);
+            userRepository.save(user);
+            return "Usuario actualizado con exito";
         }
     }
 }
