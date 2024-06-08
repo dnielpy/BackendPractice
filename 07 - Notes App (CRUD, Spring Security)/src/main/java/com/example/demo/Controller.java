@@ -29,9 +29,13 @@ public class Controller {
     public String getUser(@RequestParam String username){
         Users user = userRepository.findByUserName(username);
 
-        //Rellenar esto
-        String user_info = "Name: \n " + user.getUsername() + "\nNotes: ";
-        return user_info;
-
+        if (user == null) {
+            return "El usuario no existe";
+        }
+        else {
+            //Rellenar esto
+            String user_info = "Name: \n " + user.getUsername() + "\nNotes: ";
+            return user_info;
+        }
     }
 }
