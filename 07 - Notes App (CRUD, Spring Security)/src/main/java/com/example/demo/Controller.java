@@ -145,6 +145,47 @@ public class Controller {
             return note_info;
         }
     }
-    
+    @PutMapping("/updateList")
+    public String updateList(@RequestParam String tittle, @RequestParam String username){
+        Lists lists = listRepository.findByTittle(tittle);
+        if (lists == null) {
+            return "La lista no existe";
+        }
+        else {
+            lists.setTittle(tittle);
+            lists.setUsername(username);
+            listRepository.save(lists);
+            return "Lista actualizada con exito";
+        }
+    }
+    @PutMapping("/deleteList")
+    public String deleteList(@RequestParam String tittle){
+        Lists lists = listRepository.findByTittle(tittle);
+        if (lists == null) {
+            return "La lista no existe";
+        }
+        else {
+            listRepository.delete(lists);
+            return "Lista eliminada con exito";
+        }
+    }
+    @PutMapping("/addList")
+    public String addList(@RequestParam String list_tittle, @RequestParam String note_tittle){
+        Lists lists = listRepository.findByTittle(list_tittle);
+        Notes notes = noteRepository.findByTittle(note_tittle);
+        if (lists == null) {
+            return "La lista no existe";
+        }
+        else if (notes == null) {
+            return "La nota no existe";
+        }
+        else {
+            List<Notes> notes_list = lists.getNotes();
+            notes_list.add(notes);
+            lists.setNotes(notes_list);
+            listRepository.save(lists);
+            return "Nota agregada a la lista con exito";
+        }
+    }
 
 }
