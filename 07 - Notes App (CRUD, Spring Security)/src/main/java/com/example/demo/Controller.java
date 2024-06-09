@@ -2,10 +2,13 @@ package com.example.demo;
 
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
+
+//    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -21,7 +24,6 @@ public class Controller {
             return "Nombre de Usuario ya existe en la base de datos";
         }
     }
-
     @GetMapping("/getUser")
     public String getUser(@RequestParam String username){
         Users user = userRepository.findByUserName(username);
