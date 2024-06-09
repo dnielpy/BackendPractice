@@ -14,8 +14,7 @@ public class Notes {
     public Notes() {
     }
 
-    public Notes(long id, String username, String tittle, String note) {
-        this.id = id;
+    public Notes(String username, String tittle, String note) {
         this.username = username;
         this.tittle = tittle;
         this.note = note;
