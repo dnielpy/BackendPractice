@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,8 +9,11 @@ import java.util.List;
 @Entity
 public class Lists {
     @Id
+    @Column(name = "username")
     private String username;
+    @Column(name = "tittle")
     private String tittle;
+    @Column(name = "notes")
     private List<Notes> notes;
 
     public Lists() {

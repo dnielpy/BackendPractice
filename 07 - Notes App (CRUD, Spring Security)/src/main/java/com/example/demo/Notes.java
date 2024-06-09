@@ -1,22 +1,27 @@
 package com.example.demo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Notes {
     @Id
+    @Column(name = "id")
     private long id;
+    @Column(name = "username")
     private String username;
-    private String tittle;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "note")
     private String note;
 
     public Notes() {
     }
 
-    public Notes(String username, String tittle, String note) {
+    public Notes(String username, String title, String note) {
         this.username = username;
-        this.tittle = tittle;
+        this.title = title;
         this.note = note;
     }
 
@@ -37,11 +42,11 @@ public class Notes {
     }
 
     public String getTittle() {
-        return tittle;
+        return title;
     }
 
     public void setTittle(String tittle) {
-        this.tittle = tittle;
+        this.title = tittle;
     }
 
     public String getNote() {
