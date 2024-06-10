@@ -13,53 +13,25 @@ public class NotesController {
     private NotesRepository noteRepository;
     @Autowired ListRepository listRepository;
 
-    //Notes CRUD
     @PostMapping
     public String createNote(@RequestParam String username, @RequestParam String tittle, @RequestParam String note){
-        Notes notes = new Notes(username, tittle, note);
-        if (noteRepository.findByTittle(tittle) == null) {
-            noteRepository.save(notes);
-            return "Nota guardada con exito";
-        }
-        else {
-            return "Titulo de Nota ya existe en la base de datos";
-        }
+        NotesService notesService = new NotesService(username, tittle, note);
+        return notesService.createNote();
     }
     @GetMapping
     public String getNote(@RequestParam String tittle){
-        Notes notes = noteRepository.findByTittle(tittle);
-        if (notes == null) {
-            return "La nota no existe";
-        }
-        else {
-            //Rellenar esto
-            String note_info = "Tittle: \n " + notes.getTittle() + "\nNote: " + notes.getNote();
-            return note_info;
-        }
+        NotesService notesService = new NotesService(tittle);
+        return notesService.getNote();
     }
     @PutMapping
     public String updateNote(@RequestParam String tittle, @RequestParam String note){
-        Notes notes = noteRepository.findByTittle(tittle);
-        if (notes == null) {
-            return "La nota no existe";
-        }
-        else {
-            notes.setTittle(tittle);
-            notes.setNote(note);
-            noteRepository.save(notes);
-            return "Nota actualizada con exito";
-        }
+        NotesService notesService = new NotesService(tittle, note);
+        return notesService.updateNote();
     }
     @DeleteMapping
     public String deleteNote(@RequestParam String tittle){
-        Notes notes = noteRepository.findByTittle(tittle);
-        if (notes == null) {
-            return "La nota no existe";
-        }
-        else {
-            noteRepository.delete(notes);
-            return "Nota eliminada con exito";
-        }
+        NotesService notesService = new NotesService(tittle);
+        return notesService.getNote();
     }
 
 }
