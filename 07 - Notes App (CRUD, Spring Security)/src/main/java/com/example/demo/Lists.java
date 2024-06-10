@@ -9,6 +9,8 @@ import java.util.List;
 @Entity
 public class Lists {
     @Id
+    @Column(name = "id")
+    private long id;
     @Column(name = "username")
     private String username;
     @Column(name = "tittle")

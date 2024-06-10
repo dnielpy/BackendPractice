@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Notes {
     @Id
-    @ManyToOne
-    @JoinColumn(name = "id") // Use @JoinColumn instead of @Column
+    @Column(name = "id")
     private long id;
     @Column(name = "username")
     private String username;
@@ -14,6 +13,7 @@ public class Notes {
     private String title;
     @Column(name = "note")
     private String note;
+
     public Notes() {
     }
 
