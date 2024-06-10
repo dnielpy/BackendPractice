@@ -1,13 +1,12 @@
 package com.example.demo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Notes {
     @Id
-    @Column(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "id") // Use @JoinColumn instead of @Column
     private long id;
     @Column(name = "username")
     private String username;
@@ -15,7 +14,6 @@ public class Notes {
     private String title;
     @Column(name = "note")
     private String note;
-
     public Notes() {
     }
 
