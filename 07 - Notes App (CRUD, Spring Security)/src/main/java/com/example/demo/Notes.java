@@ -14,6 +14,10 @@ public class Notes {
     @Column(name = "note")
     private String note;
 
+    @ManyToOne
+    @JoinColumn(name = "Users")
+    private Users user;
+
     public Notes() {
     }
 

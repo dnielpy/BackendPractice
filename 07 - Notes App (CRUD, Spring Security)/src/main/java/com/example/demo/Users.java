@@ -3,6 +3,9 @@ package com.example.demo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Users {
@@ -13,6 +16,9 @@ public class Users {
     private String userName;
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "tittle")
+    private List<Notes> notas;
 
     //Constructors
     public Users() {
