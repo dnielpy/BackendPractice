@@ -13,25 +13,26 @@ public class ListController {
     private UserRepository userRepository;
     @Autowired
     private NotesRepository noteRepository;
-    @Autowired ListRepository listRepository;
+    @Autowired
+    private ListRepository listRepository;
 
     //List CRUD
-    @PostMapping("/createList")
+    @PostMapping()
     public String createList(@RequestParam String username, @RequestParam String tittle){
         ListService listService = new ListService(username, tittle);
         return listService.createList();
     }
-    @GetMapping("/getList")
+    @GetMapping()
     public String getList(@RequestParam String tittle){
         ListService listService = new ListService(tittle);
         return listService.getList();
     }
-    @PutMapping("/updateList")
+    @PutMapping()
     public String updateList(@RequestParam String username, @RequestParam String tittle){
         ListService listService = new ListService(username, tittle);
         return listService.updateList();
     }
-    @PutMapping("/deleteList")
+    @DeleteMapping()
     public String deleteList(@RequestParam String tittle){
         ListService listService = new ListService(tittle);
         return listService.deleteList();

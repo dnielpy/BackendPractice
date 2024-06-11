@@ -1,1 +1,0 @@
-Esta app se va a encargar de cuando envies un get, te mande un json con informacion del clima que nos brinde otra api

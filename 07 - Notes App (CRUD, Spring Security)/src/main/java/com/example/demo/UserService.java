@@ -7,20 +7,23 @@ public class UserService {
     private String username;
     private String password;
 
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private NotesRepository noteRepository;
-    @Autowired
     private ListRepository listRepository;
 
-    public UserService(String username, String password) {
+    public UserService(String username, String password, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
         this.username = username;
         this.password = password;
+        this.listRepository = listRepository;
+        this.noteRepository = noteRepository;
+        this.userRepository = userRepository;
     }
 
-    public UserService(String username) {
+    public UserService( String username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
         this.username = username;
+        this.listRepository = listRepository;
+        this.noteRepository = noteRepository;
+        this.userRepository = userRepository;
     }
 
     public UserService() {

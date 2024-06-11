@@ -6,13 +6,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/notes")
 public class NotesController {
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private NotesRepository noteRepository;
-    @Autowired ListRepository listRepository;
-
     @PostMapping
     public String createNote(@RequestParam String username, @RequestParam String tittle, @RequestParam String note){
         NotesService notesService = new NotesService(username, tittle, note);

@@ -17,25 +17,25 @@ public class UserController {
     //Users CRUD
     @PostMapping
     public String createUser(@RequestParam String username, @RequestParam String password){
-        UserService userService = new UserService(username, password);
+        UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
         return  userService.crateUser();
     }
 
     @GetMapping
     public String getUser(@RequestParam String username){
-        UserService userService = new UserService(username);
+        UserService userService = new UserService(username, listRepository, noteRepository, userRepository);
         return userService.getUser();
     }
 
     @PutMapping
     public String updateUser(@RequestParam String username, @RequestParam String password){
-        UserService userService = new UserService(username, password);
+        UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
         return userService.updateUser();
     }
 
     @DeleteMapping
     public String deleteUser(@RequestParam String username, @RequestParam String password) {
-        UserService userService = new UserService(username, password);
+        UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
         return userService.deleteUser();
     }
 }
