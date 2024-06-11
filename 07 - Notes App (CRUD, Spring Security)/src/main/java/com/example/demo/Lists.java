@@ -21,11 +21,11 @@ public class Lists {
     public Lists() {
     }
 
-//    public Lists(String username, String tittle, List<Notes> notes) {
-//        this.username = username;
+    public Lists(String username, String tittle, List<Notes> notes) {
+        this.username = username;
 //        this.notes = notes;
-//        this.tittle = tittle;
-//    }
+        this.tittle = tittle;
+    }
 
     public String getUsername() {
         return username;

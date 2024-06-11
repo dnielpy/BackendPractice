@@ -15,18 +15,18 @@ public class ListController {
 //    private NotesRepository noteRepository;
     @Autowired ListRepository listRepository;
 
-//    //List CRUD
-//    @PostMapping("/createList")
-//    public String createList(@RequestParam String username, @RequestParam String lists_tittle){
-//        Lists lists = new Lists(username, lists_tittle, null);
-//        if (listRepository.findByTittle(lists_tittle) == null) {
-//            listRepository.save(lists);
-//            return "Lista guardada con exito";
-//        }
-//        else {
-//            return "Titulo de Lista ya existe en la base de datos";
-//        }
-//    }
+    //List CRUD
+    @PostMapping("/createList")
+    public String createList(@RequestParam String username, @RequestParam String lists_tittle){
+        Lists lists = new Lists(username, lists_tittle, null);
+        if (listRepository.findByTittle(lists_tittle) == null) {
+            listRepository.save(lists);
+            return "Lista guardada con exito";
+        }
+        else {
+            return "Titulo de Lista ya existe en la base de datos";
+        }
+    }
     @GetMapping("/getList")
     public String getList(@RequestParam String tittle){
         Lists lists = listRepository.findByTittle(tittle);
