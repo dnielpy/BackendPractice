@@ -3,6 +3,7 @@ package com.example.demo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
@@ -15,15 +16,15 @@ public class Lists {
     private String username;
     @Column(name = "tittle")
     private String tittle;
-//    @Column(name = "notes")
-//    private List<Notes> notes;
+
+    @OneToMany(mappedBy = "tittle")
+    private List<Notes> notes;
 
     public Lists() {
     }
 
-    public Lists(String username, String tittle, List<Notes> notes) {
+    public Lists(String username, String tittle) {
         this.username = username;
-//        this.notes = notes;
         this.tittle = tittle;
     }
 

@@ -11,14 +11,14 @@ public class ListController {
 
     @Autowired
     private UserRepository userRepository;
-//    @Autowired
-//    private NotesRepository noteRepository;
+    @Autowired
+    private NotesRepository noteRepository;
     @Autowired ListRepository listRepository;
 
     //List CRUD
     @PostMapping("/createList")
     public String createList(@RequestParam String username, @RequestParam String lists_tittle){
-        Lists lists = new Lists(username, lists_tittle, null);
+        Lists lists = new Lists(username, lists_tittle);
         if (listRepository.findByTittle(lists_tittle) == null) {
             listRepository.save(lists);
             return "Lista guardada con exito";
@@ -63,16 +63,17 @@ public class ListController {
             return "Lista eliminada con exito";
         }
     }
-//    @PutMapping("/addList")
-//    public String addList(@RequestParam String list_tittle, @RequestParam String note_tittle){
-//        Lists lists = listRepository.findByTittle(list_tittle);
-//        Notes notes = noteRepository.findByTittle(note_tittle);
-//        if (lists == null) {
-//            return "La lista no existe";
-//        }
-//        else if (notes == null) {
-//            return "La nota no existe";
-//        }
+    @PutMapping("/addList")
+    public String addList(@RequestParam String list_tittle, @RequestParam String note_tittle){
+        Lists lists = listRepository.findByTittle(list_tittle);
+        Notes notes = noteRepository.findByTittle(note_tittle);
+        if (lists == null) {
+            return "La lista no existe";
+        }
+        else if (notes == null) {
+            return "La nota no existe";
+        }
+        return "";
 //        else {
 //            List<Notes> notes_list = lists.getNotes();
 //            notes_list.add(notes);
@@ -80,6 +81,6 @@ public class ListController {
 //            listRepository.save(lists);
 //            return "Nota agregada a la lista con exito";
 //        }
-//    }
+    }
 }
 

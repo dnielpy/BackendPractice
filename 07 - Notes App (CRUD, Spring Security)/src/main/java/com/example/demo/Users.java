@@ -17,9 +17,6 @@ public class Users {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "tittle")
-    private List<Notes> notas;
-
     //Constructors
     public Users() {
     }
