@@ -28,6 +28,14 @@ public class Lists {
         this.tittle = tittle;
     }
 
+    public List<Notes> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Notes> notes) {
+        this.notes = notes;
+    }
+
     public String getUsername() {
         return username;
     }
