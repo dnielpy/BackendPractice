@@ -75,13 +75,9 @@ public class UserService {
             return "El usuario no existe";
         }
         else {
-            if (user.getPassword().equals(password)) {
-                userRepository.deleteById(user.getId());
-                return "Usuario eliminado con exito";
-            }
-            else {
-                return "Contrasenna incorrecta";
-            }
+            long id = user.getId();
+            userRepository.deleteById(id);
+            return "Usuario eliminado con exito";
         }
     }
 }

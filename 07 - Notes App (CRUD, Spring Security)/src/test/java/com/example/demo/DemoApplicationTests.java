@@ -36,7 +36,7 @@ class DemoApplicationTests {
     public void testUpdateUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.put("/user")
                         .param("username", "testUser")
-                        .param("password", "1234"))
+                        .param("password", "ascas"))
                 .andExpect(status().isOk());
     }
     @Test
@@ -46,7 +46,7 @@ class DemoApplicationTests {
                         .param("password", "1234"))
                 .andExpect(status().isOk());
     }
-    
+
     //Lists CRUD Tests
     @Test
     public void testCreateList() throws Exception {
