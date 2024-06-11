@@ -59,6 +59,7 @@ public class UserService {
             return "El usuario no existe";
         }
         else {
+//            userRepository.delete(user);
             user.setUsername(username);
             user.setPassword(password);
             userRepository.save(user);
