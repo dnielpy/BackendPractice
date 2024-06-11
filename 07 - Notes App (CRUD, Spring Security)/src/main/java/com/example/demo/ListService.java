@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ListService {
 
@@ -22,18 +23,18 @@ public class ListService {
     private ListRepository listRepository;
 
     public ListService(String username, String tittle, String note) {
-        this.username = username;
-        this.tittle = tittle;
+        this.username = username.toLowerCase(Locale.ROOT);
+        this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
     }
 
     public ListService(String username, String tittle){
-        this.username = username;
-        this.tittle = tittle;
+        this.username = username.toLowerCase(Locale.ROOT);
+        this.tittle = tittle.toLowerCase(Locale.ROOT);
     }
 
     public ListService(String username) {
-        this.username = username;
+        this.username = username.toLowerCase(Locale.ROOT);
     }
 
     //List CRUD

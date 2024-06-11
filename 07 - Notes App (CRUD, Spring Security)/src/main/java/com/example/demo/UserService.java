@@ -3,6 +3,8 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 public class UserService {
     private String username;
     private String password;
@@ -12,7 +14,7 @@ public class UserService {
     private ListRepository listRepository;
 
     public UserService(String username, String password, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
-        this.username = username;
+        this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
         this.listRepository = listRepository;
         this.noteRepository = noteRepository;
@@ -20,7 +22,7 @@ public class UserService {
     }
 
     public UserService( String username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
-        this.username = username;
+        this.username = username.toLowerCase(Locale.ROOT);
         this.listRepository = listRepository;
         this.noteRepository = noteRepository;
         this.userRepository = userRepository;

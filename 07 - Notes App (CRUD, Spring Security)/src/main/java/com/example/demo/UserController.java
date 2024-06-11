@@ -3,10 +3,11 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
     @Autowired
     private UserRepository userRepository;
     @Autowired

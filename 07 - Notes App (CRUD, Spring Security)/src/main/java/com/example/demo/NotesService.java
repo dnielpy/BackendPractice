@@ -3,6 +3,8 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 public class NotesService {
     private String username;
     private String tittle;
@@ -16,18 +18,18 @@ public class NotesService {
     private ListRepository listRepository;
 
     public NotesService(String username, String tittle, String note) {
-        this.username = username;
-        this.tittle = tittle;
+        this.username = username.toLowerCase(Locale.ROOT);
+        this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
     }
 
     public NotesService(String tittle, String note) {
-        this.tittle = tittle;
+        this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
     }
 
     public NotesService(String tittle) {
-        this.tittle = tittle;
+        this.tittle = tittle.toLowerCase(Locale.ROOT);
     }
 
     public NotesService() {
