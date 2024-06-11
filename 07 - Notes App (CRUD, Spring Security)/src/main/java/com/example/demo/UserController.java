@@ -9,8 +9,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private NotesRepository noteRepository;
+//    @Autowired
+//    private NotesRepository noteRepository;
     @Autowired
     private ListRepository listRepository;
 

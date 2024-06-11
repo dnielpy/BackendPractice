@@ -9,8 +9,8 @@ public class Notes {
     private long id;
     @Column(name = "username")
     private String username;
-    @Column(name = "title")
-    private String title;
+    @Column(name = "tittle")
+    private String tittle;
     @Column(name = "note")
     private String note;
 
@@ -19,7 +19,7 @@ public class Notes {
 
     public Notes(String username, String title, String note) {
         this.username = username;
-        this.title = title;
+        this.tittle = title;
         this.note = note;
     }
 
@@ -40,11 +40,11 @@ public class Notes {
     }
 
     public String getTittle() {
-        return title;
+        return tittle;
     }
 
     public void setTittle(String tittle) {
-        this.title = tittle;
+        this.tittle = tittle;
     }
 
     public String getNote() {
