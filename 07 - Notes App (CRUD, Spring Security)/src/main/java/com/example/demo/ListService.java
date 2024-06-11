@@ -14,27 +14,32 @@ public class ListService {
     private String username;
     private String tittle;
     private String note;
-
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private NotesRepository noteRepository;
-    @Autowired
     private ListRepository listRepository;
 
-    public ListService(String username, String tittle, String note) {
+    public ListService(String username, String tittle, String note, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
-    public ListService(String username, String tittle){
+    public ListService(String username, String tittle, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.tittle = tittle.toLowerCase(Locale.ROOT);
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
-    public ListService(String username) {
+    public ListService(String username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
     //List CRUD

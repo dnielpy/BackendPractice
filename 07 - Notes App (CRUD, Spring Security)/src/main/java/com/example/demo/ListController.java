@@ -19,27 +19,27 @@ public class ListController {
     //List CRUD
     @PostMapping()
     public String createList(@RequestParam String username, @RequestParam String tittle){
-        ListService listService = new ListService(username, tittle);
+        ListService listService = new ListService(username, tittle, userRepository, noteRepository, listRepository);
         return listService.createList();
     }
     @GetMapping()
     public String getList(@RequestParam String tittle){
-        ListService listService = new ListService(tittle);
+        ListService listService = new ListService(tittle, userRepository, noteRepository, listRepository);
         return listService.getList();
     }
     @PutMapping()
     public String updateList(@RequestParam String username, @RequestParam String tittle){
-        ListService listService = new ListService(username, tittle);
+        ListService listService = new ListService(username, tittle, userRepository, noteRepository, listRepository);
         return listService.updateList();
     }
     @DeleteMapping()
     public String deleteList(@RequestParam String tittle){
-        ListService listService = new ListService(tittle);
+        ListService listService = new ListService(tittle, userRepository, noteRepository, listRepository);
         return listService.deleteList();
     }
     @PutMapping("/addList")
     public String addList( @RequestParam String username, @RequestParam String list_tittle, @RequestParam String note_tittle) {
-    ListService listService = new ListService(username, list_tittle, note_tittle);
+    ListService listService = new ListService(username, list_tittle, note_tittle, userRepository, noteRepository, listRepository);
     return listService.addList();
     }
 }

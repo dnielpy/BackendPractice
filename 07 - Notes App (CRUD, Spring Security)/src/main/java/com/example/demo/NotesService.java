@@ -10,26 +10,32 @@ public class NotesService {
     private String tittle;
     private String note;
 
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private NotesRepository noteRepository;
-    @Autowired
     private ListRepository listRepository;
 
-    public NotesService(String username, String tittle, String note) {
+    public NotesService(String username, String tittle, String note, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
-    public NotesService(String tittle, String note) {
+    public NotesService(String tittle, String note, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
-    public NotesService(String tittle) {
+    public NotesService(String tittle, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.tittle = tittle.toLowerCase(Locale.ROOT);
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
     }
 
     public NotesService() {
