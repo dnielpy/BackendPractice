@@ -15,8 +15,8 @@ public class Notes {
     private String note;
 
     @ManyToOne
-    @JoinColumn(name = "Lists")
-    private Lists lists;
+    @JoinColumn(name = "list_id")
+    private Lists list;
 
 
     public Notes() {

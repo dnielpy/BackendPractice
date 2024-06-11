@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,7 +60,9 @@ public class UserService {
             return "El usuario no existe";
         }
         else {
-//            userRepository.delete(user);
+            long id = user.getId();
+            userRepository.deleteById(id);
+
             user.setUsername(username);
             user.setPassword(password);
             userRepository.save(user);
@@ -73,7 +76,7 @@ public class UserService {
         }
         else {
             if (user.getPassword().equals(password)) {
-                userRepository.delete(user);
+                userRepository.deleteById(user.getId());
                 return "Usuario eliminado con exito";
             }
             else {

@@ -17,7 +17,7 @@ public class Lists {
     @Column(name = "tittle")
     private String tittle;
 
-    @OneToMany(mappedBy = "tittle")
+    @OneToMany(mappedBy = "list")
     private List<Notes> notes;
 
     public Lists() {
