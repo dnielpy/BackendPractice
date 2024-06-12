@@ -28,11 +28,11 @@ public class UserController {
         return userService.getUser();
     }
 
-    @PutMapping
-    public String updateUser(@RequestParam String username, @RequestParam String new_username, @RequestParam String new_password){
-        UserService userService = new UserService(username, listRepository, noteRepository, userRepository);
-        return userService.updateUser(new_username, new_password);
-    }
+//    @PutMapping
+//    public String updateUser(@RequestParam String username, @RequestParam String new_username, @RequestParam String new_password){
+//        UserService userService = new UserService(username, listRepository, noteRepository, userRepository);
+//        return userService.updateUser(new_username, new_password);
+//    }
 
     @DeleteMapping
     public String deleteUser(@RequestParam String username, @RequestParam String password) {
