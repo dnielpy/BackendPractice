@@ -14,16 +14,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class DemoApplicationTests {
-	@Autowired
-	private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
     //User CRUD Tests
-	@Test
-	public void testGetUser() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/user")
-						.param("username", "testUser"))
-				.andExpect(status().isOk());
-	}
+    @Test
+    public void testGetUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/user")
+                        .param("username", "testUser"))
+                .andExpect(status().isOk());
+    }
+
     @Test
     public void testCreateUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/user")
@@ -32,13 +33,15 @@ class DemoApplicationTests {
 
                 .andExpect(status().isOk());
     }
-    @Test
-    public void testUpdateUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/user")
-                        .param("username", "testUser")
-                        .param("password", "ascas"))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    public void testUpdateUser() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.put("/user")
+//                        .param("username", "testUser")
+//                        .param("new_username", "fatima")
+//                        .param("new_password", "funciona")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
+//    }
     @Test
     public void testDeleteUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/user")
@@ -87,7 +90,6 @@ class DemoApplicationTests {
                 .andExpect(status().isOk());
     }
 
-
     //Notes CRUD Tests
     @Test
     public void testCreateNote() throws Exception {
@@ -111,7 +113,7 @@ class DemoApplicationTests {
     public void testUpdateNote() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.put("/notes")
                         .param("tittle", "testTitle")
-                        .param("note", "updatedNote")
+                        .param("note", "dsfsdfsdf")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

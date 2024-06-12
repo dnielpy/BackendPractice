@@ -76,6 +76,7 @@ public class ListService {
             return "Lista actualizada con exito";
         }
     }
+
     public String deleteList(){
         Lists lists = listRepository.findByTittle(tittle);
         if (lists == null) {
