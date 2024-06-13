@@ -16,6 +16,8 @@ public class Users {
     private String userName;
     @Column(name = "password")
     private String password;
+    @Column(name = "isadmin")
+    private Boolean isadmin;
 
     //Constructors
     public Users() {
@@ -41,6 +43,10 @@ public class Users {
 
     public String getPassword() {
         return password;
+    }
+
+    public Boolean getIsadmin() {
+        return isadmin;
     }
 
     public void setPassword(String password) {

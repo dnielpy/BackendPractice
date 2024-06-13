@@ -2,8 +2,15 @@ package com.example.demo;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class UserService {
@@ -78,4 +85,18 @@ public class UserService {
             return "Usuario eliminado con exito";
         }
     }
+
+//    public UserDetailsService users(PasswordEncoder passwordEncoder) {
+//        User.UserBuilder user = User.builder();
+//
+//        List<Users> users_in_bd = userRepository.findAll();
+//
+//        for (int i = 0; i < users_in_bd.size(); i++) {
+//                    UserDetails users = user.username(users_in_bd.get(i).getUsername())
+//                    .password(passwordEncoder.encode(users_in_bd.get(i).getPassword()))
+//                    .roles()
+//                    .build();
+//        }
+//        return new InMemoryUserDetailsManager(users);
+//    }
 }
