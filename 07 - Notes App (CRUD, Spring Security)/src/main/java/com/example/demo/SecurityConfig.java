@@ -30,7 +30,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(request ->
                 request
                         //Without Auth
-                        .requestMatchers("/user/**")
+                        .requestMatchers("/user/create")
                         .permitAll()
 
                         //With Auth

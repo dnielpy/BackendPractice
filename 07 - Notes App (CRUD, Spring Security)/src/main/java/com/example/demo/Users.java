@@ -49,6 +49,10 @@ public class Users {
         return isadmin;
     }
 
+    public void setIsadmin(Boolean isadmin) {
+        this.isadmin = isadmin;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

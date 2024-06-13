@@ -16,7 +16,7 @@ public class UserController {
     private ListRepository listRepository;
 
     //Users CRUD
-    @PostMapping
+    @PostMapping("/create")
     public String createUser(@RequestParam String username, @RequestParam String password){
         UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
         return  userService.crateUser();
