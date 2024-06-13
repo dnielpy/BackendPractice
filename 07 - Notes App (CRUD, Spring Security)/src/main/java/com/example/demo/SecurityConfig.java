@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .permitAll()
 
                         //With Auth
-                        .requestMatchers("/admin/**")
+                        .requestMatchers("/**")
                         .hasRole("ADMIN")
                 )
                 .httpBasic(Customizer.withDefaults())
