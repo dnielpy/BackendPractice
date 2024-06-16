@@ -1,16 +1,10 @@
-package com.example.demo;
+package com.example.demo.services;
 
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.demo.repositories.ListRepository;
+import com.example.demo.repositories.NotesRepository;
+import com.example.demo.repositories.UserRepository;
+import com.example.demo.Users;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class UserService {

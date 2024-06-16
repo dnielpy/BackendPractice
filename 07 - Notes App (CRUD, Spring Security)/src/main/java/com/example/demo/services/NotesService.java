@@ -1,7 +1,9 @@
-package com.example.demo;
+package com.example.demo.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.demo.repositories.ListRepository;
+import com.example.demo.Notes;
+import com.example.demo.repositories.NotesRepository;
+import com.example.demo.repositories.UserRepository;
 
 import java.util.Locale;
 

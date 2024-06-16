@@ -1,5 +1,9 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
+import com.example.demo.repositories.ListRepository;
+import com.example.demo.repositories.NotesRepository;
+import com.example.demo.services.NotesService;
+import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +15,8 @@ public class NotesController {
     private UserRepository userRepository;
     @Autowired
     private NotesRepository noteRepository;
-    @Autowired ListRepository listRepository;
+    @Autowired
+    ListRepository listRepository;
 
     @PostMapping
     public String createNote(@RequestParam String username, @RequestParam String tittle, @RequestParam String note){

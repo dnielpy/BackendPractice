@@ -1,10 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.HttpSecurityBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -29,11 +29,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request ->
                 request
-                        //Without Auth
-                        .requestMatchers("/user/create")
+                        //Todos pueden acceder a /user/create
+                        .requestMatchers("/user/**")
                         .permitAll()
 
-                        //With Auth
+                        //ADMINS puedes acceder a todo
                         .requestMatchers("/**")
                         .hasRole("ADMIN")
                 )
@@ -56,7 +56,6 @@ public class SecurityConfig {
                 admins.add(admin);
             }
         }
-
         return new InMemoryUserDetailsManager(admins);
     }
 
