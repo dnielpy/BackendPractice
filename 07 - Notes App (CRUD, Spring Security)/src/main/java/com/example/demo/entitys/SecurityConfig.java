@@ -37,10 +37,6 @@ public class SecurityConfig {
                         .requestMatchers("/notes")
                         .hasRole("USER")
 
-                        //USERS puedes acceder a /notes
-                        .requestMatchers("/notes")
-                        .hasRole("ADMIN")
-
                         //USERS puedes acceder a /lists
                         .requestMatchers("/list")
                         .hasRole("USER")
