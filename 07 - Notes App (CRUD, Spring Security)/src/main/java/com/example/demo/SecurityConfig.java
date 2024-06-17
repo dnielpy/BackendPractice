@@ -1,5 +1,6 @@
-package com.example.demo.entitys;
+package com.example.demo;
 
+import com.example.demo.entitys.Users;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +45,6 @@ public class SecurityConfig {
                         //USERS puedes acceder a /users
                         .requestMatchers("/user")
                         .hasRole("USER")
-
 
                 //Los admins no deberian poder acceder a los datos de los usuarios
 //                        //ADMINS puedes acceder a todo
