@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.entitys;
 
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

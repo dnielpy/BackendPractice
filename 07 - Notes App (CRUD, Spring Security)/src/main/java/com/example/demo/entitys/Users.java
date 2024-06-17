@@ -1,11 +1,8 @@
-package com.example.demo;
+package com.example.demo.entitys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
-import java.util.List;
 
 @Entity
 public class Users {

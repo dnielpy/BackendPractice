@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.repositories.ListRepository;
-import com.example.demo.Notes;
+import com.example.demo.entitys.Notes;
 import com.example.demo.repositories.NotesRepository;
 import com.example.demo.repositories.UserRepository;
 

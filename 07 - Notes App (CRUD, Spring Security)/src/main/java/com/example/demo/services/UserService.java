@@ -3,7 +3,7 @@ package com.example.demo.services;
 import com.example.demo.repositories.ListRepository;
 import com.example.demo.repositories.NotesRepository;
 import com.example.demo.repositories.UserRepository;
-import com.example.demo.Users;
+import com.example.demo.entitys.Users;
 
 import java.util.Locale;
 
