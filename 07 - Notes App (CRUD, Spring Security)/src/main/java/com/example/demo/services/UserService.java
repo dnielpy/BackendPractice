@@ -65,13 +65,13 @@ public class UserService {
         }
         if (!Objects.equals(user.getUsername(), logged_username)) {
             return "No tienes acceso a este usuario";
-        }
-        else {
+        } else {
             //Rellenar esto
             String user_info = "Name: \n " + user.getUsername() + "\nNotes: ";
             return user_info;
         }
     }
+
     public String updateUser(String new_username, String new_password, String principal) {
         Users existingUser = userRepository.findByUserName(username);
         if (existingUser == null) {
@@ -79,8 +79,7 @@ public class UserService {
         }
         if (!Objects.equals(existingUser.getUsername(), principal)) {
             return "No tienes acceso a esta nota";
-        }
-        else {
+        } else {
             Users userWithNewUsername = userRepository.findByUserName(new_username);
             if (userWithNewUsername != null) {
                 return "El nuevo nombre de usuario ya existe";
@@ -99,8 +98,7 @@ public class UserService {
         }
         if (!Objects.equals(user.getUsername(), logged_username)) {
             return "No tienes acceso a este usuario";
-        }
-        else {
+        } else {
             long id = user.getId();
             userRepository.deleteById(id);
             return "Usuario eliminado con exito";
