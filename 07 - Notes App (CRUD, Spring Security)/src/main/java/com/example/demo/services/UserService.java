@@ -26,6 +26,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
+    public UserService(String username, String password, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
+        this.username = username;
+        this.password = password;
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+        this.listRepository = listRepository;
+    }
+
+    //Get user
     public UserService(String username, String logged_username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.logged_username = logged_username;
@@ -34,11 +44,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
     public UserService() {
     }
 
     public String crateUser() {
-        Users user = new Users(username, password);
+        Users user = new Users(username, password, false);
         if (userRepository.findByUserName(username) == null) {
             userRepository.save(user);
             return "Usuario guardado con exito";

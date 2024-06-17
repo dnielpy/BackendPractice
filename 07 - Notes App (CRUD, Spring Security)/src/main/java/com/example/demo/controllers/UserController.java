@@ -21,13 +21,14 @@ public class UserController {
 
     //Users CRUD
     @PostMapping("/create")
-    public String createUser(@RequestParam String username, @RequestParam String password, Principal principal){
-        UserService userService = new UserService(username, password, principal.getName(), listRepository, noteRepository, userRepository);
+    public String createUser(@RequestParam String username, @RequestParam String password){
+        UserService userService = new UserService(username, password, userRepository, noteRepository, listRepository);
         return  userService.crateUser();
     }
 
     @GetMapping
     public String getUser(@RequestParam String username, Principal principal){
+        boolean a = false;
         UserService userService = new UserService(username, principal.getName(), listRepository, noteRepository, userRepository);
         return userService.getUser();
     }

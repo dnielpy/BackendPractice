@@ -1,12 +1,12 @@
 package com.example.demo.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Users {
+    //Hcaer que el campo id sea autoincrementable
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "username")
@@ -20,9 +20,10 @@ public class Users {
     public Users() {
     }
 
-    public Users(String username, String password) {
+    public Users(String username, String password, boolean isadmin) {
         this.userName = username;
         this.password = password;
+        this.isadmin = isadmin;
     }
 
     //Getters and setters
