@@ -29,24 +29,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request ->
-                request
-                        //Todos pueden acceder a /user/create sin loggearse
-                        .requestMatchers("/user/**")
-                        .permitAll()
+                                request
+                                        //Todos pueden acceder a /user/create sin loggearse
+                                        .requestMatchers("/user/**")
+                                        .permitAll()
 
-                        //USERS puedes acceder a /notes
-                        .requestMatchers("/notes")
-                        .hasRole("USER")
+                                        //USERS puedes acceder a /notes
+                                        .requestMatchers("/notes")
+                                        .hasRole("USER")
 
-                        //USERS puedes acceder a /lists
-                        .requestMatchers("/list")
-                        .hasRole("USER")
+                                        //USERS puedes acceder a /lists
+                                        .requestMatchers("/list")
+                                        .hasRole("USER")
 
-                        //USERS puedes acceder a /users
-                        .requestMatchers("/user")
-                        .hasRole("USER")
+                                        //USERS puedes acceder a /users
+                                        .requestMatchers("/user")
+                                        .hasRole("USER")
 
-                //Los admins no deberian poder acceder a los datos de los usuarios
+                        //Los admins no deberian poder acceder a los datos de los usuarios
 //                        //ADMINS puedes acceder a todo
 //                        .requestMatchers("/**")
 //                        .hasRole("ADMIN")
@@ -55,8 +55,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
+
     @Bean
-    public UserDetailsService admins(PasswordEncoder passwordEncoder){
+    public UserDetailsService admins(PasswordEncoder passwordEncoder) {
         List<Users> users_inbd = userRepository.findAll();
         List<UserDetails> admins = new ArrayList<>();
 
@@ -68,8 +69,7 @@ public class SecurityConfig {
                         .roles("ADMIN")
                         .build();
                 admins.add(admin);
-            }
-            else {
+            } else {
                 UserDetails admin = User.builder()
                         .username(value.getUsername())
                         .password(passwordEncoder.encode(value.getPassword()))
@@ -82,7 +82,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
