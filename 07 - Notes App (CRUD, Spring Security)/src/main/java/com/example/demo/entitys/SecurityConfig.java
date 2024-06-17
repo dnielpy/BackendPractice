@@ -29,14 +29,31 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request ->
                 request
-                        //Todos pueden acceder a /user/create
+                        //Todos pueden acceder a /user/create sin loggearse
                         .requestMatchers("/user/**")
                         .permitAll()
 
+                        //USERS puedes acceder a /notes
+                        .requestMatchers("/notes")
+                        .hasRole("USER")
 
-                        //ADMINS puedes acceder a todo
-                        .requestMatchers("/**")
+                        //USERS puedes acceder a /notes
+                        .requestMatchers("/notes")
                         .hasRole("ADMIN")
+
+                        //USERS puedes acceder a /lists
+                        .requestMatchers("/list")
+                        .hasRole("USER")
+
+                        //USERS puedes acceder a /users
+                        .requestMatchers("/user")
+                        .hasRole("USER")
+
+
+                //Los admins no deberian poder acceder a los datos de los usuarios
+//                        //ADMINS puedes acceder a todo
+//                        .requestMatchers("/**")
+//                        .hasRole("ADMIN")
                 )
                 .httpBasic(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable());
@@ -53,6 +70,14 @@ public class SecurityConfig {
                         .username(value.getUsername())
                         .password(passwordEncoder.encode(value.getPassword()))
                         .roles("ADMIN")
+                        .build();
+                admins.add(admin);
+            }
+            else {
+                UserDetails admin = User.builder()
+                        .username(value.getUsername())
+                        .password(passwordEncoder.encode(value.getPassword()))
+                        .roles("USER")
                         .build();
                 admins.add(admin);
             }

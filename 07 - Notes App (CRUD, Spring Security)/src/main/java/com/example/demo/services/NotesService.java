@@ -72,8 +72,7 @@ public class NotesService {
             return "No tienes acceso a esta nota";
         }
         else {
-            String note_info = "Tittle: \n " + notes.getTittle() + "\nNote: " + notes.getNote();
-            return note_info;
+            return "Tittle: \n " + notes.getTittle() + "\nNote: " + notes.getNote();
         }
     }
     public String updateNote(){
