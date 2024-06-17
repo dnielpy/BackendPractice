@@ -72,21 +72,25 @@ public class UserService {
             return user_info;
         }
     }
-//    public String updateUser(String new_username, String new_password) {
-//        Users existingUser = userRepository.findByUserName(username);
-//        if (existingUser == null) {
-//            return "El usuario no existe";
-//        } else {
-//            Users userWithNewUsername = userRepository.findByUserName(new_username);
-//            if (userWithNewUsername != null) {
-//                return "El nuevo nombre de usuario ya existe";
-//            }
-//            existingUser.setUsername(new_username);
-//            existingUser.setPassword(new_password);
-//            userRepository.save(existingUser);
-//            return "Usuario actualizado con exito";
-//        }
-//    }
+    public String updateUser(String new_username, String new_password, String principal) {
+        Users existingUser = userRepository.findByUserName(username);
+        if (existingUser == null) {
+            return "El usuario no existe";
+        }
+        if (!Objects.equals(existingUser.getUsername(), principal)) {
+            return "No tienes acceso a esta nota";
+        }
+        else {
+            Users userWithNewUsername = userRepository.findByUserName(new_username);
+            if (userWithNewUsername != null) {
+                return "El nuevo nombre de usuario ya existe";
+            }
+            existingUser.setUsername(new_username);
+            existingUser.setPassword(new_password);
+            userRepository.save(existingUser);
+            return "Usuario actualizado con exito";
+        }
+    }
 
     public String deleteUser() {
         Users user = userRepository.findByUserName(username);
@@ -102,18 +106,4 @@ public class UserService {
             return "Usuario eliminado con exito";
         }
     }
-
-//    public UserDetailsService users(PasswordEncoder passwordEncoder) {
-//        User.UserBuilder user = User.builder();
-//
-//        List<Users> users_in_bd = userRepository.findAll();
-//
-//        for (int i = 0; i < users_in_bd.size(); i++) {
-//                    UserDetails users = user.username(users_in_bd.get(i).getUsername())
-//                    .password(passwordEncoder.encode(users_in_bd.get(i).getPassword()))
-//                    .roles()
-//                    .build();
-//        }
-//        return new InMemoryUserDetailsManager(users);
-//    }
 }
