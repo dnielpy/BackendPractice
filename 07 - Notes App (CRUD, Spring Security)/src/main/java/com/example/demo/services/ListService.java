@@ -8,35 +8,40 @@ import com.example.demo.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ListService {
 
     private String username;
     private String tittle;
     private String note;
+    private String logged_username;
     private UserRepository userRepository;
     private NotesRepository noteRepository;
     private ListRepository listRepository;
 
-    public ListService(String username, String tittle, String note, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
+    public ListService(String username, String tittle, String note, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.tittle = tittle.toLowerCase(Locale.ROOT);
         this.note = note;
+        this.logged_username = logged_username;
         this.userRepository = userRepository;
         this.noteRepository = noteRepository;
         this.listRepository = listRepository;
     }
 
-    public ListService(String username, String tittle, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
+    public ListService(String username, String tittle, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.tittle = tittle.toLowerCase(Locale.ROOT);
+        this.logged_username = logged_username;
         this.userRepository = userRepository;
         this.noteRepository = noteRepository;
         this.listRepository = listRepository;
     }
 
-    public ListService(String username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
+    public ListService(String username, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
+        this.logged_username = logged_username;
         this.userRepository = userRepository;
         this.noteRepository = noteRepository;
         this.listRepository = listRepository;
@@ -58,6 +63,9 @@ public class ListService {
         if (lists == null) {
             return "La nota no existe";
         }
+        if (!Objects.equals(lists.getUsername(), logged_username)) {
+            return "No tienes acceso a esta lista";
+        }
         else {
             //Rellenar esto
             String note_info = "Tittle: \n " + lists.getTittle() + "\nUser: " + lists.getUsername();
@@ -68,6 +76,9 @@ public class ListService {
         Lists lists = listRepository.findByTittle(tittle);
         if (lists == null) {
             return "La lista no existe";
+        }
+        if (!Objects.equals(lists.getUsername(), logged_username)) {
+            return "No tienes acceso a esta lista";
         }
         else {
             lists.setTittle(tittle);
@@ -82,6 +93,9 @@ public class ListService {
         if (lists == null) {
             return "La lista no existe";
         }
+        if (!Objects.equals(lists.getUsername(), logged_username)) {
+            return "No tienes acceso a esta lista";
+        }
         else {
             listRepository.delete(lists);
             return "Lista eliminada con exito";
@@ -95,6 +109,9 @@ public class ListService {
         }
         else if (notes == null) {
             return "La nota no existe";
+        }
+        if (!Objects.equals(lists.getUsername(), logged_username) || !Objects.equals(notes.getUsername(), logged_username)) {
+            return "No tienes acceso a esto";
         }
         else {
             List<Notes> notes_list = lists.getNotes();

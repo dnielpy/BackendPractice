@@ -6,25 +6,29 @@ import com.example.demo.repositories.UserRepository;
 import com.example.demo.entitys.Users;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class UserService {
     private String username;
     private String password;
+    private String logged_username;
 
     private UserRepository userRepository;
     private NotesRepository noteRepository;
     private ListRepository listRepository;
 
-    public UserService(String username, String password, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
+    public UserService(String username, String password, String logged_username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
+        this.logged_username = logged_username;
         this.listRepository = listRepository;
         this.noteRepository = noteRepository;
         this.userRepository = userRepository;
     }
 
-    public UserService(String username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
+    public UserService(String username, String logged_username, ListRepository listRepository, NotesRepository noteRepository, UserRepository userRepository) {
         this.username = username.toLowerCase(Locale.ROOT);
+        this.logged_username = logged_username;
         this.listRepository = listRepository;
         this.noteRepository = noteRepository;
         this.userRepository = userRepository;
@@ -47,7 +51,11 @@ public class UserService {
         Users user = userRepository.findByUserName(username);
         if (user == null) {
             return "El usuario no existe";
-        } else {
+        }
+        if (!Objects.equals(user.getUsername(), logged_username)) {
+            return "No tienes acceso a este usuario";
+        }
+        else {
             //Rellenar esto
             String user_info = "Name: \n " + user.getUsername() + "\nNotes: ";
             return user_info;
@@ -73,7 +81,11 @@ public class UserService {
         Users user = userRepository.findByUserName(username);
         if (user == null) {
             return "El usuario no existe";
-        } else {
+        }
+        if (!Objects.equals(user.getUsername(), logged_username)) {
+            return "No tienes acceso a este usuario";
+        }
+        else {
             long id = user.getId();
             userRepository.deleteById(id);
             return "Usuario eliminado con exito";

@@ -81,6 +81,9 @@ public class NotesService {
         if (notes == null) {
             return "La nota no existe";
         }
+        if (!Objects.equals(notes.getUsername(), logged_username)) {
+            return "No tienes acceso a esta nota";
+        }
         else {
             notes.setTittle(tittle);
             notes.setNote(note);
@@ -92,6 +95,9 @@ public class NotesService {
         Notes notes = noteRepository.findByTittle(tittle);
         if (notes == null) {
             return "La nota no existe";
+        }
+        if (!Objects.equals(notes.getUsername(), logged_username)) {
+            return "No tienes acceso a esta nota";
         }
         else {
             noteRepository.delete(notes);

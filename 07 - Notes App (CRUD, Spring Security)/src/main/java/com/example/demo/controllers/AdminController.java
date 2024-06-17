@@ -25,7 +25,7 @@ public class AdminController {
 
     @DeleteMapping("/user")
     public String deleteUser(@RequestParam String username, Principal principal) {
-        UserService userService = new UserService(username, listRepository, noteRepository, userRepository);
+        UserService userService = new UserService(username, principal.getName(), listRepository, noteRepository, userRepository);
         return userService.deleteUser();
     }
 

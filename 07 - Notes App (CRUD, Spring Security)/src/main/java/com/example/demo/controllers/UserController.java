@@ -20,19 +20,15 @@ public class UserController {
     private ListRepository listRepository;
 
     //Users CRUD
-
     @PostMapping("/create")
-    public String createUser(@RequestParam String username, @RequestParam String password){
-        UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
+    public String createUser(@RequestParam String username, @RequestParam String password, Principal principal){
+        UserService userService = new UserService(username, password, principal.getName(), listRepository, noteRepository, userRepository);
         return  userService.crateUser();
     }
 
     @GetMapping
     public String getUser(@RequestParam String username, Principal principal){
-        if(!principal.getName().equals(username)) {
-            return "No tienes acceso a este perfil";
-        }
-        UserService userService = new UserService(username, listRepository, noteRepository, userRepository);
+        UserService userService = new UserService(username, principal.getName(), listRepository, noteRepository, userRepository);
         return userService.getUser();
     }
 
@@ -44,10 +40,7 @@ public class UserController {
 
     @DeleteMapping
     public String deleteUser(@RequestParam String username, @RequestParam String password, Principal principal) {
-        if(!principal.getName().equals(username)) {
-            return "No puedes acceder a esta funcion";
-        }
-        UserService userService = new UserService(username, password, listRepository, noteRepository, userRepository);
+        UserService userService = new UserService(username, password, principal.getName(), listRepository, noteRepository, userRepository);
         return userService.deleteUser();
     }
 }
