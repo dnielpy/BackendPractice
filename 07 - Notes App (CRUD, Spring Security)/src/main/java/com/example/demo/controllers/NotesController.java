@@ -33,9 +33,9 @@ public class NotesController {
     }
 
     @PutMapping
-    public String updateNote(@RequestParam String tittle, @RequestParam String note) {
-        NotesService notesService = new NotesService(tittle, note, userRepository, noteRepository, listRepository);
-        return notesService.updateNote();
+    public String updateNote(@RequestParam String tittle, @RequestParam String new_tittle, @RequestParam String new_note, Principal principal) {
+        NotesService notesService = new NotesService(tittle, principal.getName(), userRepository, noteRepository, listRepository);
+        return notesService.updateNote(new_tittle, new_note, principal.getName());
     }
 
     @DeleteMapping
