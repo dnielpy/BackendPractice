@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**")
                         .permitAll()
 
+
                         //ADMINS puedes acceder a todo
                         .requestMatchers("/**")
                         .hasRole("ADMIN")

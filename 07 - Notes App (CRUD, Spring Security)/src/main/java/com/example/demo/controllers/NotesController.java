@@ -7,6 +7,8 @@ import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/notes")
 public class NotesController {
@@ -19,13 +21,13 @@ public class NotesController {
     ListRepository listRepository;
 
     @PostMapping
-    public String createNote(@RequestParam String username, @RequestParam String tittle, @RequestParam String note){
-        NotesService notesService = new NotesService(username, tittle, note, userRepository, noteRepository, listRepository);
+    public String createNote(@RequestParam String tittle, @RequestParam String note, Principal principal){
+        NotesService notesService = new NotesService(principal.getName(), tittle, note, userRepository, noteRepository, listRepository);
         return notesService.createNote();
     }
-    @GetMapping
-    public String getNote(@RequestParam String tittle){
-        NotesService notesService = new NotesService(tittle, userRepository, noteRepository, listRepository);
+    @GetMapping()
+    public String getNote(@RequestParam String tittle, Principal principal){
+        NotesService notesService = new NotesService(tittle, principal.getName(), userRepository, noteRepository, listRepository);
         return notesService.getNote();
     }
     @PutMapping
@@ -34,8 +36,8 @@ public class NotesController {
         return notesService.updateNote();
     }
     @DeleteMapping
-    public String deleteNote(@RequestParam String tittle){
-        NotesService notesService = new NotesService(tittle, userRepository, noteRepository, listRepository);
+    public String deleteNote(@RequestParam String tittle, Principal principal){
+        NotesService notesService = new NotesService(tittle, principal.getName(), userRepository, noteRepository, listRepository);
         return notesService.getNote();
     }
 }
