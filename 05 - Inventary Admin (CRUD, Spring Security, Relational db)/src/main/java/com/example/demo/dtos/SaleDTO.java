@@ -7,10 +7,10 @@ import jakarta.persistence.Id;
 
 public class SaleDTO {
     private String email;
-    private String total;
+    private Long total;
     private String date;
 
-    public SaleDTO(String email, String total, String date) {
+    public SaleDTO(String email, Long total, String date) {
         this.email = email;
         this.total = total;
         this.date = date;
@@ -20,7 +20,7 @@ public class SaleDTO {
         return email;
     }
 
-    public String getTotal() {
+    public Long getTotal() {
         return total;
     }
 

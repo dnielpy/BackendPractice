@@ -10,11 +10,11 @@ public class ProductEntity {
     @Column(name = "name")
     private String name;
     @Column(name = "price")
-    private long price;
+    private Double price;
     @Column(name = "stock")
     private long stock;
 
-    public ProductEntity(long id, String name, long price, long stock) {
+    public ProductEntity(long id, String name, Double price, long stock) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -40,11 +40,11 @@ public class ProductEntity {
         this.name = name;
     }
 
-    public long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

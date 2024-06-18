@@ -2,21 +2,30 @@ package com.example.demo.entitys;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
+@Table(name = "Sale")
 public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "total")
-    private String total;
-    @Column(name = "date")
-    private String date;
+    private Long id;
 
-    public SaleEntity(long id, String email, String total, String date) {
+    @ManyToOne
+    @JoinColumn(name = "email", referencedColumnName = "email")
+    private UserEntity user;
+
+    @ElementCollection
+    private List<Integer> products;
+
+    private Double total;
+    private Date date;
+
+    public SaleEntity(Long id, UserEntity user, List<Integer> products, Double total, Date date) {
         this.id = id;
-        this.email = email;
+        this.user = user;
+        this.products = products;
         this.total = total;
         this.date = date;
     }
@@ -24,35 +33,43 @@ public class SaleEntity {
     public SaleEntity() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public String getTotal() {
+    public List<Integer> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Integer> products) {
+        this.products = products;
+    }
+
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -60,9 +77,10 @@ public class SaleEntity {
     public String toString() {
         return "SaleEntity{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
-                ", total='" + total + '\'' +
-                ", date='" + date + '\'' +
+                ", user=" + user +
+                ", products=" + products +
+                ", total=" + total +
+                ", date=" + date +
                 '}';
     }
 }

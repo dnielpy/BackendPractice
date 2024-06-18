@@ -3,18 +3,19 @@ package com.example.demo.entitys;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "User")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "email")
+    @Column(unique = true, name = "email")
     private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "credit")
-    private long credit;
+    private Double credit;
 
-    public UserEntity(long id, String email, String password, long credit) {
+    public UserEntity(long id, String email, String password, Double credit) {
         this.email = email;
         this.password = password;
         this.credit = credit;
@@ -47,11 +48,11 @@ public class UserEntity {
         this.password = password;
     }
 
-    public long getCredit() {
+    public Double getCredit() {
         return credit;
     }
 
-    public void setCredit(long credit) {
+    public void setCredit(Double credit) {
         this.credit = credit;
     }
 

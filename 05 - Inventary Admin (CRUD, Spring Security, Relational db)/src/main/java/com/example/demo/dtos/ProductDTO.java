@@ -8,9 +8,9 @@ import jakarta.persistence.Id;
 public class ProductDTO {
     final String name;
     final long price;
-    final long stock;
+    final Integer stock;
 
-    public ProductDTO(String name, long price, long stock) {
+    public ProductDTO(String name, long price, Integer stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -24,7 +24,7 @@ public class ProductDTO {
         return price;
     }
 
-    public long getStock() {
+    public Integer getStock() {
         return stock;
     }
 }
