@@ -3,7 +3,7 @@ package com.example.demo.entitys;
 import jakarta.persistence.*;
 
 @Entity
-public class ProductsEntity {
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -14,14 +14,14 @@ public class ProductsEntity {
     @Column(name = "stock")
     private long stock;
 
-    public ProductsEntity(long id, String name, long price, long stock) {
+    public ProductEntity(long id, String name, long price, long stock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
     }
 
-    public ProductsEntity() {
+    public ProductEntity() {
     }
 
     public long getId() {

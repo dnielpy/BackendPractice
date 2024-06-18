@@ -3,22 +3,25 @@ package com.example.demo.entitys;
 import jakarta.persistence.*;
 
 @Entity
-public class AdminEntity {
+public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "email")
     private String email;
-    @Column(name = "password")
-    private String password;
+    @Column(name = "total")
+    private String total;
+    @Column(name = "date")
+    private String date;
 
-    public AdminEntity(long id, String email, String password) {
+    public SaleEntity(long id, String email, String total, String date) {
         this.id = id;
         this.email = email;
-        this.password = password;
+        this.total = total;
+        this.date = date;
     }
 
-    public AdminEntity() {
+    public SaleEntity() {
     }
 
     public long getId() {
@@ -37,20 +40,29 @@ public class AdminEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTotal() {
+        return total;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return "AdminEntity{" +
+        return "SaleEntity{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", total='" + total + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
