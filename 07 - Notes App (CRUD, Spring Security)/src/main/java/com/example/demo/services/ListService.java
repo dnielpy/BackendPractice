@@ -20,100 +20,78 @@ public class ListService {
     private NotesRepository noteRepository;
     private ListRepository listRepository;
 
-    public ListService(String username, String tittle, String note, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
-        this.username = username.toLowerCase(Locale.ROOT);
-        this.tittle = tittle.toLowerCase(Locale.ROOT);
-        this.note = note;
-        this.logged_username = logged_username;
-        this.userRepository = userRepository;
-        this.noteRepository = noteRepository;
-        this.listRepository = listRepository;
-    }
-
-    public ListService(String username, String tittle, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
-        this.username = username.toLowerCase(Locale.ROOT);
-        this.tittle = tittle.toLowerCase(Locale.ROOT);
-        this.logged_username = logged_username;
-        this.userRepository = userRepository;
-        this.noteRepository = noteRepository;
-        this.listRepository = listRepository;
-    }
-
-    public ListService(String username, String logged_username, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
-        this.username = username.toLowerCase(Locale.ROOT);
-        this.logged_username = logged_username;
+    public ListService(String username, String tittle, UserRepository userRepository, NotesRepository noteRepository, ListRepository listRepository) {
+        this.username = username;
+        this.tittle = tittle;
         this.userRepository = userRepository;
         this.noteRepository = noteRepository;
         this.listRepository = listRepository;
     }
 
     //List CRUD
-    public String createList(){
+    public String createList() {
         Lists lists = new Lists(username, tittle);
         if (listRepository.findByTittle(tittle) == null) {
             listRepository.save(lists);
             return "Lista guardada con exito";
-        }
-        else {
+        } else {
             return "Titulo de Lista ya existe en la base de datos";
         }
     }
-    public String getList(){
+
+    public String getList() {
         Lists lists = listRepository.findByTittle(tittle);
         if (lists == null) {
-            return "La nota no existe";
+            return "La lista no existe";
         }
-        if (!Objects.equals(lists.getUsername(), logged_username)) {
+        if (!Objects.equals(lists.getUsername().toLowerCase(Locale.ROOT), username.toLowerCase(Locale.ROOT))) {
             return "No tienes acceso a esta lista";
-        }
-        else {
+        } else {
             //Rellenar esto
-            String note_info = "Tittle: \n " + lists.getTittle() + "\nUser: " + lists.getUsername();
+            String note_info = "Tittle: \n " + lists.getTittle() + "\nUser: " + lists.getUsername() + "\n Notas: " + lists.getNotes();
             return note_info;
         }
     }
-    public String updateList(){
+
+    public String updateList(String new_tittle) {
         Lists lists = listRepository.findByTittle(tittle);
         if (lists == null) {
             return "La lista no existe";
         }
         if (!Objects.equals(lists.getUsername(), logged_username)) {
             return "No tienes acceso a esta lista";
-        }
-        else {
-            lists.setTittle(tittle);
+        } else {
+            lists.setTittle(new_tittle);
             lists.setUsername(username);
             listRepository.save(lists);
             return "Lista actualizada con exito";
         }
     }
 
-    public String deleteList(){
+    public String deleteList() {
         Lists lists = listRepository.findByTittle(tittle);
         if (lists == null) {
             return "La lista no existe";
         }
         if (!Objects.equals(lists.getUsername(), logged_username)) {
             return "No tienes acceso a esta lista";
-        }
-        else {
+        } else {
             listRepository.delete(lists);
             return "Lista eliminada con exito";
         }
     }
-    public String addList(){
+
+    public String addList(String note_tittle) {
         Lists lists = listRepository.findByTittle(tittle);
-        Notes notes = noteRepository.findByTittle(note);
+        Notes notes = noteRepository.findByTittle(note_tittle.toLowerCase(Locale.ROOT));
         if (lists == null) {
             return "La lista no existe";
-        }
-        else if (notes == null) {
+        } else if (notes == null) {
             return "La nota no existe";
         }
-        if (!Objects.equals(lists.getUsername(), logged_username) || !Objects.equals(notes.getUsername(), logged_username)) {
+        if (!Objects.equals(lists.getUsername(), username) || !Objects.equals(notes.getUsername(), username)) {
             return "No tienes acceso a esto";
-        }
-        else {
+        } else {
             List<Notes> notes_list = lists.getNotes();
             notes_list.add(notes);
             lists.setNotes(notes_list);

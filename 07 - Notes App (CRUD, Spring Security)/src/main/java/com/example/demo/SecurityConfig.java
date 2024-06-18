@@ -42,6 +42,10 @@ public class SecurityConfig {
                                         .requestMatchers("/list")
                                         .hasRole("USER")
 
+                                        //USERS puedes acceder a /lists
+                                        .requestMatchers("/list/**")
+                                        .hasRole("USER")
+
                                         //USERS puedes acceder a /users
                                         .requestMatchers("/user")
                                         .hasRole("USER")

@@ -22,29 +22,33 @@ public class ListController {
 
     //List CRUD
     @PostMapping()
-    public String createList(@RequestParam String username, @RequestParam String tittle){
-        ListService listService = new ListService(username, tittle, userRepository, noteRepository, listRepository);
+    public String createList(Principal principal, @RequestParam String tittle) {
+        ListService listService = new ListService(principal.getName(), tittle, userRepository, noteRepository, listRepository);
         return listService.createList();
     }
+
     @GetMapping()
-    public String getList(@RequestParam String tittle, Principal principal){
-        ListService listService = new ListService(tittle,  principal.getName(), userRepository, noteRepository, listRepository);
+    public String getList( Principal principal, @RequestParam String tittle) {
+        ListService listService = new ListService(principal.getName(), tittle, userRepository, noteRepository, listRepository);
         return listService.getList();
     }
+
     @PutMapping()
-    public String updateList(@RequestParam String username, @RequestParam String tittle, Principal principal){
-        ListService listService = new ListService(username, tittle, principal.getName(), userRepository, noteRepository, listRepository);
-        return listService.updateList();
+    public String updateList(@RequestParam String tittle, @RequestParam String new_tittle, Principal principal) {
+        ListService listService = new ListService(principal.getName(), tittle, userRepository, noteRepository, listRepository);
+        return listService.updateList(new_tittle);
     }
+
     @DeleteMapping()
-    public String deleteList(@RequestParam String tittle, Principal principal){
-        ListService listService = new ListService(tittle, principal.getName(), userRepository, noteRepository, listRepository);
+    public String deleteList(@RequestParam String tittle, Principal principal) {
+        ListService listService = new ListService(principal.getName(), tittle, userRepository, noteRepository, listRepository);
         return listService.deleteList();
     }
-    @PutMapping("/addList")
-    public String addList( @RequestParam String username, @RequestParam String list_tittle, @RequestParam String note_tittle, Principal principal) {
-    ListService listService = new ListService(username, list_tittle, note_tittle,  principal.getName(), userRepository, noteRepository, listRepository);
-    return listService.addList();
+
+    @PutMapping("/addToList")
+    public String addToList(@RequestParam String list_tittle, @RequestParam String note_tittle, Principal principal) {
+        ListService listService = new ListService(principal.getName(), list_tittle, userRepository, noteRepository, listRepository);
+        return listService.addList(note_tittle);
     }
 }
 
