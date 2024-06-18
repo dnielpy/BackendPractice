@@ -41,6 +41,6 @@ public class NotesController {
     @DeleteMapping
     public String deleteNote(@RequestParam String tittle, Principal principal) {
         NotesService notesService = new NotesService(tittle, principal.getName(), userRepository, noteRepository, listRepository);
-        return notesService.getNote();
+        return notesService.deleteNote();
     }
 }
