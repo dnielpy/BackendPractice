@@ -6,6 +6,9 @@ import com.example.demo.dtos.UserDTO;
 import com.example.demo.entitys.UserEntity;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Locale;
 
@@ -18,11 +21,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     public UserDTO createUser(String email, String password) {
         try {
             UserEntity new_user = userRepository.findByEmail(email);
             if (new_user == null) {
-                new_user = new UserEntity(email.toLowerCase(Locale.ROOT), password, 0.0);
+                new_user = new UserEntity(email.toLowerCase(Locale.ROOT), passwordEncoder().encode(password), 0.0);
                 userRepository.save(new_user);
                 return new UserDTO(new_user.getEmail(), 0.00);
             }
@@ -43,4 +51,8 @@ public class UserService {
         }
         return null;
     }
+//
+//    public UserDTO updateUser(){
+//
+//    }
 }
