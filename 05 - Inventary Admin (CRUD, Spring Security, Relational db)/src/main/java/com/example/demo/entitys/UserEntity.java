@@ -3,12 +3,12 @@ package com.example.demo.entitys;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Integer id;
     @Column(unique = true, name = "email")
     private String email;
     @Column(name = "password")
@@ -29,7 +29,7 @@ public class UserEntity {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

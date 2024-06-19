@@ -7,9 +7,9 @@ import jakarta.persistence.Id;
 
 public class UserDTO {
     final String email;
-    final long credit;
+    final Double credit;
 
-    public UserDTO(String email, long credit) {
+    public UserDTO(String email, Double credit) {
         this.email = email;
         this.credit = credit;
     }
@@ -18,7 +18,7 @@ public class UserDTO {
         return email;
     }
 
-    public long getCredit() {
+    public Double getCredit() {
         return credit;
     }
 }
