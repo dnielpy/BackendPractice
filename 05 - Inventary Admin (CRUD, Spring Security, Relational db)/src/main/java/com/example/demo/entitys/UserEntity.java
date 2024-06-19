@@ -10,12 +10,10 @@ public class UserEntity {
     private long id;
     @Column(unique = true, name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
-    @Column(name = "credit")
     private Double credit;
 
-    public UserEntity(long id, String email, String password, Double credit) {
+    public UserEntity(String email, String password, Double credit) {
         this.email = email;
         this.password = password;
         this.credit = credit;

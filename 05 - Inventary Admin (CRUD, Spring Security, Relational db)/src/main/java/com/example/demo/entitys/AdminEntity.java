@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class AdminEntity {
     @Id
     private String email;
-    @Column(name = "password")
     private String password;
 
     public AdminEntity(String email, String password) {
