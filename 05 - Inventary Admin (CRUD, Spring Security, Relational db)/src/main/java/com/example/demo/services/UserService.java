@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public String createUser(String email, String password){
-        UserEntity new_user = userRepository.findByUserName(email);
+        UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
             new_user = new UserEntity(email, password, 0.0);
             userRepository.save(new_user);

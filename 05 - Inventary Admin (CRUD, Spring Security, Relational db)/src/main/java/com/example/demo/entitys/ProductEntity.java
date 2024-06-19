@@ -6,9 +6,13 @@ import jakarta.persistence.*;
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "price")
     private Double price;
+    @Column(name = "stock")
     private long stock;
 
     public ProductEntity(long id, String name, Double price, long stock) {

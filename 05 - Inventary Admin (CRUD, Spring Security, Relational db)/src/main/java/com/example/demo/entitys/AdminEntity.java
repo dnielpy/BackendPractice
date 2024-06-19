@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 @Table(name = "Admin")
 public class AdminEntity {
     @Id
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
 
     public AdminEntity(String email, String password) {

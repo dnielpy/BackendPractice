@@ -10,16 +10,20 @@ import java.util.List;
 public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
+
     private UserEntity user;
 
     @ElementCollection
     private List<Integer> products;
 
+    @Column(name = "total")
     private Double total;
+    @Column(name = "date")
     private Date date;
 
     public SaleEntity(Long id, UserEntity user, List<Integer> products, Double total, Date date) {
