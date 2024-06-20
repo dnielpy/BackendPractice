@@ -1,7 +1,9 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.Cart;
 import com.example.demo.dtos.ProductDTO;
 import com.example.demo.entitys.ProductEntity;
+import com.example.demo.repositories.ProductRepository;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +15,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private UserRepository userRepository;
+    private ProductRepository productRepository;
+
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -77,6 +83,69 @@ public class UserService {
             return null;
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
+        }
+    }
+
+    //Create Cart
+    public Cart createCart() {
+        List<ProductDTO> products = new ArrayList<>();
+        return new Cart(products);
+    }
+
+    //addToCart
+    public void addToCart(ProductDTO productDTO, Cart cart) {
+        if (productRepository.findByName(productDTO.getName()) == null) {
+            throw new IllegalArgumentException("El producto que intentas agregar no existe");
+        } else {
+            cart.addToCart(productDTO);
+        }
+    }
+
+    //removeFromCart
+    public void removeFromCart(ProductDTO productDTO, Cart cart) {
+        if (productRepository.findByName(productDTO.getName()) == null) {
+            throw new IllegalArgumentException("El producto que intentas eliminar no existe");
+        }
+        if (!cart.getProducts().contains(productDTO)) {
+            throw new IllegalArgumentException("El producto no esta en tu carrito");
+        } else {
+            cart.getProducts().remove(productDTO);
+        }
+    }
+
+    //Buy
+    public UserDTO buy(UserDTO userDTO, Cart cart){
+        UserEntity user = userRepository.findByEmail(userDTO.getEmail());
+
+        //Checkear que tenga dinero para pagar
+        double total_price = 0;
+        for (int i = 0; i < cart.getProducts().size(); i++) {
+            total_price += cart.getProducts().get(i).getPrice();
+        }
+        if (total_price >= user.getCredit()) {
+            throw new IllegalArgumentException("Creditos Insuficientes");
+        }
+
+        //Chequear que el carrito no este vacio
+        if (cart.getProducts().isEmpty()) {
+            throw new IllegalArgumentException("El carrito esta vacio");
+        }
+
+        else{
+            //Cobrar
+            user.setCredit(user.getCredit() - total_price);
+
+            //Actualizer el Stock -1
+            for (int i = 0; i < cart.getProducts().size(); i++) {
+                ProductEntity product = productRepository.findByName(cart.getProducts().get(i).getName());
+                ProductService productService = new ProductService(productRepository);
+                productService.updateProductsStock(product.getName(), product.getStock() - 1);
+            }
+
+            //Aqui va agregarlo a las ventas
+            
+
+            return new UserDTO(user.getEmail(), user.getCredit());
         }
     }
 }
