@@ -2,8 +2,10 @@ package com.example.demo.services;
 
 import com.example.demo.dtos.Cart;
 import com.example.demo.dtos.ProductDTO;
+import com.example.demo.dtos.SaleDTO;
 import com.example.demo.entitys.ProductEntity;
 import com.example.demo.repositories.ProductRepository;
+import com.example.demo.repositories.SaleRepository;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,7 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private UserRepository userRepository;
     private ProductRepository productRepository;
+    private SaleRepository saleRepository;
 
 
     public UserService(UserRepository userRepository) {
@@ -126,7 +129,7 @@ public class UserService {
     }
 
     //Buy
-    public UserDTO buy(UserDTO userDTO, Cart cart) {
+    public SaleDTO buy(UserDTO userDTO, Cart cart) {
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
         //Checkear que tenga dinero para pagar
@@ -153,9 +156,8 @@ public class UserService {
             }
 
             //Aqui va agregarlo a las ventas
-
-
-            return new UserDTO(user.getEmail(), user.getCredit());
+            SaleService saleService = new SaleService(saleRepository);
+            return saleService.createSale(userDTO, cart, total_price, "10/9/2024");
         }
     }
 }

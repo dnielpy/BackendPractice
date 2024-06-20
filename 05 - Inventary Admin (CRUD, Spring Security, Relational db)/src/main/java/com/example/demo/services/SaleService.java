@@ -6,7 +6,6 @@ import com.example.demo.dtos.UserDTO;
 import com.example.demo.entitys.ProductEntity;
 import com.example.demo.entitys.SaleEntity;
 import com.example.demo.entitys.UserEntity;
-import com.example.demo.entitys.saleEntity;
 import com.example.demo.repositories.ProductRepository;
 import com.example.demo.repositories.SaleRepository;
 import com.example.demo.repositories.UserRepository;
