@@ -19,15 +19,14 @@ public class SaleEntity {
     private UserEntity user;
 
     @ElementCollection
-    private List<Integer> products;
+    private List<Long> products;
 
     @Column(name = "total")
     private Double total;
     @Column(name = "date")
-    private Date date;
+    private String date;
 
-    public SaleEntity(Long id, UserEntity user, List<Integer> products, Double total, Date date) {
-        this.id = id;
+    public SaleEntity(UserEntity user, List<Long> products, Double total, String  date) {
         this.user = user;
         this.products = products;
         this.total = total;
@@ -53,11 +52,11 @@ public class SaleEntity {
         this.user = user;
     }
 
-    public List<Integer> getProducts() {
+    public List<Long> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Integer> products) {
+    public void setProducts(List<Long> products) {
         this.products = products;
     }
 
@@ -69,11 +68,11 @@ public class SaleEntity {
         this.total = total;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

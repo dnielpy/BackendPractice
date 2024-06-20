@@ -59,6 +59,7 @@ public class ProductService {
         }
     }
 
+    //Update Stock
     public ProductDTO updateProductsStock(String name, long new_stock) {
         ProductEntity product = productRepository.findByName(name);
         if (product != null) {
