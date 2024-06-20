@@ -29,6 +29,7 @@ public class UserService {
         return new BCryptPasswordEncoder();
     }
 
+    //Create
     public UserDTO createUser(String email, String password) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
@@ -40,6 +41,7 @@ public class UserService {
         }
     }
 
+    //Get
     public UserDTO getUser(String email) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user != null) {
