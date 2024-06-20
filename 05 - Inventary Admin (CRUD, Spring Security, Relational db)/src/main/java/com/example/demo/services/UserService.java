@@ -75,6 +75,18 @@ public class UserService {
         }
     }
 
+    //Update Credit
+    public UserDTO updateUserCredit(String email, double new_credit) {
+        UserEntity user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setCredit(0.00);
+            userRepository.save(user);
+            return new UserDTO(user.getEmail(), user.getCredit());
+        } else {
+            throw new IllegalArgumentException("El usuario no existe en la base de datos");
+        }
+    }
+
     //Delete
     public UserDTO deleteUser(String email) {
         UserEntity new_user = userRepository.findByEmail(email);
@@ -114,7 +126,7 @@ public class UserService {
     }
 
     //Buy
-    public UserDTO buy(UserDTO userDTO, Cart cart){
+    public UserDTO buy(UserDTO userDTO, Cart cart) {
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
         //Checkear que tenga dinero para pagar
@@ -129,11 +141,9 @@ public class UserService {
         //Chequear que el carrito no este vacio
         if (cart.getProducts().isEmpty()) {
             throw new IllegalArgumentException("El carrito esta vacio");
-        }
-
-        else{
+        } else {
             //Cobrar
-            user.setCredit(user.getCredit() - total_price);
+            updateUserCredit(user.getEmail(), user.getCredit() - total_price);
 
             //Actualizer el Stock -1
             for (int i = 0; i < cart.getProducts().size(); i++) {
@@ -143,7 +153,7 @@ public class UserService {
             }
 
             //Aqui va agregarlo a las ventas
-            
+
 
             return new UserDTO(user.getEmail(), user.getCredit());
         }
