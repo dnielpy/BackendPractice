@@ -1,5 +1,8 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.ProductDTO;
+import com.example.demo.entitys.ProductEntity;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.dtos.UserDTO;
@@ -41,6 +44,35 @@ public class UserService {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user != null) {
             return new UserDTO(new_user.getEmail(), new_user.getCredit());
+        } else {
+            throw new IllegalArgumentException("El usuario no existe en la base de datos");
+        }
+    }
+
+    //Update
+    public UserDTO updateUser(String email, String new_email, String new_password) {
+        UserEntity user = userRepository.findByEmail(email);
+        if (user != null) {
+            if (userRepository.findByEmail(new_email) != null) {
+                throw new IllegalArgumentException("Ya existe un usuario con ese email en la base de datos");
+            } else {
+                user.setEmail(new_email);
+                user.setPassword(passwordEncoder().encode(new_password));
+                user.setCredit(0.00);
+                userRepository.save(user);
+                return new UserDTO(new_email, 0.00);
+            }
+        } else {
+            throw new IllegalArgumentException("El usuario no existe en la base de datos");
+        }
+    }
+
+    //Delete
+    public UserDTO deleteUser(String email) {
+        UserEntity new_user = userRepository.findByEmail(email);
+        if (new_user != null) {
+            userRepository.deleteById(new_user.getId());
+            return null;
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
         }
