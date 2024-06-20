@@ -45,8 +45,4 @@ public class UserService {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
         }
     }
-//
-//    public UserDTO updateUser(){
-//
-//    }
 }

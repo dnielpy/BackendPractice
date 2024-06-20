@@ -25,6 +25,7 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         }
     }
+
     @GetMapping
     public ResponseEntity<UserDTO> getUser(@RequestParam String email) {
         UserService userService = new UserService(userRepository);
