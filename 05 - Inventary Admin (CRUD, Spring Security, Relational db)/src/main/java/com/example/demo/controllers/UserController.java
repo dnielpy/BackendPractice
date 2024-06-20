@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String password) {
         UserService userService = new UserService(userRepository);
         try {
