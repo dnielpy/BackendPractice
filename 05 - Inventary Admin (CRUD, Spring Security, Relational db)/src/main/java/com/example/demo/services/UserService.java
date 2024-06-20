@@ -82,7 +82,7 @@ public class UserService {
     public UserDTO updateUserCredit(String email, double new_credit) {
         UserEntity user = userRepository.findByEmail(email);
         if (user != null) {
-            user.setCredit(0.00);
+            user.setCredit(new_credit); // Corrected line
             userRepository.save(user);
             return new UserDTO(user.getEmail(), user.getCredit());
         } else {
@@ -94,7 +94,7 @@ public class UserService {
     public UserDTO deleteUser(String email) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user != null) {
-            userRepository.deleteById(new_user.getId());
+            userRepository.delete(new_user);
             return null;
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");

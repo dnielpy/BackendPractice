@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,13 +38,50 @@ public class UserServiceTest {
         assertEquals(email.toLowerCase(Locale.ROOT), result.getEmail());
     }
 
-//    @Test
-//    public void testGetUser() {
-//        String email = "test@gmail.com";
-//        UserDTO userDTO = new UserDTO(userService.getUser(email).getEmail(), 0.00) ;
-//        assertNotNull(userDTO, "UserDTO should not be null");
-//        if (userDTO != null) {
-//            assertEquals(email, userDTO.getEmail());
-//        }
-//    }
+    @Test
+    public void testGetUser() {
+        String email = "test@gmail.com";
+        UserEntity userEntity = new UserEntity(email, "password", 0.0);
+
+        when(userRepository.findByEmail(email)).thenReturn(userEntity);
+        UserDTO result = userService.getUser(email);
+        assertNotNull(result, "UserDTO should not be null");
+        assertEquals(email, result.getEmail());
+    }
+
+    @Test
+    public void testUpdateUser() {
+        String email = "test@gmail.com";
+        String newEmail = "newtest@gmail.com";
+        String newPassword = "newpassword";
+        UserEntity userEntity = new UserEntity(email, "password", 0.0);
+
+        when(userRepository.findByEmail(email)).thenReturn(userEntity);
+        when(userRepository.findByEmail(newEmail)).thenReturn(null);
+        UserDTO result = userService.updateUser(email, newEmail, newPassword);
+        assertNotNull(result, "UserDTO should not be null");
+        assertEquals(newEmail, result.getEmail());
+    }
+
+    @Test
+    public void testUpdateUserCredit() {
+        String email = "test@gmail.com";
+        double newCredit = 100.0;
+        UserEntity userEntity = new UserEntity(email, "password", 0.0);
+
+        when(userRepository.findByEmail(email)).thenReturn(userEntity);
+        UserDTO result = userService.updateUserCredit(email, newCredit);
+        assertNotNull(result, "UserDTO should not be null");
+        assertEquals(newCredit, result.getCredit());
+    }
+
+    @Test
+    public void testDeleteUser() {
+        String email = "test@gmail.com";
+        UserEntity userEntity = new UserEntity(email, "password", 0.0);
+
+        when(userRepository.findByEmail(email)).thenReturn(userEntity);
+        UserDTO result = userService.deleteUser(email);
+        assertEquals(null, result);
+    }
 }

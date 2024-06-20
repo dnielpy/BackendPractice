@@ -42,7 +42,7 @@ public class ProductController {
     public ResponseEntity<ProductDTO> updateProduct(@RequestParam String name, @RequestParam String new_name, @RequestParam double new_price, @RequestParam long new_stock) {
         ProductService productService = new ProductService(productRepository);
         try {
-            ProductDTO productDTO = productService.updatePeoducts(name, new_name, new_price, new_stock);
+            ProductDTO productDTO = productService.updateProducts(name, new_name, new_price, new_stock);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
