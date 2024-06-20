@@ -7,10 +7,10 @@ import jakarta.persistence.Id;
 
 public class ProductDTO {
     final String name;
-    final long price;
-    final Integer stock;
+    final double price;
+    final long stock;
 
-    public ProductDTO(String name, long price, Integer stock) {
+    public ProductDTO(String name, double price, Long stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -20,11 +20,11 @@ public class ProductDTO {
         return name;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public Integer getStock() {
+    public long getStock() {
         return stock;
     }
 }

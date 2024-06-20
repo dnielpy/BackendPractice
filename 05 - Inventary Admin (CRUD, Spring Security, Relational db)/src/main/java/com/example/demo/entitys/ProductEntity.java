@@ -15,8 +15,7 @@ public class ProductEntity {
     @Column(name = "stock")
     private long stock;
 
-    public ProductEntity(long id, String name, Double price, long stock) {
-        this.id = id;
+    public ProductEntity(String name, Double price, long stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
