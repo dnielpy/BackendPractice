@@ -41,5 +41,35 @@ public class ProductService {
         }
     }
 
+    //Update
+    public ProductDTO updatePeoducts(String name, String new_name, double new_price, long new_stock) {
+        ProductEntity product = productRepository.findByName(name);
+        if (product != null) {
+            if (productRepository.findByName(new_name) != null) {
+                throw new IllegalArgumentException("Ya existe un producto con ese nombre en la base de datos");
+            } else {
+                product.setName(new_name);
+                product.setPrice(new_price);
+                product.setStock(new_stock);
+                productRepository.save(product);
+                return new ProductDTO(new_name, new_price, new_stock);
+            }
+        } else {
+            throw new IllegalArgumentException("El producto no existe en la base de datos");
+        }
+    }
+
+    //Delete
+    public ProductDTO deleteProduct(String name) {
+        ProductEntity new_product = productRepository.findByName(name);
+        if (new_product != null) {
+            productRepository.deleteById(new_product.getId());
+            return null;
+            //En el controlador controllar cuando mande null
+        } else {
+            throw new IllegalArgumentException("El producto no existe en la base de datos");
+        }
+    }
+
 
 }
