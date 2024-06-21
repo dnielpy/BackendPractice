@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.services.SaleServiceTest;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectClasses;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SelectClasses({
 		UserServiceTest.class,
 		ProductServiceTest.class,
-//		SaleServiceTest.class
+		SaleServiceTest.class
 })
 @SpringBootTest
 public class DemoApplicationTests {

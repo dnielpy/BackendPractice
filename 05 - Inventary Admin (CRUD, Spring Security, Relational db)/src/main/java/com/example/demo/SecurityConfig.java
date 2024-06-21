@@ -19,19 +19,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(request ->
-                                request
-                                        //Todos pueden acceder a /user/create sin loggearse
-                                        .requestMatchers("/**")
-                                        .permitAll()
-
-//                                        //USERS puedes acceder a /users
-//                                        .requestMatchers("/user")
-//                                        .hasRole("USER")
-
+        return http
+                .authorizeHttpRequests(authRequest -> authRequest
+                        .requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults())
-                .csrf(csrf -> csrf.disable());
-        return http.build();
+                .formLogin(Customizer.withDefaults())
+                .build();
     }
 }

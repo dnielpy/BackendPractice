@@ -1,78 +1,75 @@
-//package com.example.demo;
-//
-//import com.example.demo.dtos.Cart;
-//import com.example.demo.dtos.SaleDTO;
-//import com.example.demo.dtos.UserDTO;
-//import com.example.demo.entitys.ProductEntity;
-//import com.example.demo.entitys.SaleEntity;
-//import com.example.demo.entitys.UserEntity;
-//import com.example.demo.services.SaleService;
-//import com.example.demo.repositories.ProductRepository;
-//import com.example.demo.repositories.SaleRepository;
-//import com.example.demo.repositories.UserRepository;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertNotNull;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
-//import static org.mockito.Mockito.*;
-//
-//@ExtendWith(MockitoExtension.class)
-//public class SaleServiceTest {
-//
-//    @Mock
-//    private SaleRepository saleRepository;
-//
-//    @Mock
-//    private UserRepository userRepository;
-//
-//    @Mock
-//    private ProductRepository productRepository;
-//
-//    @InjectMocks
-//    private SaleService saleService;
-//
-//    @Test
-//    public void testCreateSale() {
-//        UserDTO userDTO = new UserDTO("test@gmail.com", "password", 0.0);
-//        UserEntity userEntity = new UserEntity(userDTO.getEmail(), userDTO.getPassword(), userDTO.getCredit());
-//        Cart cart = new Cart();
-//        double total = 100.0;
-//        String date = "2022-01-01";
-//
-//        when(userRepository.findByEmail(userDTO.getEmail())).thenReturn(userEntity);
-//        SaleDTO result = saleService.createSale(userDTO, cart, total, date);
-//        assertNotNull(result, "SaleDTO should not be null");
-//        assertEquals(userDTO.getEmail(), result.getEmail());
-//    }
-//
-//    @Test
-//    public void testGetSale() {
-//        UserDTO userDTO = new UserDTO("test@gmail.com", "password", 0.0);
-//        UserEntity userEntity = new UserEntity(userDTO.getEmail(), userDTO.getPassword(), userDTO.getCredit());
-//        SaleEntity saleEntity = new SaleEntity(userEntity, new ArrayList<>(), 100.0, "2022-01-01");
-//
-//        when(saleRepository.findByEmail(userDTO.getEmail())).thenReturn(saleEntity);
-//        SaleDTO result = saleService.getSale(userDTO);
-//        assertNotNull(result, "SaleDTO should not be null");
-//        assertEquals(userDTO.getEmail(), result.getEmail());
-//    }
-//
-//    @Test
-//    public void testDeleteSale() {
-//        UserDTO userDTO = new UserDTO("test@gmail.com", "password", 0.0);
-//        UserEntity userEntity = new UserEntity(userDTO.getEmail(), userDTO.getPassword(), userDTO.getCredit());
-//        SaleEntity saleEntity = new SaleEntity(userEntity, new ArrayList<>(), 100.0, "2022-01-01");
-//
-//        when(saleRepository.findByEmail(userDTO.getEmail())).thenReturn(saleEntity);
-//        SaleDTO result = saleService.deleteSale(userDTO);
-//        assertEquals(null, result);
-//    }
-//}
+package com.example.demo.services;
+
+import com.example.demo.dtos.Cart;
+import com.example.demo.dtos.SaleDTO;
+import com.example.demo.dtos.UserDTO;
+import com.example.demo.entitys.SaleEntity;
+import com.example.demo.entitys.UserEntity;
+import com.example.demo.repositories.SaleRepository;
+import com.example.demo.repositories.UserRepository;
+import com.example.demo.repositories.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+public class SaleServiceTest {
+
+    @InjectMocks
+    SaleService saleService;
+
+    @Mock
+    SaleRepository saleRepository;
+
+    @Mock
+    UserRepository userRepository;
+
+    @Mock
+    ProductRepository productRepository;
+
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testCreateSale() {
+        UserDTO userDTO = new UserDTO("test@test.com", 100.0);
+        Cart cart = new Cart(new ArrayList<>());
+        when(userRepository.findByEmail(anyString())).thenReturn(new UserEntity());
+        when(saleRepository.save(any())).thenReturn(new SaleEntity());
+
+        SaleDTO result = saleService.createSale(userDTO, cart, 100.0, "10/9/2024");
+
+        assertNotNull(result);
+        verify(saleRepository, times(1)).save(any());
+    }
+
+    @Test
+    public void testGetSale() {
+        UserDTO userDTO = new UserDTO("test@test.com", 100.0);
+        when(saleRepository.findByEmail(anyString())).thenReturn(new SaleEntity());
+
+        SaleDTO result = saleService.getsale(userDTO);
+
+        assertNotNull(result);
+        verify(saleRepository, times(1)).findByEmail(anyString());
+    }
+
+    @Test
+    public void testDeleteSale() {
+        UserDTO userDTO = new UserDTO("test@test.com", 100.0);
+        when(saleRepository.findByEmail(anyString())).thenReturn(new SaleEntity());
+
+        SaleDTO result = saleService.deleteSale(userDTO);
+
+        assertNull(result);
+        verify(saleRepository, times(1)).deleteById(anyLong());
+    }
+}

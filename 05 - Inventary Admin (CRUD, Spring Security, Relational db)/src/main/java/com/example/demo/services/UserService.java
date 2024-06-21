@@ -6,7 +6,6 @@ import com.example.demo.dtos.SaleDTO;
 import com.example.demo.entitys.ProductEntity;
 import com.example.demo.repositories.ProductRepository;
 import com.example.demo.repositories.SaleRepository;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.dtos.UserDTO;
@@ -19,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class UserService {
 
@@ -27,7 +25,6 @@ public class UserService {
     private UserRepository userRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
-
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -42,9 +39,8 @@ public class UserService {
     public UserDTO createUser(String email, String password) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
-            new_user = new UserEntity(email.toLowerCase(Locale.ROOT), passwordEncoder().encode(password), 0.0);
-            userRepository.save(new_user);
-            return new UserDTO(new_user.getEmail(), 0.00);
+//            String token = jwtUtil.generateToken(email);
+            return new UserDTO(email, 0.00, "token");
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");
         }
