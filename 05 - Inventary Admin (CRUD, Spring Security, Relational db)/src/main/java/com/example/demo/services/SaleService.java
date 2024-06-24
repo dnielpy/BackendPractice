@@ -65,4 +65,16 @@ public class SaleService {
             throw new IllegalArgumentException("El usuario no tiene compras registradas");
         }
     }
+    //getPurchases
+    public List<SaleDTO> getPurchases() {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+            saleDTOS.add(saleDTO_temp);
+        }
+        return saleDTOS;
+    }
 }

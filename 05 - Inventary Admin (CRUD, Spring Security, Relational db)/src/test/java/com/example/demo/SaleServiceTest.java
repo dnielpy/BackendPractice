@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -72,4 +73,15 @@ public class SaleServiceTest {
         assertNull(result);
         verify(saleRepository, times(1)).deleteById(anyLong());
     }
+
+    @Test
+    public void testgetPurcgases() {
+        List<SaleDTO> result = saleService.getPurchases();
+        boolean check = false;
+        if (result.size() == 0) {
+            check = true;
+        }
+        assert check;
+    }
 }
+
