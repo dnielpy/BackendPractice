@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.security;
 
 
 import com.example.demo.repositories.UserRepository;
@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     private UserRepository userRepository;
