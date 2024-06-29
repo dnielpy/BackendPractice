@@ -1,8 +1,8 @@
-package com.example.demo.entitys;
+package com.example.demo.Sale;
 
+import com.example.demo.User.UserEntity;
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +15,7 @@ public class SaleEntity {
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private UserEntity user;
-    private String username = user.getEmail();
+    private String username;
     @ElementCollection
     private List<Long> products;
     @Column(name = "total")
@@ -28,6 +28,7 @@ public class SaleEntity {
         this.products = products;
         this.total = total;
         this.date = date;
+        username = user.getEmail();
     }
 
     public SaleEntity() {

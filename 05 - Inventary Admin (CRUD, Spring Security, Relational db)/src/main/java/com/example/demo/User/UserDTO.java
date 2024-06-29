@@ -1,9 +1,4 @@
-package com.example.demo.dtos;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.example.demo.User;
 
 public class UserDTO {
     final String email;

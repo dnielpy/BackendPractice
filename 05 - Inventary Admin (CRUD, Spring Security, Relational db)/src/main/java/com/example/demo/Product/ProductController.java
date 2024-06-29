@@ -1,10 +1,5 @@
-package com.example.demo.controllers;
+package com.example.demo.Product;
 
-import com.example.demo.dtos.ProductDTO;
-import com.example.demo.dtos.UserDTO;
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.services.ProductService;
-import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

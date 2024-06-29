@@ -1,14 +1,12 @@
-package com.example.demo.services;
+package com.example.demo.Sale;
 
-import com.example.demo.dtos.Cart;
-import com.example.demo.dtos.SaleDTO;
-import com.example.demo.dtos.UserDTO;
-import com.example.demo.entitys.ProductEntity;
-import com.example.demo.entitys.SaleEntity;
-import com.example.demo.entitys.UserEntity;
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.repositories.SaleRepository;
-import com.example.demo.repositories.UserRepository;
+import com.example.demo.Cart.Cart;
+import com.example.demo.User.UserDTO;
+import com.example.demo.Product.ProductEntity;
+import com.example.demo.User.UserEntity;
+import com.example.demo.User.UserService;
+import com.example.demo.Product.ProductRepository;
+import com.example.demo.User.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

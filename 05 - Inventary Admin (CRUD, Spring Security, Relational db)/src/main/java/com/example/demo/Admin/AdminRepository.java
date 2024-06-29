@@ -1,6 +1,5 @@
-package com.example.demo.repositories;
+package com.example.demo.Admin;
 
-import com.example.demo.entitys.AdminEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdminRepository extends JpaRepository<AdminEntity, String> {

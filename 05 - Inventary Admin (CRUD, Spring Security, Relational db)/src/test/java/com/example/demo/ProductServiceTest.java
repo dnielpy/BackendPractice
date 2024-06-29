@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.dtos.ProductDTO;
-import com.example.demo.entitys.ProductEntity;
-import com.example.demo.services.ProductService;
-import com.example.demo.repositories.ProductRepository;
+import com.example.demo.Product.ProductDTO;
+import com.example.demo.Product.ProductEntity;
+import com.example.demo.Product.ProductService;
+import com.example.demo.Product.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

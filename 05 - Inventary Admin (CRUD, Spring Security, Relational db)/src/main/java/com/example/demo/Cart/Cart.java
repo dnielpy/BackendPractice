@@ -1,7 +1,7 @@
-package com.example.demo.dtos;
+package com.example.demo.Cart;
 
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.repositories.UserRepository;
+import com.example.demo.Product.ProductDTO;
+import com.example.demo.Product.ProductRepository;
 
 import java.util.List;
 

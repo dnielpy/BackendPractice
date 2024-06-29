@@ -1,11 +1,6 @@
-package com.example.demo.services;
+package com.example.demo.Product;
 
-import com.example.demo.dtos.ProductDTO;
-import com.example.demo.dtos.UserDTO;
-import com.example.demo.entitys.ProductEntity;
-import com.example.demo.entitys.UserEntity;
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.repositories.UserRepository;
+import com.example.demo.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

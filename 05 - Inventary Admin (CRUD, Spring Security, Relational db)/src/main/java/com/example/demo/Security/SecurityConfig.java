@@ -1,7 +1,7 @@
-package com.example.demo.security;
+package com.example.demo.Security;
 
 
-import com.example.demo.repositories.UserRepository;
+import com.example.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.dtos.Cart;
-import com.example.demo.dtos.SaleDTO;
-import com.example.demo.dtos.UserDTO;
-import com.example.demo.entitys.SaleEntity;
-import com.example.demo.entitys.UserEntity;
-import com.example.demo.repositories.SaleRepository;
-import com.example.demo.repositories.UserRepository;
-import com.example.demo.repositories.ProductRepository;
+import com.example.demo.Cart.Cart;
+import com.example.demo.Sale.SaleDTO;
+import com.example.demo.Sale.SaleService;
+import com.example.demo.User.UserDTO;
+import com.example.demo.Sale.SaleEntity;
+import com.example.demo.User.UserEntity;
+import com.example.demo.Sale.SaleRepository;
+import com.example.demo.User.UserRepository;
+import com.example.demo.Product.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,17 +1,15 @@
-package com.example.demo.services;
+package com.example.demo.User;
 
-import com.example.demo.dtos.Cart;
-import com.example.demo.dtos.ProductDTO;
-import com.example.demo.dtos.SaleDTO;
-import com.example.demo.entitys.ProductEntity;
-import com.example.demo.repositories.ProductRepository;
-import com.example.demo.repositories.SaleRepository;
+import com.example.demo.Cart.Cart;
+import com.example.demo.Product.ProductDTO;
+import com.example.demo.Sale.SaleDTO;
+import com.example.demo.Product.ProductEntity;
+import com.example.demo.Product.ProductRepository;
+import com.example.demo.Sale.SaleRepository;
+import com.example.demo.Product.ProductService;
+import com.example.demo.Sale.SaleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.example.demo.dtos.UserDTO;
-import com.example.demo.entitys.UserEntity;
-import com.example.demo.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
