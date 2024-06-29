@@ -19,7 +19,6 @@ import java.util.List;
 
 public class UserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private UserRepository userRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
