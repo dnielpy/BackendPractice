@@ -2,16 +2,13 @@ package com.example.demo.Admin;
 
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Sale.SaleRepository;
-import com.example.demo.Admin.AdminDTO;
-import com.example.demo.Admin.AdminEntity;
-import com.example.demo.Admin.AdminRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class AdminService {
 
-    private AdminRepository adminRepository;
+    private final AdminRepository adminRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
 
@@ -28,6 +25,8 @@ public class AdminService {
     public AdminDTO createAdmin(String email, String password) {
         AdminEntity new_admin = adminRepository.findByEmail(email);
         if (new_admin == null) {
+            new_admin = new AdminEntity(email, passwordEncoder().encode(password));
+            adminRepository.save(new_admin);
             return new AdminDTO(email);
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");

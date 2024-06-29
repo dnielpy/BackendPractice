@@ -1,15 +1,14 @@
 package com.example.demo.User;
 
+import com.example.demo.Admin.AdminEntity;
 import com.example.demo.Cart.Cart;
 import com.example.demo.Product.ProductDTO;
-import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
-import com.example.demo.Sale.SaleRepository;
 import com.example.demo.Product.ProductService;
+import com.example.demo.Sale.SaleDTO;
+import com.example.demo.Sale.SaleRepository;
 import com.example.demo.Sale.SaleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
 
@@ -36,7 +35,9 @@ public class UserService {
     public UserDTO createUser(String email, String password) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
-            return new UserDTO(email, 0.00, "token");
+            new_user = new UserEntity(email, passwordEncoder().encode(password), 0.00);
+            userRepository.save(new_user);
+            return new UserDTO(email, 0.00);
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");
         }
