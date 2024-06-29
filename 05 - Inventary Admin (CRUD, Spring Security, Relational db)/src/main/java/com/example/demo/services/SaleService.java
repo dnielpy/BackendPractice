@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SaleService {
 
@@ -29,7 +28,7 @@ public class SaleService {
 
     //Create
     public SaleDTO createSale(UserDTO userDTO, Cart cart, double total, String date) {
-        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
+        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
 
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
@@ -47,7 +46,7 @@ public class SaleService {
 
     //Get
     public SaleDTO getsale(UserDTO userDTO) {
-        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
+        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
         if (new_sale != null) {
             return new SaleDTO(new_sale.getUser().getEmail(), new_sale.getTotal(), new_sale.getDate());
         } else {
@@ -57,7 +56,7 @@ public class SaleService {
 
     //Delete
     public SaleDTO deleteSale(UserDTO userDTO) {
-        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
+        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
         if (new_sale != null) {
             saleRepository.deleteById(new_sale.getId());
             return null;

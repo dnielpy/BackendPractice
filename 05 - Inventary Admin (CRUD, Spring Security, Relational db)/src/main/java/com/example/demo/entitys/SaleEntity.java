@@ -12,15 +12,12 @@ public class SaleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
-
     private UserEntity user;
-
+    private String username = user.getEmail();
     @ElementCollection
     private List<Long> products;
-
     @Column(name = "total")
     private Double total;
     @Column(name = "date")

@@ -17,13 +17,10 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private ProductService productService;
 
-    @Autowired
     private UserService userService;
 
     @GetMapping

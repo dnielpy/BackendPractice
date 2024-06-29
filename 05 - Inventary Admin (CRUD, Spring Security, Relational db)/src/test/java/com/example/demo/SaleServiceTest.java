@@ -55,18 +55,18 @@ public class SaleServiceTest {
     @Test
     public void testGetSale() {
         UserDTO userDTO = new UserDTO("test@test.com", 100.0);
-        when(saleRepository.findByEmail(anyString())).thenReturn(new SaleEntity());
+        when(saleRepository.findByUsername(anyString())).thenReturn(new SaleEntity());
 
         SaleDTO result = saleService.getsale(userDTO);
 
         assertNotNull(result);
-        verify(saleRepository, times(1)).findByEmail(anyString());
+        verify(saleRepository, times(1)).findByUsername(anyString());
     }
 
     @Test
     public void testDeleteSale() {
         UserDTO userDTO = new UserDTO("test@test.com", 100.0);
-        when(saleRepository.findByEmail(anyString())).thenReturn(new SaleEntity());
+        when(saleRepository.findByUsername(anyString())).thenReturn(new SaleEntity());
 
         SaleDTO result = saleService.deleteSale(userDTO);
 

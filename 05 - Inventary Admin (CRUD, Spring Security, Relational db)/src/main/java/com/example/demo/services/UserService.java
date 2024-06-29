@@ -39,7 +39,6 @@ public class UserService {
     public UserDTO createUser(String email, String password) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
-//            String token = jwtUtil.generateToken(email);
             return new UserDTO(email, 0.00, "token");
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");
