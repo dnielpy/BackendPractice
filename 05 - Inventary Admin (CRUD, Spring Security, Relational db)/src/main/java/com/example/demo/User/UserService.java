@@ -1,8 +1,6 @@
 package com.example.demo.User;
 
-import com.example.demo.Admin.AdminEntity;
-import com.example.demo.Cart.Cart;
-import com.example.demo.Product.ProductDTO;
+import com.example.demo.Cart.CartEntity;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Product.ProductService;
@@ -13,8 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
 
@@ -95,13 +95,19 @@ public class UserService {
     }
 
     //Buy
-    public SaleDTO buy(UserDTO userDTO, Cart cart) {
+    public SaleDTO buy(UserDTO userDTO, CartEntity cart) {
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
+
+        List<Optional<ProductEntity>> products = new ArrayList<>();
+
+        for (int i = 0; i < cart.getProducts().size(); i++) {
+            products.add(productRepository.findById(cart.getProducts().get(i)));
+        }
 
         //Checkear que tenga dinero para pagar
         double total_price = 0;
-        for (int i = 0; i < cart.getProducts().size(); i++) {
-            total_price += cart.getProducts().get(i).getPrice();
+        for (Optional<ProductEntity> productEntity : products) {
+            total_price += productEntity.get().getPrice();
         }
         if (total_price >= user.getCredit()) {
             throw new IllegalArgumentException("Creditos Insuficientes");
@@ -116,14 +122,19 @@ public class UserService {
 
             //Actualizer el Stock -1
             for (int i = 0; i < cart.getProducts().size(); i++) {
-                ProductEntity product = productRepository.findByName(cart.getProducts().get(i).getName());
-                ProductService productService = new ProductService(productRepository);
-                productService.updateProductsStock(product.getName(), product.getStock() - 1);
+                Optional<ProductEntity> optionalProduct = productRepository.findById(cart.getProducts().get(i));
+                if (optionalProduct.isPresent()) {
+                    ProductEntity product = optionalProduct.get();
+                    ProductService productService = new ProductService(productRepository);
+                    productService.updateProductsStock(product.getName(), product.getStock() - 1);
+                } else {
+                    throw new IllegalArgumentException("El producto no existe en la base de datos");
+                }
             }
 
             //Aqui va agregarlo a las ventas
-            SaleService saleService = new SaleService(saleRepository);
-            return saleService.createSale(userDTO, cart, total_price, "10/9/2024");
+            SaleService saleService = new SaleService(saleRepository, userRepository, productRepository);
+            return saleService.createSale(userDTO, cart, total_price, LocalDate.now().toString());
         }
     }
 }

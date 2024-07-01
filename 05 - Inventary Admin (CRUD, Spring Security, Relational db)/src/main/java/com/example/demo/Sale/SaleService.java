@@ -1,6 +1,6 @@
 package com.example.demo.Sale;
 
-import com.example.demo.Cart.Cart;
+import com.example.demo.Cart.CartEntity;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.User.UserDTO;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SaleService {
 
@@ -27,19 +28,28 @@ public class SaleService {
     }
 
     //Create
-    public SaleDTO createSale(UserDTO userDTO, Cart cart, double total, String date) {
+    public SaleDTO createSale(UserDTO userDTO, CartEntity cart, double total, String date) {
         SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
 
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
-        List<Long> products_ids = new ArrayList<>();
+        List<Optional<ProductEntity>> products = new ArrayList<>();
 
         for (int i = 0; i < cart.getProducts().size(); i++) {
-            ProductEntity product = productRepository.findByName(cart.getProducts().get(i).getName());
-            products_ids.add(product.getId());
+            products.add(productRepository.findById(cart.getProducts().get(i)));
         }
 
-        new_sale = new SaleEntity(user, products_ids, total, date);
+        List<Long> productId = new ArrayList<>();
+
+        for (Optional<ProductEntity> optionalProduct : products) {
+            if (optionalProduct.isPresent()) {
+                productId.add(optionalProduct.get().getId());
+            } else {
+                throw new IllegalArgumentException("El producto no existe en la base de datos");
+            }
+        }
+
+        new_sale = new SaleEntity(user, productId, total, date);
         saleRepository.save(new_sale);
         return new SaleDTO(new_sale.getUser().getEmail(), total, date);
     }

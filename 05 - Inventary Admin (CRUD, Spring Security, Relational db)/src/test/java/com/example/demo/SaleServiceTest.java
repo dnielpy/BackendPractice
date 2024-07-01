@@ -1,6 +1,5 @@
 package com.example.demo.services;
 
-import com.example.demo.Cart.Cart;
 import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Sale.SaleService;
 import com.example.demo.User.UserDTO;
