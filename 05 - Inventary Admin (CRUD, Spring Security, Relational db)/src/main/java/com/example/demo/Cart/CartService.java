@@ -61,14 +61,11 @@ public class CartService {
     }
 
     //removeFromCart
-    public void removeFromCart(ProductDTO productDTO, Cart cart) {
-        if (productRepository.findByName(productDTO.getName()) == null) {
-            throw new IllegalArgumentException("El producto que intentas eliminar no existe");
-        }
-        if (!cart.getProducts().contains(productDTO)) {
-            throw new IllegalArgumentException("El producto no esta en tu carrito");
-        } else {
-            cart.getProducts().remove(productDTO);
-        }
+    public void removeFromCart(ProductDTO productDTO, CartEntity cart) {
+        ProductEntity product = productRepository.findByName(productDTO.getName());
+        List<Long> products = cart.getProducts();
+        products.remove(product.getId());
+        cart.setProducts(products);
+        cartRepository.save(cart);
     }
 }
