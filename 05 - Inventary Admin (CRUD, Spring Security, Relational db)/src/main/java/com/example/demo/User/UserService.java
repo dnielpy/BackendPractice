@@ -94,33 +94,6 @@ public class UserService {
         }
     }
 
-    //Create Cart
-    public Cart createCart() {
-        List<ProductDTO> products = new ArrayList<>();
-        return new Cart(products);
-    }
-
-    //addToCart
-    public void addToCart(ProductDTO productDTO, Cart cart) {
-        if (productRepository.findByName(productDTO.getName()) == null) {
-            throw new IllegalArgumentException("El producto que intentas agregar no existe");
-        } else {
-            cart.addToCart(productDTO);
-        }
-    }
-
-    //removeFromCart
-    public void removeFromCart(ProductDTO productDTO, Cart cart) {
-        if (productRepository.findByName(productDTO.getName()) == null) {
-            throw new IllegalArgumentException("El producto que intentas eliminar no existe");
-        }
-        if (!cart.getProducts().contains(productDTO)) {
-            throw new IllegalArgumentException("El producto no esta en tu carrito");
-        } else {
-            cart.getProducts().remove(productDTO);
-        }
-    }
-
     //Buy
     public SaleDTO buy(UserDTO userDTO, Cart cart) {
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());

@@ -1,5 +1,6 @@
 package com.example.demo.Product;
 
+import com.example.demo.Sale.SaleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

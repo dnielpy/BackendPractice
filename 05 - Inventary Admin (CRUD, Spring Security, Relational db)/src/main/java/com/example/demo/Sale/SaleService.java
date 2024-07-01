@@ -1,12 +1,12 @@
 package com.example.demo.Sale;
 
 import com.example.demo.Cart.Cart;
-import com.example.demo.User.UserDTO;
 import com.example.demo.Product.ProductEntity;
-import com.example.demo.User.UserEntity;
-import com.example.demo.User.UserService;
 import com.example.demo.Product.ProductRepository;
+import com.example.demo.User.UserDTO;
+import com.example.demo.User.UserEntity;
 import com.example.demo.User.UserRepository;
+import com.example.demo.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +16,14 @@ import java.util.List;
 public class SaleService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private SaleRepository saleRepository;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final SaleRepository saleRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
-    public SaleService(SaleRepository saleRepository) {
+    public SaleService(SaleRepository saleRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.saleRepository = saleRepository;
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
     }
 
     //Create
@@ -62,6 +64,7 @@ public class SaleService {
             throw new IllegalArgumentException("El usuario no tiene compras registradas");
         }
     }
+
     //getPurchases
     public List<SaleDTO> getPurchases() {
         List<SaleEntity> sales = new ArrayList<>();

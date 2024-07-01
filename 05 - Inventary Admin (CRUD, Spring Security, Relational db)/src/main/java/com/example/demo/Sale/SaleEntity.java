@@ -15,7 +15,6 @@ public class SaleEntity {
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private UserEntity user;
-    private String username;
     @ElementCollection
     private List<Long> products;
     @Column(name = "total")
@@ -28,7 +27,6 @@ public class SaleEntity {
         this.products = products;
         this.total = total;
         this.date = date;
-        username = user.getEmail();
     }
 
     public SaleEntity() {
