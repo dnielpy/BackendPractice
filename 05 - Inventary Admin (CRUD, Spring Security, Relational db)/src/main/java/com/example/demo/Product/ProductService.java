@@ -3,15 +3,18 @@ package com.example.demo.Product;
 import com.example.demo.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
+@Service
 public class ProductService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    @Autowired
     private ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
     }
 
     //Create
