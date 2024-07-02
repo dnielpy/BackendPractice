@@ -49,14 +49,14 @@ public class AdminService {
 
     //Update
     public AdminDTO updateadmin(String email, String new_email, String new_password) {
-        AdminEntity admin = adminRepository.findByEmail(email);
-        if (admin != null) {
+        AdminEntity old_admin = adminRepository.findByEmail(email);
+        if (old_admin != null) {
             if (adminRepository.findByEmail(new_email) != null) {
                 throw new IllegalArgumentException("Ya existe un usuario con ese email en la base de datos");
             } else {
-                admin.setEmail(new_email);
-                admin.setPassword(adminpasswordEncoder().encode(new_password));
-                adminRepository.save(admin);
+                AdminEntity new_admin = new AdminEntity(new_email, new_password);
+                adminRepository.delete(old_admin);
+                adminRepository.save(new_admin);
                 return new AdminDTO(new_email);
             }
         } else {
