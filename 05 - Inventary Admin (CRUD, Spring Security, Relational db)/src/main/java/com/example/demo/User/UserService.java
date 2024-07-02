@@ -27,8 +27,12 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     private SaleRepository saleRepository;
+    @Autowired
+    private ProductService productService;
 
     public UserService(UserRepository userRepository) {
     }
@@ -137,7 +141,6 @@ public class UserService {
                 Optional<ProductEntity> optionalProduct = productRepository.findById(cart.getProducts().get(i));
                 if (optionalProduct.isPresent()) {
                     ProductEntity product = optionalProduct.get();
-                    ProductService productService = new ProductService(productRepository);
                     productService.updateProductsStock(product.getName(), product.getStock() - 1);
                 } else {
                     throw new IllegalArgumentException("El producto no existe en la base de datos");

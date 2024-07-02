@@ -34,7 +34,7 @@ public class SaleService {
 
     //Create
     public SaleDTO createSale(UserDTO userDTO, CartEntity cart, double total, String date) {
-        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
+        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
 
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
@@ -61,7 +61,7 @@ public class SaleService {
 
     //Delete
     public SaleDTO deleteSale(UserDTO userDTO) {
-        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
+        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
         if (new_sale != null) {
             saleRepository.deleteById(new_sale.getId());
             return null;

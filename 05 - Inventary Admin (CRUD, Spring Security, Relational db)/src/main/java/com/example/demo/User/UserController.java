@@ -1,6 +1,6 @@
 package com.example.demo.User;
 
-import com.example.demo.Cart.CartEntity;
+import com.example.demo.Cart.CartRepository;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Sale.SaleRepository;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-
+    @Autowired
+    CartRepository cartRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -22,7 +23,6 @@ public class UserController {
     private SaleRepository saleRepository;
     @Autowired
     private ProductRepository productRepository;
-
 
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String password) {
@@ -75,10 +75,10 @@ public class UserController {
     }
 
     @PostMapping("/{email}/buy")
-    public ResponseEntity<SaleDTO> buy(@PathVariable String email, @RequestBody CartEntity cart) {
+    public ResponseEntity<SaleDTO> buy(@PathVariable String email) {
         try {
             UserDTO userDTO = userService.getUser(email);
-            SaleDTO saleDTO = userService.buy(userDTO, cart);
+            SaleDTO saleDTO = userService.buy(userDTO, cartRepository.findByEmail(email));
             return new ResponseEntity<>(saleDTO, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

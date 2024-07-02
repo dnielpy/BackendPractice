@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Sale")
+@Table(name = "Sales")
 public class SaleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,8 @@ public class SaleEntity {
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private UserEntity user;
-    private String username;
+    @Column(name = "email", insertable = false, updatable = false)
+    private String email;
     @ElementCollection
     private List<Long> products;
     @Column(name = "total")
@@ -28,10 +29,11 @@ public class SaleEntity {
         this.products = products;
         this.total = total;
         this.date = date;
-        this.username = user.getEmail();
+        this.email = user.getEmail();
     }
 
     public SaleEntity() {
+        this.email = null;
     }
 
     public Long getId() {
