@@ -55,4 +55,14 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/updateStock")
+    public ResponseEntity<ProductDTO> updateProductStock(@RequestParam String name, @RequestParam long new_stock) {
+        ProductService productService = new ProductService(productRepository);
+        try {
+            ProductDTO productDTO = productService.updateProductsStock(name, new_stock);
+            return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

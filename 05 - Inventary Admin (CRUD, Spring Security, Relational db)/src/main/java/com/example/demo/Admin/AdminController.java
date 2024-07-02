@@ -9,12 +9,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    AdminRepository adminRepository;
+    AdminService adminService;
 
-    @GetMapping
-    public ResponseEntity<AdminDTO> getAdmin(@RequestParam String email) {
-        AdminService adminService = new AdminService(adminRepository);
+    @PostMapping
+    public ResponseEntity<AdminDTO> createAdmin(@RequestParam String email, @RequestParam String password) {
+        try {
+            AdminDTO adminDTO = adminService.createAdmin(email, password);
+            return new ResponseEntity<>(adminDTO, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<AdminDTO> getAdmin(@PathVariable String email) {
         try {
             AdminDTO adminDTO = adminService.getadmin(email);
             return new ResponseEntity<>(adminDTO, HttpStatus.OK);
@@ -23,23 +31,21 @@ public class AdminController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<AdminDTO> createAdmin(@RequestParam String email, @RequestParam String password) {
-        AdminService adminService = new AdminService(adminRepository);
+    @PutMapping("/{email}")
+    public ResponseEntity<AdminDTO> updateAdmin(@PathVariable String email, @RequestParam String new_email, @RequestParam String new_password) {
         try {
-            AdminDTO adminDTO = adminService.createAdmin(email, password);
+            AdminDTO adminDTO = adminService.updateadmin(email, new_email, new_password);
             return new ResponseEntity<>(adminDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<AdminDTO> deleteAdmin(@RequestParam String email, @RequestParam String password) {
-        AdminService adminService = new AdminService(adminRepository);
+    @DeleteMapping("/{email}")
+    public ResponseEntity<AdminDTO> deleteAdmin(@PathVariable String email) {
         try {
-            AdminDTO adminDTO = adminService.deleteadmin(email);
-            return new ResponseEntity<>(adminDTO, HttpStatus.OK);
+            adminService.deleteadmin(email);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
