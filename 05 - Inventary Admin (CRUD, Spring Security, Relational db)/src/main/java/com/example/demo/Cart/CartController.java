@@ -48,11 +48,10 @@ public class CartController {
         }
     }
 
-    @PostMapping("/remove")
-    public ResponseEntity<Void> removeFromCart(@RequestBody ProductDTO productDTO, @RequestBody CartEntity cart) {
+    @PostMapping("/removeFromCart")
+    public ResponseEntity<List<Long>> removeFromCart(@RequestParam String email, @RequestParam long product_id) {
         try {
-            cartService.removeFromCart(productDTO, cart);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(cartService.removeFromCart(email, product_id), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -67,11 +68,18 @@ public class CartService {
     }
 
     //removeFromCart
-    public void removeFromCart(ProductDTO productDTO, CartEntity cart) {
-        ProductEntity product = productRepository.findByName(productDTO.getName());
-        List<Long> products = cart.getProducts();
-        products.remove(product.getId());
-        cart.setProducts(products);
-        cartRepository.save(cart);
+    public List<Long> removeFromCart(String email, Long product_id) {
+        Optional<ProductEntity> productOptional = productRepository.findById(product_id);
+        if (productOptional.isPresent()) {
+            ProductEntity product = productOptional.get();
+            CartEntity cart = cartRepository.findByEmail(email);
+            List<Long> products = cart.getProducts();
+            products.remove(product.getId());
+            cart.setProducts(products);
+            cartRepository.save(cart);
+            return products;
+        } else {
+            throw new IllegalArgumentException("El producto que intentas eliminar no existe");
+        }
     }
 }
