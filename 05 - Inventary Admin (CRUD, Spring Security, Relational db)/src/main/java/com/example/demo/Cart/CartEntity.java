@@ -31,6 +31,10 @@ public class CartEntity {
         this.email = user.getEmail();
     }
 
+    public CartEntity() {
+        this.email = null;
+    }
+
     public Integer getId() {
         return id;
     }

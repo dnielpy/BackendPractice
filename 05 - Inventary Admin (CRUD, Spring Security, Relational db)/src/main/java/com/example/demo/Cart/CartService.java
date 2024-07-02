@@ -6,13 +6,19 @@ import com.example.demo.Product.ProductRepository;
 import com.example.demo.User.UserDTO;
 import com.example.demo.User.UserEntity;
 import com.example.demo.User.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CartService {
 
+    @Autowired
     CartRepository cartRepository;
+    @Autowired
     UserRepository userRepository;
+    @Autowired
     ProductRepository productRepository;
 
     public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
