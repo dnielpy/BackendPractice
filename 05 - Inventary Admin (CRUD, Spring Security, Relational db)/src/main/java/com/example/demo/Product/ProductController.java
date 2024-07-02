@@ -34,8 +34,8 @@ public class ProductController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<ProductDTO> updateProduct(@RequestParam String name, @RequestParam String new_name, @RequestParam double new_price, @RequestParam long new_stock) {
+    @PutMapping("/{name}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable String name, @RequestParam String new_name, @RequestParam double new_price, @RequestParam long new_stock) {
         try {
             ProductDTO productDTO = productService.updateProducts(name, new_name, new_price, new_stock);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
