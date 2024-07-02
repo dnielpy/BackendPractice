@@ -44,8 +44,8 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<ProductDTO> deleteProduct(@RequestParam String name) {
+    @DeleteMapping("/{name}")
+    public ResponseEntity<ProductDTO> deleteProduct(@PathVariable String name) {
         try {
             ProductDTO productDTO = productService.deleteProduct(name);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
@@ -53,6 +53,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @PutMapping("/updateStock")
     public ResponseEntity<ProductDTO> updateProductStock(@RequestParam String name, @RequestParam long new_stock) {
         try {

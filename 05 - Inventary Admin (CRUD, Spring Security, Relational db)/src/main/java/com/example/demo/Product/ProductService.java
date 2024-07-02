@@ -22,7 +22,7 @@ public class ProductService {
     public ProductDTO createProduct(String name, double price, long stock) {
         ProductEntity new_product = productRepository.findByName(name);
         if (new_product == null) {
-            new_product = new ProductEntity(name.toLowerCase(Locale.ROOT), price, stock);
+            new_product = new ProductEntity(name.toLowerCase(), price, stock);
             productRepository.save(new_product);
             return new ProductDTO(new_product.getName(), price, stock);
         } else {
@@ -72,7 +72,7 @@ public class ProductService {
 
     //Delete
     public ProductDTO deleteProduct(String name) {
-        ProductEntity new_product = productRepository.findByName(name);
+        ProductEntity new_product = productRepository.findByName(name.toLowerCase());
         if (new_product != null) {
             productRepository.deleteById(new_product.getId());
             return null;
