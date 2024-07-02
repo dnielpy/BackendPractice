@@ -7,23 +7,26 @@ import com.example.demo.Product.ProductService;
 import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Sale.SaleRepository;
 import com.example.demo.Sale.SaleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
 
     public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 
     @Bean

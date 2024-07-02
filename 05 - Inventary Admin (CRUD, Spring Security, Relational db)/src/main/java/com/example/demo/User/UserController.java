@@ -1,12 +1,10 @@
 package com.example.demo.User;
 
-import com.example.demo.Admin.AdminDTO;
-import com.example.demo.Admin.AdminService;
 import com.example.demo.Cart.CartEntity;
+import com.example.demo.Product.ProductRepository;
 import com.example.demo.Product.ProductService;
 import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Sale.SaleRepository;
-import com.example.demo.Sale.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +14,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+
     @Autowired
     private UserRepository userRepository;
-    private ProductService productService;
+    @Autowired
     private UserService userService;
+    @Autowired
     private SaleRepository saleRepository;
+    @Autowired
+    private ProductRepository productRepository;
+
 
 
     @PostMapping
