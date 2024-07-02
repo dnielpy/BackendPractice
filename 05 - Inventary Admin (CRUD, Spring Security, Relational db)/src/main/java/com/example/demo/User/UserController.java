@@ -65,10 +65,10 @@ public class UserController {
     }
 
     @DeleteMapping("/{email}")
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable String email) {
+    public ResponseEntity<String> deleteUser(@PathVariable String email) {
         try {
             userService.deleteUser(email);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Elimination satisfactory", HttpStatus.NO_CONTENT);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

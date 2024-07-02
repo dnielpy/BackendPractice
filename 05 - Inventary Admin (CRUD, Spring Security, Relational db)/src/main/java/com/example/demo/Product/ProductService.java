@@ -11,6 +11,7 @@ import java.util.Locale;
 @Service
 public class ProductService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private ProductRepository productRepository;
 
