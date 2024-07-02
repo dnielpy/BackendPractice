@@ -54,8 +54,8 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/updateStock")
-    public ResponseEntity<ProductDTO> updateProductStock(@RequestParam String name, @RequestParam long new_stock) {
+    @PutMapping("/{name}/updateStock")
+    public ResponseEntity<ProductDTO> updateProductStock(@PathVariable String name, @RequestParam long new_stock) {
         try {
             ProductDTO productDTO = productService.updateProductsStock(name, new_stock);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
