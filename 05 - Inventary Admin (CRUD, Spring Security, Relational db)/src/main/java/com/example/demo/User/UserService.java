@@ -1,10 +1,12 @@
 package com.example.demo.User;
 
 import com.example.demo.Cart.CartEntity;
+import com.example.demo.Cart.CartRepository;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Product.ProductService;
 import com.example.demo.Sale.SaleDTO;
+import com.example.demo.Sale.SaleEntity;
 import com.example.demo.Sale.SaleRepository;
 import com.example.demo.Sale.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
     private ProductRepository productRepository;
     private SaleRepository saleRepository;
 
@@ -40,6 +44,11 @@ public class UserService {
         if (new_user == null) {
             new_user = new UserEntity(email, passwordEncoder().encode(password), 0.00);
             userRepository.save(new_user);
+            CartEntity cart = cartRepository.findByEmail(email);
+            if (cart == null) {
+                CartEntity cartEntity = new CartEntity(new_user, new ArrayList<>());
+                cartRepository.save(cartEntity);
+            }
             return new UserDTO(email, 0.00);
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");

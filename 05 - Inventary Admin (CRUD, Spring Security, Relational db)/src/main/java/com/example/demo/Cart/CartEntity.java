@@ -15,19 +15,20 @@ public class CartEntity {
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private UserEntity user;
-    private String username;
     @ElementCollection
     private List<Long> products;
+    @Column(name = "email", insertable = false, updatable = false)
+    private final String email;
 
     public CartEntity(UserEntity user, List<Long> products) {
         this.user = user;
         this.products = products;
-        this.username = user.getEmail();
+        this.email = user.getEmail();
     }
 
     public CartEntity(UserEntity user) {
         this.user = user;
-        this.username = user.getEmail();
+        this.email = user.getEmail();
     }
 
     public Integer getId() {

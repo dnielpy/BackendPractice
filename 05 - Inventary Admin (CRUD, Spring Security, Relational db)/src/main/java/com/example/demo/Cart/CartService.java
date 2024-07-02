@@ -23,7 +23,7 @@ public class CartService {
 
     //Create
     public CartEntity createCart(UserDTO userDTO) {
-        CartEntity cartEntity = cartRepository.findByUsername(userDTO.getEmail());
+        CartEntity cartEntity = cartRepository.findByEmail(userDTO.getEmail());
         UserEntity userEntity = userRepository.findByEmail(userDTO.getEmail());
         if (cartEntity == null) {
             cartEntity = new CartEntity(userEntity);
@@ -35,7 +35,7 @@ public class CartService {
 
     //addToCart
     public CartEntity addToCart(UserDTO userDTO, ProductDTO productDTO) {
-        CartEntity cart = cartRepository.findByUsername(userDTO.getEmail());
+        CartEntity cart = cartRepository.findByEmail(userDTO.getEmail());
 
         ProductEntity product = productRepository.findByName(productDTO.getName());
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
