@@ -2,7 +2,6 @@ package com.example.demo.User;
 
 import com.example.demo.Cart.CartEntity;
 import com.example.demo.Product.ProductRepository;
-import com.example.demo.Product.ProductService;
 import com.example.demo.Sale.SaleDTO;
 import com.example.demo.Sale.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ public class UserController {
     private SaleRepository saleRepository;
     @Autowired
     private ProductRepository productRepository;
-
 
 
     @PostMapping
