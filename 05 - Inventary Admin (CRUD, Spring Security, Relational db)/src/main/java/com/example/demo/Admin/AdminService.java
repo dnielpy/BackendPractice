@@ -2,22 +2,26 @@ package com.example.demo.Admin;
 
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Sale.SaleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminService {
-
-    private final AdminRepository adminRepository;
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     private SaleRepository saleRepository;
 
     public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder adminpasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -25,7 +29,7 @@ public class AdminService {
     public AdminDTO createAdmin(String email, String password) {
         AdminEntity new_admin = adminRepository.findByEmail(email);
         if (new_admin == null) {
-            new_admin = new AdminEntity(email, passwordEncoder().encode(password));
+            new_admin = new AdminEntity(email, adminpasswordEncoder().encode(password));
             adminRepository.save(new_admin);
             return new AdminDTO(email);
         } else {
@@ -51,7 +55,7 @@ public class AdminService {
                 throw new IllegalArgumentException("Ya existe un usuario con ese email en la base de datos");
             } else {
                 admin.setEmail(new_email);
-                admin.setPassword(passwordEncoder().encode(new_password));
+                admin.setPassword(adminpasswordEncoder().encode(new_password));
                 adminRepository.save(admin);
                 return new AdminDTO(new_email);
             }
