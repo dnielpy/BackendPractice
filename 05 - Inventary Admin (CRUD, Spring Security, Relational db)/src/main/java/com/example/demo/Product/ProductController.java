@@ -24,8 +24,8 @@ public class ProductController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<ProductDTO> getProduct(@RequestParam String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable String name) {
         try {
             ProductDTO productDTO = productService.getProduct(name);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
