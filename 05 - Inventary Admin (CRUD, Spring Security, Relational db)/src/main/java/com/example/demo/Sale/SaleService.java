@@ -54,16 +54,6 @@ public class SaleService {
         return new SaleDTO(new_sale.getUser().getEmail(), total, date);
     }
 
-    //Get
-    public SaleDTO getsale(UserDTO userDTO) {
-        SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
-        if (new_sale != null) {
-            return new SaleDTO(new_sale.getUser().getEmail(), new_sale.getTotal(), new_sale.getDate());
-        } else {
-            throw new IllegalArgumentException("El usuario no tiene compras registradas");
-        }
-    }
-
     //Delete
     public SaleDTO deleteSale(UserDTO userDTO) {
         SaleEntity new_sale = saleRepository.findByUsername(userDTO.getEmail());
@@ -75,8 +65,8 @@ public class SaleService {
         }
     }
 
-    //getPurchases
-    public List<SaleDTO> getPurchases() {
+    //getSales
+    public List<SaleDTO> getAllSales() {
         List<SaleEntity> sales = new ArrayList<>();
         sales = saleRepository.findAll();
         List<SaleDTO> saleDTOS = new ArrayList<>();
@@ -84,6 +74,76 @@ public class SaleService {
         for (SaleEntity sale : sales) {
             SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
             saleDTOS.add(saleDTO_temp);
+        }
+        return saleDTOS;
+    }
+
+    public List<SaleDTO> getSalesByUser(UserDTO userDTO) {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            if (sale.getUser().getEmail().equals(userDTO.getEmail())) {
+                SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+                saleDTOS.add(saleDTO_temp);
+            }
+        }
+        return saleDTOS;
+    }
+
+    public List<SaleDTO> getSalesByDate(String date) {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            if (sale.getDate().equals(date)) {
+                SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+                saleDTOS.add(saleDTO_temp);
+            }
+        }
+        return saleDTOS;
+    }
+
+    public List<SaleDTO> getSalesByUserAndDate(UserDTO userDTO, String date) {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            if (sale.getUser().getEmail().equals(userDTO.getEmail()) && sale.getDate().equals(date)) {
+                SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+                saleDTOS.add(saleDTO_temp);
+            }
+        }
+        return saleDTOS;
+    }
+
+    public List<SaleDTO> getSalesByTotal(double total) {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            if (sale.getTotal() == total) {
+                SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+                saleDTOS.add(saleDTO_temp);
+            }
+        }
+        return saleDTOS;
+    }
+
+    public List<SaleDTO> getSaleByRange(double min, double max) {
+        List<SaleEntity> sales = new ArrayList<>();
+        sales = saleRepository.findAll();
+        List<SaleDTO> saleDTOS = new ArrayList<>();
+
+        for (SaleEntity sale : sales) {
+            if (sale.getTotal() >= min && sale.getTotal() <= max) {
+                SaleDTO saleDTO_temp = new SaleDTO(sale.getUser().getEmail(), sale.getTotal(), sale.getDate());
+                saleDTOS.add(saleDTO_temp);
+            }
         }
         return saleDTOS;
     }

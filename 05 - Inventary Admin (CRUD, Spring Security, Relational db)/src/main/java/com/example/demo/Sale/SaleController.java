@@ -3,6 +3,8 @@ package com.example.demo.Sale;
 import com.example.demo.Admin.AdminDTO;
 import com.example.demo.Admin.AdminRepository;
 import com.example.demo.Admin.AdminService;
+import com.example.demo.Product.ProductEntity;
+import com.example.demo.Product.ProductRepository;
 import com.example.demo.User.UserDTO;
 import com.example.demo.User.UserRepository;
 import com.example.demo.User.UserService;
@@ -22,11 +24,13 @@ public class SaleController {
     SaleRepository saleRepository;
     @Autowired
     AdminRepository adminRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @GetMapping()
     public ResponseEntity<SaleDTO> getSale(@RequestParam String email) {
         UserService userService = new UserService(userRepository);
-        SaleService saleService = new SaleService(saleRepository);
+        SaleService saleService = new SaleService(saleRepository, userRepository, productRepository);
         try {
             UserDTO userDTO = userService.getUser(email);
             SaleDTO saleDTO = saleService.getsale(userDTO);
