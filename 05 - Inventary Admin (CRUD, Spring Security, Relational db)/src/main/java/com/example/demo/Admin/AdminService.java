@@ -38,7 +38,7 @@ public class AdminService {
     }
 
     //Get
-    public AdminDTO getadmin(String email) {
+    public AdminDTO getAdmin(String email) {
         AdminEntity new_admin = adminRepository.findByEmail(email);
         if (new_admin != null) {
             return new AdminDTO(new_admin.getEmail());
@@ -48,7 +48,7 @@ public class AdminService {
     }
 
     //Update
-    public AdminDTO updateadmin(String email, String new_email, String new_password) {
+    public AdminDTO updateAdmin(String email, String new_email, String new_password) {
         AdminEntity old_admin = adminRepository.findByEmail(email);
         if (old_admin != null) {
             if (adminRepository.findByEmail(new_email) != null) {
@@ -65,7 +65,7 @@ public class AdminService {
     }
 
     //Delete
-    public AdminDTO deleteadmin(String email) {
+    public AdminDTO deleteAdmin(String email) {
         AdminEntity new_admin = adminRepository.findByEmail(email);
         if (new_admin != null) {
             adminRepository.delete(new_admin);

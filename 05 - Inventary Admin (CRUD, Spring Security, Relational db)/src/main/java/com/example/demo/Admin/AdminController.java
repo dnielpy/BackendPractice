@@ -25,7 +25,7 @@ public class AdminController {
     @GetMapping("/{email}")
     public ResponseEntity<AdminDTO> getAdmin(@PathVariable String email) {
         try {
-            AdminDTO adminDTO = adminService.getadmin(email);
+            AdminDTO adminDTO = adminService.getAdmin(email);
             return new ResponseEntity<>(adminDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -35,7 +35,7 @@ public class AdminController {
     @PutMapping("/{email}")
     public ResponseEntity<AdminDTO> updateAdmin(@PathVariable String email, @RequestParam String new_email, @RequestParam String new_password) {
         try {
-            AdminDTO adminDTO = adminService.updateadmin(email, new_email, new_password);
+            AdminDTO adminDTO = adminService.updateAdmin(email, new_email, new_password);
             return new ResponseEntity<>(adminDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -45,7 +45,7 @@ public class AdminController {
     @DeleteMapping("/{email}")
     public ResponseEntity<AdminDTO> deleteAdmin(@PathVariable String email) {
         try {
-            adminService.deleteadmin(email);
+            adminService.deleteAdmin(email);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
