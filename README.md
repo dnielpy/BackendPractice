@@ -10,8 +10,10 @@ Ex: 04 - Refactoring Frontend
 
 ## Projects
 
-### 1. **PasswordGenerator**
-### 2. **Portfolio**
-### 3. **Student Managament (API REST)**
-### 4. **Search Engine**
+### 1. **Portfolio (Spring Routing)**
+### 2. **Auth and Registration (Spring Security)**
+### 3. **Weather API**
+### 4. **Notes App**
+### 5. **Product Store**
+
 
