@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class UserController {
 
     //CRUD operations
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestParam UserEntity myuser) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserEntity myuser) {
         try {
             UserDTO userDTO = userService.createUser(myuser);
             return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<UserDTO> updateUser(@RequestParam UserEntity myuser) {
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserEntity myuser) {
         try {
             UserDTO userDTO = userService.updateUser(myuser);
             return new ResponseEntity<>(userDTO, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteUser(@RequestParam String username) {
+    public ResponseEntity<Void> deleteUser(@RequestBody String username) {
         try {
             userService.deleteUser(username);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
