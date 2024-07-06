@@ -56,7 +56,7 @@ public class SaleServiceTest {
     @Test
     public void testGetSale() {
         UserDTO userDTO = new UserDTO("test@test.com", 100.0);
-        when(saleRepository.findByUsername(anyString())).thenReturn(new SaleEntity());
+        when(saleRepository.findByEmail(anyString())).thenReturn(new SaleEntity());
 
         SaleDTO result = saleService.getsale(userDTO);
 
