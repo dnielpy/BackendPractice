@@ -134,7 +134,7 @@ public class UserService {
             throw new IllegalArgumentException("El carrito esta vacio");
         } else {
             //Cobrar
-            updateUserCredit(user.getEmail(), user.getCredit() - total_price);
+                updateUserCredit(user.getEmail(), user.getCredit() - total_price);
 
             //Actualizer el Stock -1
             for (int i = 0; i < cart.getProducts().size(); i++) {
@@ -148,7 +148,7 @@ public class UserService {
             }
 
             //Aqui va agregarlo a las ventas
-            SaleService saleService = new SaleService(saleRepository, userRepository, productRepository);
+            SaleService saleService = new SaleService(saleRepository, userRepository, productRepository, cartRepository);
             return saleService.createSale(userDTO, cart, total_price, LocalDate.now().toString());
         }
     }

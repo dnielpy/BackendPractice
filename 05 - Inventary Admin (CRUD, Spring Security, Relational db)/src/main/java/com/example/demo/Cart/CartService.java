@@ -82,4 +82,13 @@ public class CartService {
             throw new IllegalArgumentException("El producto que intentas eliminar no existe");
         }
     }
+
+    //Clean cart
+    public void cleanCart(String email) {
+        CartEntity cart = cartRepository.findByEmail(email);
+        List<Long> products = cart.getProducts();
+        products.clear();
+        cart.setProducts(products);
+        cartRepository.save(cart);
+    }
 }

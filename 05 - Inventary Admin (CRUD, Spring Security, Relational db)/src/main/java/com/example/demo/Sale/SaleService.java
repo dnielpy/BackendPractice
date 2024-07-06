@@ -1,6 +1,8 @@
 package com.example.demo.Sale;
 
 import com.example.demo.Cart.CartEntity;
+import com.example.demo.Cart.CartRepository;
+import com.example.demo.Cart.CartService;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.User.UserDTO;
@@ -25,16 +27,17 @@ public class SaleService {
     private final SaleRepository saleRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final CartRepository cartRepository;
 
-    public SaleService(SaleRepository saleRepository, UserRepository userRepository, ProductRepository productRepository) {
+    public SaleService(SaleRepository saleRepository, UserRepository userRepository, ProductRepository productRepository, CartRepository cartRepository) {
         this.saleRepository = saleRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.cartRepository = cartRepository;
     }
 
     //Create
     public SaleDTO createSale(UserDTO userDTO, CartEntity cart, double total, String date) {
-        SaleEntity new_sale = saleRepository.findByEmail(userDTO.getEmail());
 
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
@@ -53,8 +56,10 @@ public class SaleService {
                 throw new IllegalArgumentException("El producto no existe en la base de datos");
             }
         }
-
-        new_sale = new SaleEntity(user, productId, total, date);
+        //Vaciar el carrito
+        CartService cartService = new CartService(cartRepository, userRepository, productRepository);
+        cartService.cleanCart(user.getEmail());
+        SaleEntity new_sale = new SaleEntity(user, productId, total, date);
         saleRepository.save(new_sale);
         return new SaleDTO(new_sale.getUser().getEmail(), total, date);
     }
