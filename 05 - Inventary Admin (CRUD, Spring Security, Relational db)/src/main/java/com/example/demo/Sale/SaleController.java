@@ -2,6 +2,8 @@ package com.example.demo.Sale;
 
 import com.example.demo.Cart.CartEntity;
 import com.example.demo.User.UserDTO;
+import com.example.demo.User.UserEntity;
+import com.example.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,10 @@ import java.util.List;
 @RequestMapping("/sale")
 public class SaleController {
 
+    @Autowired
     SaleService saleService;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/create")
     public ResponseEntity<SaleDTO> createSale(@RequestBody UserDTO userDTO, CartEntity cart, double total, String date) {
@@ -46,7 +51,9 @@ public class SaleController {
     }
 
     @GetMapping("/user-date")
-    public ResponseEntity<List<SaleDTO>> getSalesByUserAndDate(@RequestBody UserDTO userDTO, @RequestParam String date) {
+    public ResponseEntity<List<SaleDTO>> getSalesByUserAndDate(@RequestParam String email, @RequestParam String date) {
+        UserEntity user = userRepository.findByEmail(email);
+        UserDTO userDTO = new UserDTO(user.getEmail(), user.getCredit());
         List<SaleDTO> result = saleService.getSalesByUserAndDate(userDTO, date);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
