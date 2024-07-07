@@ -29,9 +29,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<UserDTO> getUser(@RequestParam String username) {
+    public ResponseEntity<UserDTO> getUser(@RequestParam String userid) {
         try {
-            UserDTO userDTO = userService.getUser(username);
+            UserDTO userDTO = userService.getUser(userid);
             return new ResponseEntity<>(userDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteUser(@RequestBody String username) {
+    public ResponseEntity<Void> deleteUser(@RequestBody String userid) {
         try {
-            userService.deleteUser(username);
+            userService.deleteUser(userid);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

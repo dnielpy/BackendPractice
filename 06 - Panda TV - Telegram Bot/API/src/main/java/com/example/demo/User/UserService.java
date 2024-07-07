@@ -12,17 +12,23 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    
-    public UserDTO getUser(String username) {
-        if (username != null) {
-            return userRepository.findByUsername(username).toDTO();
+
+
+    public UserDTO getUser(String userid) {
+        if (userid != null) {
+            UserEntity user = userRepository.findByUserid(userid);
+            if (user != null) {
+                return user.toDTO();
+            } else {
+                throw new IllegalArgumentException("User not found");
+            }
         } else {
-            throw new IllegalArgumentException("User not found");
+            throw new IllegalArgumentException("Userid cannot be null");
         }
     }
 
     public UserDTO createUser(UserEntity myuser) {
-        UserEntity user = userRepository.findByUsername(myuser.getUsername());
+        UserEntity user = userRepository.findByUserid(myuser.getUserid());
         if (user == null) {
             userRepository.save(myuser);
             return myuser.toDTO();
@@ -32,13 +38,13 @@ public class UserService {
     }
 
     public UserDTO updateUser(UserEntity myuser) {
-        UserEntity user = userRepository.findByUsername(myuser.getUsername());
+        UserEntity user = userRepository.findByUserid(myuser.getUserid());
         userRepository.save(user);
         return user.toDTO();
     }
 
-    public void deleteUser(String username) {
-        UserEntity user = userRepository.findByUsername(username);
+    public void deleteUser(String userid) {
+        UserEntity user = userRepository.findByUserid(userid);
         userRepository.delete(user);
     }
 }

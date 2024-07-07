@@ -1,11 +1,11 @@
-package com.example.demo.Auth;
+package com.example.demo.Bot;
 
+import com.example.demo.Auth.AuthEntity;
 import com.example.demo.Content.Peliculas;
 import com.example.demo.Content.Series;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -13,7 +13,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +24,8 @@ import java.util.Objects;
 
 @Configuration
 @EnableJpaRepositories("com.example.demo.Users") // Especifica el paquete de los repositorios
-public class Auth extends TelegramLongPollingBot {
+public class Bot extends TelegramLongPollingBot {
+
 
     Series series = new Series();
     List<String> seriesList;
@@ -33,7 +33,7 @@ public class Auth extends TelegramLongPollingBot {
     AuthEntity authEntity = new AuthEntity();
     Long admin_id = 6460774312L;
 
-    public Auth() {
+    public Bot() {
     }
 
     public void updateContent(){
@@ -116,16 +116,28 @@ public class Auth extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         // We check if the update has a message and the message has text
         if (update.hasMessage() && update.getMessage().hasText()) {
-
             if (Objects.equals(update.getMessage().getChatId(), admin_id) && update.getMessage().getText().equals("/update")) {
                 updateContent();
             }
-
             String message_text = update.getMessage().getText();
             if (update.getMessage().getText().equals("/start")) {
-                File file = new File("C:\\Users\\ASUS\\Documents\\Code\\Github\\Panda-TV\\src\\main\\java\\com\\example\\demo\\Img\\logo-compressed.jpg");
-                sendImage("Bienvenido a Panda TV \uD83D\uDCFA", update.getMessage().getChat().getId().toString(), file);
                 final long chat_id = update.getMessage().getChatId();
+
+                BotService botService = new BotService(String.valueOf(chat_id));
+
+                //Create User if don't exist
+                if (!botService.checkUser()) {
+                    botService.addUser(update.getMessage().getChat().getUserName(), String.valueOf(chat_id), update.getMessage().getChat().getFirstName(), update.getMessage().getChat().getLastName(), String.valueOf(update.getMessage().getLocation()));
+                    String user_info = "Username: " + update.getMessage().getChat().getUserName() + "\n" +
+                            "UserID: " + chat_id + "\n" +
+                            "First Name: " + update.getMessage().getChat().getFirstName() + "\n" +
+                            "Last Name: " + update.getMessage().getChat().getLastName() + "\n";
+
+                    sendMessage("✅ Nuevo usuario en el Sistema ✅\n" + user_info, admin_id);
+                }
+
+                File file = new File("C:\\Users\\ASUS\\Documents\\Code\\Github\\BackendProjects\\06 - Panda TV - Telegram Bot\\BOT\\src\\main\\java\\com\\example\\demo\\Img\\logo-compressed.jpg");
+                sendImage("Bienvenido a Panda TV \uD83D\uDCFA", update.getMessage().getChat().getId().toString(), file);
                 SendMessage message = new SendMessage(); // Create a message object object
                 message.setChatId(chat_id);
                 message.setText("¿Que quieres ver hoy?");
