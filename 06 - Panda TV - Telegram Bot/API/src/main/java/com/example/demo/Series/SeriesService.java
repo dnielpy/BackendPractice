@@ -1,13 +1,11 @@
 package com.example.demo.Series;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +39,13 @@ public class SeriesService {
     }
 
     public List<SeriesEntity> getAllSeries() {
+
+        List<SeriesEntity> seriesList = new ArrayList<>();
+        seriesList = seriesRepository.findAll();
+        return seriesList;
+    }
+
+    public List<SeriesEntity> getSeriesFromTxt() {
         List<SeriesEntity> seriesList = new ArrayList<>();
         try {
             // Parse the HTML file
@@ -95,7 +100,7 @@ public class SeriesService {
                     if (serieName.endsWith("/")) {
                         serieName = serieName.substring(0, serieName.length() - 1);
                     }
-                    String serieUrl = baseUrl + serieName  + "/";
+                    String serieUrl = baseUrl + serieName + "/";
                     createSeries(serieName, serieUrl);
                 }
             }
