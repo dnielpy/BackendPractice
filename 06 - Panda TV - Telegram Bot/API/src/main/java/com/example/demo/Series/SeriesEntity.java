@@ -1,10 +1,5 @@
 package com.example.demo.Series;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jdk.jfr.Enabled;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +7,7 @@ import jakarta.persistence.*;
 public class SeriesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     private String name;
     private String url;
 

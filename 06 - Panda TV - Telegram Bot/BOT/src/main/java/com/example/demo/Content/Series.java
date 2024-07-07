@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,10 @@ public class Series {
     }
 
     public List<String> getSeries() {
-        String url = "https://visuales.uclv.cu/Series/Ingles/";
         List<String> seriesList = new ArrayList<>();
         try {
-            Document doc = Jsoup.connect(url).get();
+            // Parse the HTML file
+            Document doc = Jsoup.parse(new File("API/src/main/java/com/example/demo/Series/ingles.txt"), "UTF-8");
             Elements series = doc.select("td a");
             for (Element serie : series) {
                 String serieName = serie.text();
