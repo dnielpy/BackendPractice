@@ -10,13 +10,15 @@ public class SeriesEntity {
     private Integer id;
     private String name;
     private String url;
+    private String lan;
 
     public SeriesEntity() {
     }
 
-    public SeriesEntity(String name, String url) {
+    public SeriesEntity(String name, String url, String lan) {
         this.name = name;
         this.url = url;
+        this.lan = lan;
     }
 
     public long getId() {
@@ -37,5 +39,13 @@ public class SeriesEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public void setLan(String lan) {
+        this.lan = lan;
     }
 }

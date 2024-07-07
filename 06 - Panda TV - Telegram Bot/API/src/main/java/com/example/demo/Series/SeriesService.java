@@ -19,10 +19,10 @@ public class SeriesService {
     SeriesRepository seriesRepository;
 
     //Crud operations
-    public SeriesEntity createSeries(String name, String url) {
+    public SeriesEntity createSeries(String name, String url, String lan) {
         SeriesEntity series = seriesRepository.findByName(name);
         if (series == null) {
-            series = new SeriesEntity(name, url);
+            series = new SeriesEntity(name, url, lan);
             seriesRepository.save(series);
             return series;
         } else {
@@ -39,9 +39,32 @@ public class SeriesService {
     }
 
     public List<SeriesEntity> getAllSeries() {
-
         List<SeriesEntity> seriesList = new ArrayList<>();
         seriesList = seriesRepository.findAll();
+        return seriesList;
+    }
+
+    public List<SeriesEntity> getAllSeriesIngles() {
+        List<SeriesEntity> seriesList = new ArrayList<>();
+        seriesList = seriesRepository.findAll();
+        List<SeriesEntity> seriesListEn = new ArrayList<>();
+        for (SeriesEntity seriesEntity : seriesList) {
+            if (seriesEntity.getLan().equals("en")) {
+                seriesListEn.add(seriesEntity);
+            }
+        }
+        return seriesList;
+    }
+
+    public List<SeriesEntity> getAllSeriesEsp() {
+        List<SeriesEntity> seriesList = new ArrayList<>();
+        seriesList = seriesRepository.findAll();
+        List<SeriesEntity> seriesListEsp = new ArrayList<>();
+        for (SeriesEntity seriesEntity : seriesList) {
+            if (seriesEntity.getLan().equals("esp")) {
+                seriesListEsp.add(seriesEntity);
+            }
+        }
         return seriesList;
     }
 
@@ -58,8 +81,8 @@ public class SeriesService {
                     if (serieName.endsWith("/")) {
                         serieName = serieName.substring(0, serieName.length() - 1);
                     }
-                    String serieUrl = "https://visuales.uclv.cu/Series/Ingles/" + serieName + "/";
-                    SeriesEntity seriesEntity = new SeriesEntity(serieName, serieUrl);
+                    String serieUrl = "https://visuales.uclv.cu/Series/NETFLIX/" + serieName + "/";
+                    SeriesEntity seriesEntity = new SeriesEntity(serieName, serieUrl, "en");
                     seriesRepository.save(seriesEntity);
                     seriesList.add(seriesEntity);
                 }
@@ -88,24 +111,24 @@ public class SeriesService {
         return series;
     }
 
-    public void updateContent() {
-        String baseUrl = "https://visuales.uclv.cu/Series/Ingles/";
-        try {
-            Document doc = Jsoup.connect(baseUrl).get();
-            Elements series = doc.select("td a");
-            for (Element serie : series) {
-                String serieName = serie.text();
-                if (!serieName.equals("Parent Directory")) {
-                    // Remove the trailing slash
-                    if (serieName.endsWith("/")) {
-                        serieName = serieName.substring(0, serieName.length() - 1);
-                    }
-                    String serieUrl = baseUrl + serieName + "/";
-                    createSeries(serieName, serieUrl);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void updateContent() {
+//        String baseUrl = "https://visuales.uclv.cu/Series/Ingles/";
+//        try {
+//            Document doc = Jsoup.connect(baseUrl).get();
+//            Elements series = doc.select("td a");
+//            for (Element serie : series) {
+//                String serieName = serie.text();
+//                if (!serieName.equals("Parent Directory")) {
+//                    // Remove the trailing slash
+//                    if (serieName.endsWith("/")) {
+//                        serieName = serieName.substring(0, serieName.length() - 1);
+//                    }
+//                    String serieUrl = baseUrl + serieName + "/";
+//                    createSeries(serieName, serieUrl, lan);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

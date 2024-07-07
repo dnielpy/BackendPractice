@@ -15,9 +15,9 @@ public class SeriesController {
     SeriesService seriesService;
 
     @PostMapping
-    public ResponseEntity<SeriesEntity> createSeries(@RequestParam String name, @RequestParam String url) {
+    public ResponseEntity<SeriesEntity> createSeries(@RequestParam String name, @RequestParam String url, @RequestParam String lan) {
         try {
-            SeriesEntity series = seriesService.createSeries(name, url);
+            SeriesEntity series = seriesService.createSeries(name, url, lan);
             return new ResponseEntity<>(series, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -34,10 +34,20 @@ public class SeriesController {
         }
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<SeriesEntity>> getAllSeries() {
+    @GetMapping("/all/en")
+    public ResponseEntity<List<SeriesEntity>> getAllSeriesEn() {
         try {
-            List<SeriesEntity> series = seriesService.getAllSeries();
+            List<SeriesEntity> series = seriesService.getSeriesFromTxt();
+            return new ResponseEntity<>(series, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/all/esp")
+    public ResponseEntity<List<SeriesEntity>> getAllSeriesEsp() {
+        try {
+            List<SeriesEntity> series = seriesService.getAllSeriesEsp();
             return new ResponseEntity<>(series, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -64,13 +74,13 @@ public class SeriesController {
         }
     }
 
-    @GetMapping("/update")
-    public ResponseEntity<Void> update(){
-        try {
-            seriesService.updateContent();
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping("/update")
+//    public ResponseEntity<Void> update(){
+//        try {
+//            seriesService.updateContent();
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } catch (IllegalArgumentException e) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 }
