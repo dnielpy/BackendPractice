@@ -43,17 +43,17 @@ public class UserService {
     }
 
     //Create
-    public UserDTO createUser(String email, String password) {
+    public UserDTO createUser(String email, String firstName, String lastName, String country, String city, String address, String tel, String mobile, String password) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user == null) {
-            new_user = new UserEntity(email, passwordEncoder().encode(password), 0.00);
+            new_user = new UserEntity(email, firstName, lastName, country, city, address, tel, mobile, passwordEncoder().encode(password));
             userRepository.save(new_user);
             CartEntity cart = cartRepository.findByEmail(email);
             if (cart == null) {
                 CartEntity cartEntity = new CartEntity(new_user, new ArrayList<>());
                 cartRepository.save(cartEntity);
             }
-            return new UserDTO(email, 0.00);
+            return new UserDTO(firstName, lastName, country, city, address, tel, mobile, password);
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");
         }
@@ -63,37 +63,30 @@ public class UserService {
     public UserDTO getUser(String email) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user != null) {
-            return new UserDTO(new_user.getEmail(), new_user.getCredit());
+            return new UserDTO(new_user.getFirstName(), new_user.getLastName(), new_user.getCountry(), new_user.getCity(), new_user.getAddress(), new_user.getTel(), new_user.getMobile(), new_user.getPassword());
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
         }
     }
 
     //Update
-    public UserDTO updateUser(String email, String new_email, String new_password) {
+    public UserDTO updateUser(String email, String new_email, String new_firstName, String new_lastName, String new_country, String new_city, String new_address, String new_tel, String new_mobile) {
         UserEntity user = userRepository.findByEmail(email);
         if (user != null) {
             if (userRepository.findByEmail(new_email) != null) {
                 throw new IllegalArgumentException("Ya existe un usuario con ese email en la base de datos");
             } else {
                 user.setEmail(new_email);
-                user.setPassword(passwordEncoder().encode(new_password));
-                user.setCredit(0.00);
+                user.setFirstName(new_firstName);
+                user.setLastName(new_lastName);
+                user.setCountry(new_country);
+                user.setCity(new_city);
+                user.setAddress(new_address);
+                user.setTel(new_tel);
+                user.setMobile(new_mobile);
                 userRepository.save(user);
-                return new UserDTO(new_email, 0.00);
+                return new UserDTO(new_email, new_firstName, new_lastName, new_country, new_city, new_address, new_tel, new_mobile);
             }
-        } else {
-            throw new IllegalArgumentException("El usuario no existe en la base de datos");
-        }
-    }
-
-    //Update Credit
-    public UserDTO updateUserCredit(String email, double new_credit) {
-        UserEntity user = userRepository.findByEmail(email);
-        if (user != null) {
-            user.setCredit(new_credit); // Corrected line
-            userRepository.save(user);
-            return new UserDTO(user.getEmail(), user.getCredit());
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
         }
@@ -125,17 +118,11 @@ public class UserService {
         for (Optional<ProductEntity> productEntity : products) {
             total_price += productEntity.get().getPrice();
         }
-        if (total_price >= user.getCredit()) {
-            throw new IllegalArgumentException("Creditos Insuficientes");
-        }
 
         //Chequear que el carrito no este vacio
         if (cart.getProducts().isEmpty()) {
             throw new IllegalArgumentException("El carrito esta vacio");
         } else {
-            //Cobrar
-                updateUserCredit(user.getEmail(), user.getCredit() - total_price);
-
             //Actualizer el Stock -1
             for (int i = 0; i < cart.getProducts().size(); i++) {
                 Optional<ProductEntity> optionalProduct = productRepository.findById(cart.getProducts().get(i));

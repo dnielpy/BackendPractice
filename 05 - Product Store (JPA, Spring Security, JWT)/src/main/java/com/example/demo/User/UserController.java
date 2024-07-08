@@ -25,9 +25,9 @@ public class UserController {
     private ProductRepository productRepository;
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String country, @RequestParam String city, @RequestParam String address, @RequestParam String tel, @RequestParam String mobile, @RequestParam String password) {
         try {
-            UserDTO userDTO = userService.createUser(email, password);
+            UserDTO userDTO = userService.createUser(email, firstName, lastName, country, city, address, tel, mobile, password);
             return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -45,19 +45,9 @@ public class UserController {
     }
 
     @PutMapping("/{email}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable String email, @RequestParam String new_email, @RequestParam String new_password) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String email, @RequestParam String new_email, @RequestParam String new_firstName, @RequestParam String new_lastName, @RequestParam String new_country, @RequestParam String new_city, @RequestParam String new_address, @RequestParam String new_tel, @RequestParam String new_mobile) {
         try {
-            UserDTO userDTO = userService.updateUser(email, new_email, new_password);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PutMapping("/{email}/credit")
-    public ResponseEntity<UserDTO> updateUserCredit(@PathVariable String email, @RequestParam double new_credit) {
-        try {
-            UserDTO userDTO = userService.updateUserCredit(email, new_credit);
+            UserDTO userDTO = userService.updateUser(email, new_email, new_firstName, new_lastName, new_country, new_city, new_address, new_tel, new_mobile);
             return new ResponseEntity<>(userDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
