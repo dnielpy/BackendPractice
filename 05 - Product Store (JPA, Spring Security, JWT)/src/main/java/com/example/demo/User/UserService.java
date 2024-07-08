@@ -6,7 +6,6 @@ import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Product.ProductService;
 import com.example.demo.Sale.SaleDTO;
-import com.example.demo.Sale.SaleEntity;
 import com.example.demo.Sale.SaleRepository;
 import com.example.demo.Sale.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,7 @@ public class UserService {
                 CartEntity cartEntity = new CartEntity(new_user, new ArrayList<>());
                 cartRepository.save(cartEntity);
             }
-            return new UserDTO(firstName, lastName, country, city, address, tel, mobile, password);
+            return new_user.toDto();
         } else {
             throw new IllegalArgumentException("El email ya existe en la base de datos. Seleccione otro");
         }
@@ -63,7 +62,7 @@ public class UserService {
     public UserDTO getUser(String email) {
         UserEntity new_user = userRepository.findByEmail(email);
         if (new_user != null) {
-            return new UserDTO(new_user.getFirstName(), new_user.getLastName(), new_user.getCountry(), new_user.getCity(), new_user.getAddress(), new_user.getTel(), new_user.getMobile(), new_user.getPassword());
+            return new_user.toDto();
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");
         }
@@ -85,7 +84,7 @@ public class UserService {
                 user.setTel(new_tel);
                 user.setMobile(new_mobile);
                 userRepository.save(user);
-                return new UserDTO(new_email, new_firstName, new_lastName, new_country, new_city, new_address, new_tel, new_mobile);
+                return user.toDto();
             }
         } else {
             throw new IllegalArgumentException("El usuario no existe en la base de datos");

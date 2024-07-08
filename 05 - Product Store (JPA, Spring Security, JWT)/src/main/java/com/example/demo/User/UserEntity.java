@@ -43,6 +43,10 @@ public class UserEntity{
         this.password = password;
     }
 
+    public UserDTO toDto(){
+        return new UserDTO(getEmail(), getFirstName(), getLastName(), getCountry(), getCity(), getAddress(), getTel(), getMobile());
+    }
+
     public String getEmail() {
         return email;
     }
