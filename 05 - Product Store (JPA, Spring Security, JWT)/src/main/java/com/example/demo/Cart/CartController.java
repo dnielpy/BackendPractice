@@ -38,9 +38,9 @@ public class CartController {
     public ResponseEntity<List<Long>> addToCart(@RequestParam String email, @RequestParam String product_name) {
         try {
             UserEntity userEntity = userRepository.findByEmail(email);
-            UserDTO userDTO = new UserDTO(userEntity.getEmail(), userEntity.getCredit());
+            UserDTO userDTO = userEntity.toDto();
             ProductEntity productEntity = productRepository.findByName(product_name);
-            ProductDTO productDTO = new ProductDTO(productEntity.getName(), productEntity.getPrice(), productEntity.getStock());
+            ProductDTO productDTO = productEntity.toDto();
             CartEntity cartEntity = cartService.addToCart(userDTO, productDTO);
             return new ResponseEntity<>(cartEntity.getProducts(), HttpStatus.OK);
         } catch (IllegalArgumentException e) {

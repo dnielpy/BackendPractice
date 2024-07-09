@@ -1,10 +1,14 @@
 package com.example.demo;
 
-import com.example.demo.User.UserController;
-import com.example.demo.User.UserDTO;
-import com.example.demo.User.UserService;
-import com.example.demo.User.UserRepository;
-import com.example.demo.Order.SaleService;
+import com.example.demo.Cart.CartEntity;
+import com.example.demo.Cart.CartRepository;
+import com.example.demo.Order.OrderDTO;
+import com.example.demo.Order.OrderRepository;
+import com.example.demo.Product.ProductEntity;
+import com.example.demo.Product.ProductRepository;
+import com.example.demo.Product.ProductService;
+import com.example.demo.User.*;
+import com.example.demo.Order.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,69 +17,74 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class UserTest {
 
     @InjectMocks
-    UserController userController;
-
-    @Mock
     UserService userService;
 
     @Mock
     UserRepository userRepository;
 
     @Mock
-    SaleService saleService;
+    CartRepository cartRepository;
+
+    @Mock
+    ProductRepository productRepository;
+
+    @Mock
+    OrderRepository orderRepository;
+
+    @Mock
+    ProductService productService;
+
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
     }
-
     @Test
     public void testCreateUser() {
-        UserDTO userDTO = new UserDTO("test@test.com", 100.0);
-        when(userService.createUser(anyString(), anyString())).thenReturn(userDTO);
-
-        ResponseEntity<UserDTO> response = userController.createUser("test@test.com", "password");
-
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(userDTO, response.getBody());
+        when(userRepository.findByEmail(anyString())).thenReturn(null);
+        userService.createUser("test@test.com", "Test", "User", "Country", "City", "Address", "Tel", "Mobile", "Password");
+        verify(userRepository, times(1)).save(any(UserEntity.class));
     }
 
     @Test
     public void testGetUser() {
-        UserDTO userDTO = new UserDTO("test@test.com", 100.0);
-        when(userService.getUser(anyString())).thenReturn(userDTO);
-
-        ResponseEntity<UserDTO> response = userController.getUser("test@test.com");
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(userDTO, response.getBody());
+        when(userRepository.findByEmail(anyString())).thenReturn(new UserEntity());
+        UserDTO userDTO = userService.getUser("test@test.com");
+        assertEquals(userDTO, new UserEntity().toDto());
     }
 
     @Test
     public void testUpdateUser() {
-        UserDTO userDTO = new UserDTO("new@test.com", 100.0);
-        when(userService.updateUser(anyString(), anyString(), anyString())).thenReturn(userDTO);
-
-        ResponseEntity<UserDTO> response = userController.updateUser("test@test.com", "new@test.com", "new_password");
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(userDTO, response.getBody());
+        when(userRepository.findByEmail(anyString())).thenReturn(new UserEntity());
+        UserDTO userDTO = userService.updateUser("test@test.com", "new@test.com", "New", "User", "NewCountry", "NewCity", "NewAddress", "NewTel", "NewMobile");
+        verify(userRepository, times(1)).save(any(UserEntity.class));
     }
 
     @Test
-    public void testUpdateUserCredit() {
-        UserDTO userDTO = new UserDTO("test@test.com", 200.0);
-        when(userService.updateUserCredit(anyString(), anyDouble())).thenReturn(userDTO);
-
-        ResponseEntity<UserDTO> response = userController.updateUserCredit("test@test.com", 200.0);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(userDTO, response.getBody());
+    public void testDeleteUser() {
+        when(userRepository.findByEmail(anyString())).thenReturn(new UserEntity());
+        userService.deleteUser("test@test.com");
+        verify(userRepository, times(1)).delete(any(UserEntity.class));
     }
+
+
+//    @Test
+//    public void testBuy() {
+//        when(userRepository.findByEmail(anyString())).thenReturn(new UserEntity());
+//        when(productRepository.findById(anyLong())).thenReturn(Optional.of(new ProductEntity()));
+//        when(productService.updateProductsStock(anyString(), anyInt())).thenReturn(new ProductEntity().toDto());
+//        UserDTO userDTO = new UserEntity().toDto();
+//        CartEntity cart = new CartEntity(new UserEntity(), new ArrayList<>());
+//        OrderDTO orderDTO = userService.buy(userDTO, cart);
+//        assertEquals(orderDTO, new OrderDTO());
+//    }
 }
