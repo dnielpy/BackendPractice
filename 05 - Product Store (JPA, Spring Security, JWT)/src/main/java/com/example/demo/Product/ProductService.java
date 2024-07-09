@@ -1,16 +1,11 @@
 package com.example.demo.Product;
 
-import com.example.demo.User.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.demo.Category.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
-
 @Service
 public class ProductService {
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private ProductRepository productRepository;
@@ -19,12 +14,12 @@ public class ProductService {
     }
 
     //Create
-    public ProductDTO createProduct(String name, double price, long stock) {
+    public ProductDTO createProduct(String name, double cost, String longDescription, String shortDescription, long stock, byte[] image, CategoryEntity category) {
         ProductEntity new_product = productRepository.findByName(name);
         if (new_product == null) {
-            new_product = new ProductEntity(name.toLowerCase(), price, stock);
+            new_product = new ProductEntity(name.toLowerCase(), cost, longDescription, shortDescription, stock, image, category);
             productRepository.save(new_product);
-            return new ProductDTO(new_product.getName(), price, stock);
+            return new_product.toDto();
         } else {
             throw new IllegalArgumentException("El producto ya existe en la base de datos");
         }
@@ -34,24 +29,28 @@ public class ProductService {
     public ProductDTO getProduct(String name) {
         ProductEntity new_product = productRepository.findByName(name);
         if (new_product != null) {
-            return new ProductDTO(new_product.getName(), new_product.getPrice(), new_product.getStock());
+            return new_product.toDto();
         } else {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
     }
 
     //Update
-    public ProductDTO updateProducts(String name, String new_name, double new_price, long new_stock) {
+    public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, byte[] new_image, CategoryEntity new_category) {
         ProductEntity product = productRepository.findByName(name);
         if (product != null) {
             if (productRepository.findByName(new_name) != null) {
                 throw new IllegalArgumentException("Ya existe un producto con ese nombre en la base de datos");
             } else {
                 product.setName(new_name);
-                product.setPrice(new_price);
+                product.setCost(new_cost);
+                product.setLongDescription(new_longDescription);
+                product.setShortDescription(new_shortDescription);
                 product.setStock(new_stock);
+                product.setImage(new_image);
+                product.setCategory(new_category);
                 productRepository.save(product);
-                return new ProductDTO(new_name, new_price, new_stock);
+                return product.toDto();
             }
         } else {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
@@ -62,9 +61,9 @@ public class ProductService {
     public ProductDTO updateProductsStock(String name, long new_stock) {
         ProductEntity product = productRepository.findByName(name);
         if (product != null) {
-                product.setStock(new_stock);
-                productRepository.save(product);
-                return new ProductDTO(name, product.getPrice(), new_stock);
+            product.setStock(new_stock);
+            productRepository.save(product);
+            return product.toDto();
         } else {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
@@ -81,6 +80,4 @@ public class ProductService {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
     }
-
-
 }
