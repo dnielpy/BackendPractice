@@ -3,10 +3,8 @@ package com.example.demo;
 import com.example.demo.User.UserController;
 import com.example.demo.User.UserDTO;
 import com.example.demo.User.UserService;
-import com.example.demo.User.UserEntity;
 import com.example.demo.User.UserRepository;
-import com.example.demo.Sale.SaleDTO;
-import com.example.demo.Sale.SaleService;
+import com.example.demo.Order.SaleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,9 +12,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

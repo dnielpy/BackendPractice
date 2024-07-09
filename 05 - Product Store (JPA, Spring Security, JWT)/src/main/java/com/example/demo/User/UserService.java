@@ -2,12 +2,12 @@ package com.example.demo.User;
 
 import com.example.demo.Cart.CartEntity;
 import com.example.demo.Cart.CartRepository;
+import com.example.demo.Order.OrderDTO;
+import com.example.demo.Order.OrderRepository;
+import com.example.demo.Order.OrderService;
 import com.example.demo.Product.ProductEntity;
 import com.example.demo.Product.ProductRepository;
 import com.example.demo.Product.ProductService;
-import com.example.demo.Sale.SaleDTO;
-import com.example.demo.Sale.SaleRepository;
-import com.example.demo.Sale.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +29,7 @@ public class UserService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private SaleRepository saleRepository;
+    private OrderRepository orderRepository;
     @Autowired
     private ProductService productService;
 
@@ -103,7 +103,7 @@ public class UserService {
     }
 
     //Buy
-    public SaleDTO buy(UserDTO userDTO, CartEntity cart) {
+    public OrderDTO buy(UserDTO userDTO, CartEntity cart) {
         UserEntity user = userRepository.findByEmail(userDTO.getEmail());
 
         List<Optional<ProductEntity>> products = new ArrayList<>();
@@ -115,7 +115,7 @@ public class UserService {
         //Checkear que tenga dinero para pagar
         double total_price = 0;
         for (Optional<ProductEntity> productEntity : products) {
-            total_price += productEntity.get().getPrice();
+            total_price += productEntity.get().getCost();
         }
 
         //Chequear que el carrito no este vacio
@@ -133,9 +133,9 @@ public class UserService {
                 }
             }
 
-            //Aqui va agregarlo a las ventas
-            SaleService saleService = new SaleService(saleRepository, userRepository, productRepository, cartRepository);
-            return saleService.createSale(userDTO, cart, total_price, LocalDate.now().toString());
+            // Aquí va agregarlo a las ventas
+            OrderService orderService = new OrderService(orderRepository, userRepository);
+            return orderService.createOrder(userDTO, total_price, LocalDate.now().toString(), "paymentMethod", "status", "productName");
         }
     }
 }

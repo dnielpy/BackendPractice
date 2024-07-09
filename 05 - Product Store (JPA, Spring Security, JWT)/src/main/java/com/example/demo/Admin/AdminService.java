@@ -1,7 +1,7 @@
 package com.example.demo.Admin;
 
 import com.example.demo.Product.ProductRepository;
-import com.example.demo.Sale.SaleRepository;
+import com.example.demo.Order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,7 +15,7 @@ public class AdminService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private SaleRepository saleRepository;
+    private OrderRepository orderRepository;
 
     public AdminService(AdminRepository adminRepository) {
     }

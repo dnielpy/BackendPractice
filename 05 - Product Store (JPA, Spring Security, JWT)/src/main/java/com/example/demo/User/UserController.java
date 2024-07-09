@@ -1,9 +1,9 @@
 package com.example.demo.User;
 
 import com.example.demo.Cart.CartRepository;
+import com.example.demo.Order.OrderDTO;
 import com.example.demo.Product.ProductRepository;
-import com.example.demo.Sale.SaleDTO;
-import com.example.demo.Sale.SaleRepository;
+import com.example.demo.Order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private SaleRepository saleRepository;
+    private OrderRepository orderRepository;
     @Autowired
     private ProductRepository productRepository;
 
@@ -65,11 +65,11 @@ public class UserController {
     }
 
     @PostMapping("/{email}/buy")
-    public ResponseEntity<SaleDTO> buy(@PathVariable String email) {
+    public ResponseEntity<OrderDTO> buy(@PathVariable String email) {
         try {
             UserDTO userDTO = userService.getUser(email);
-            SaleDTO saleDTO = userService.buy(userDTO, cartRepository.findByEmail(email));
-            return new ResponseEntity<>(saleDTO, HttpStatus.CREATED);
+            OrderDTO orderDTO = userService.buy(userDTO, cartRepository.findByEmail(email));
+            return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

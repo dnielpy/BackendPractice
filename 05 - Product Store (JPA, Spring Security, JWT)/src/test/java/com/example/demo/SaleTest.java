@@ -1,10 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.Sale.SaleController;
-import com.example.demo.Sale.SaleDTO;
-import com.example.demo.Sale.SaleService;
+import com.example.demo.Order.SaleController;
+import com.example.demo.Order.SaleDTO;
+import com.example.demo.Order.SaleService;
 import com.example.demo.User.UserDTO;
-import com.example.demo.User.UserEntity;
 import com.example.demo.User.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
