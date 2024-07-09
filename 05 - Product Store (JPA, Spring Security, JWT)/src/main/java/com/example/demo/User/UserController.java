@@ -18,14 +18,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private UserService userService;
+    private static UserService userService;
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
     private ProductRepository productRepository;
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String country, @RequestParam String city, @RequestParam String address, @RequestParam String tel, @RequestParam String mobile, @RequestParam String password) {
+    public static ResponseEntity<UserDTO> createUser(@RequestParam String email, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String country, @RequestParam String city, @RequestParam String address, @RequestParam String tel, @RequestParam String mobile, @RequestParam String password) {
         try {
             UserDTO userDTO = userService.createUser(email, firstName, lastName, country, city, address, tel, mobile, password);
             return new ResponseEntity<>(userDTO, HttpStatus.CREATED);

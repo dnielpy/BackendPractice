@@ -21,20 +21,21 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+    private final CartRepository cartRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final ProductService productService;
 
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private CartRepository cartRepository;
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private ProductService productService;
-
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, CartRepository cartRepository, ProductRepository productRepository, OrderRepository orderRepository, ProductService productService) {
+        this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
+        this.productService = productService;
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

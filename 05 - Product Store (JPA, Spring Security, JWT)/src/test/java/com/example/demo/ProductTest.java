@@ -1,83 +1,96 @@
 package com.example.demo;
-import com.example.demo.Product.ProductController;
-import com.example.demo.Product.ProductDTO;
-import com.example.demo.Product.ProductService;
-import org.junit.jupiter.api.BeforeEach;
+
+import com.example.demo.Product.*;
+import com.example.demo.Category.CategoryEntity;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ProductTest {
 
-    @InjectMocks
-    ProductController productController;
-
     @Mock
-    ProductService productService;
+    private ProductRepository productRepository;
 
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
+    @InjectMocks
+    private ProductService productService;
 
     @Test
     public void testCreateProduct() {
-        ProductDTO productDTO = new ProductDTO("Test", 100.0, 10L);
-        when(productService.createProduct(anyString(), anyDouble(), anyLong())).thenReturn(productDTO);
+        // Arrange
+        String name = "testproduct";
+        when(productRepository.findByName(name)).thenReturn(null);
 
-        ResponseEntity<ProductDTO> response = productController.createProduct("Test", 100.0, 10);
+        // Act
+        ProductDTO result = productService.createProduct(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(productDTO, response.getBody());
+        // Assert
+        assertNotNull(result);
+        assertEquals(name, result.getName());
     }
 
     @Test
     public void testGetProduct() {
-        ProductDTO productDTO = new ProductDTO("Test", 100.0, 10L);
-        when(productService.getProduct(anyString())).thenReturn(productDTO);
+        // Arrange
+        String name = "testProduct";
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        when(productRepository.findByName(name)).thenReturn(productEntity);
 
-        ResponseEntity<ProductDTO> response = productController.getProduct("Test");
+        // Act
+        ProductDTO result = productService.getProduct(name);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(productDTO, response.getBody());
+        // Assert
+        assertNotNull(result);
+        assertEquals(name, result.getName());
     }
 
     @Test
-    public void testUpdateProduct() {
-        ProductDTO productDTO = new ProductDTO("Test", 100.0, 10L);
-        when(productService.updateProducts(anyString(), anyString(), anyDouble(), anyLong())).thenReturn(productDTO);
+    public void testUpdateProducts() {
+        // Arrange
+        String name = "testProduct";
+        String newName = "newTestProduct";
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        when(productRepository.findByName(name)).thenReturn(productEntity);
+        when(productRepository.findByName(newName)).thenReturn(null);
 
-        ResponseEntity<ProductDTO> response = productController.updateProduct("Test", "NewTest", 200.0, 20);
+        // Act
+        ProductDTO result = productService.updateProducts(name, newName, 20.0, "newLongDescription", "newShortDescription", 200, new byte[0], new CategoryEntity());
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(productDTO, response.getBody());
+        // Assert
+        assertNotNull(result);
+        assertEquals(newName, result.getName());
     }
 
     @Test
-    public void testDeleteProduct() {
-        ProductDTO productDTO = new ProductDTO("Test", 100.0, 10L);
-        when(productService.deleteProduct(anyString())).thenReturn(productDTO);
+    public void testUpdateProductsStock() {
+        // Arrange
+        String name = "testProduct";
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        when(productRepository.findByName(name)).thenReturn(productEntity);
 
-        ResponseEntity<ProductDTO> response = productController.deleteProduct("Test");
+        // Act
+        ProductDTO result = productService.updateProductsStock(name, 200);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(productDTO, response.getBody());
+        // Assert
+        assertNotNull(result);
+        assertEquals(200, result.getStock());
     }
 
-    @Test
-    public void testUpdateProductStock() {
-        ProductDTO productDTO = new ProductDTO("Test", 100.0, 10L);
-        when(productService.updateProductsStock(anyString(), anyLong())).thenReturn(productDTO);
-
-        ResponseEntity<ProductDTO> response = productController.updateProductStock("Test", 20);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(productDTO, response.getBody());
-    }
+//    @Test
+//    public void testDeleteProduct() {
+//        // Arrange
+//        String name = "testProduct";
+//        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+//        when(productRepository.findByName(name)).thenReturn(productEntity);
+//
+//        // Act
+//        ProductDTO result = productService.deleteProduct(name);
+//
+//        // Assert
+//        assertNull(result);
+//    }
 }

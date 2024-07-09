@@ -1,6 +1,9 @@
 package com.example.demo.Product;
 
+import com.example.demo.Cart.CartRepository;
 import com.example.demo.Category.CategoryEntity;
+import com.example.demo.Order.OrderRepository;
+import com.example.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +17,19 @@ import java.io.IOException;
 public class ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final CartRepository cartRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final ProductService productService;
 
-    public ProductService(ProductRepository productRepository) {
+    @Autowired
+    public ProductService(UserRepository userRepository, CartRepository cartRepository, ProductRepository productRepository, OrderRepository orderRepository, ProductService productService) {
+        this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
+        this.productService = productService;
     }
 
     public byte[] convertImageToByteArray(String imagePath) {
