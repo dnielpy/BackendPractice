@@ -4,6 +4,12 @@ import com.example.demo.Category.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+
 @Service
 public class ProductService {
 
@@ -11,6 +17,17 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
+    }
+
+    public byte[] convertImageToByteArray(String imagePath) {
+        try {
+            BufferedImage bImage = ImageIO.read(new File(imagePath));
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "jpg", bos);
+            return bos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException("Error al convertir la imagen a un array de bytes", e);
+        }
     }
 
     //Create
