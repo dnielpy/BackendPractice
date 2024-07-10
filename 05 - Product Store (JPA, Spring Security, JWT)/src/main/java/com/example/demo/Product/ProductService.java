@@ -67,6 +67,7 @@ public class ProductService {
         }
     }
 
+    //getProductsByGender
     public List<ProductDTO> getProductsByGender(char gender) {
         List<ProductEntity> products_entity = productRepository.findAll();
         List<ProductDTO> products = new ArrayList<>();
@@ -78,7 +79,17 @@ public class ProductService {
         return products;
     }
 
-    
+    //getProductByRange
+    public List<ProductDTO> getProductByRange(double min, double max) {
+        List<ProductEntity> productEntities = productRepository.findAll();
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        for (ProductEntity product : productEntities) {
+            if (product.getCost() >= min && product.getCost() <= max) {
+                productDTOS.add(product.toDto());
+            }
+        }
+        return productDTOS;
+    }
 
     //Update
     public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, byte[] new_image, CategoryEntity new_category) {
