@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -64,6 +66,19 @@ public class ProductService {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
     }
+
+    public List<ProductDTO> getProductsByGender(char gender) {
+        List<ProductEntity> products_entity = productRepository.findAll();
+        List<ProductDTO> products = new ArrayList<>();
+        for (ProductEntity productEntity : products_entity) {
+            if (productEntity.getCategory().getGender() == gender) {
+                products.add(productEntity.toDto());
+            }
+        }
+        return products;
+    }
+
+    
 
     //Update
     public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, byte[] new_image, CategoryEntity new_category) {
