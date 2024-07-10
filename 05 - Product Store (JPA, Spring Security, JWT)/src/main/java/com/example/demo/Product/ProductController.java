@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -31,6 +31,26 @@ public class ProductController {
         try {
             ProductDTO productDTO = productService.getProduct(name);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/gender/{gender}")
+    public ResponseEntity<List<ProductDTO>> getProductsByGender(@PathVariable char gender) {
+        try {
+            List<ProductDTO> productDTOs = productService.getProductsByGender(gender);
+            return new ResponseEntity<>(productDTOs, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/range")
+    public ResponseEntity<List<ProductDTO>> getProductByRange(@RequestParam double min, @RequestParam double max) {
+        try {
+            List<ProductDTO> productDTOs = productService.getProductByRange(min, max);
+            return new ResponseEntity<>(productDTOs, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
