@@ -49,7 +49,7 @@ public class ProductController {
     @GetMapping("/gender/{gender}")
     public ResponseEntity<List<ProductDTO>> getProductsByGender(@PathVariable char gender) {
         try {
-            List<ProductDTO> productDTOs = productService.getProductsByGender(gender);
+            List<ProductDTO> productDTOs = productService.getProductsByCategory(gender);
             return new ResponseEntity<>(productDTOs, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

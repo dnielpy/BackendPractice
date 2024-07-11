@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,7 +53,7 @@ public class ProductService {
     }
 
     //getProductsByGender
-    public List<ProductDTO> getProductsByGender(char gender) {
+    public List<ProductDTO> getProductsByCategory(char gender) {
         List<ProductEntity> products_entity = productRepository.findAll();
         List<ProductDTO> products = new ArrayList<>();
         for (ProductEntity productEntity : products_entity) {
@@ -129,6 +130,7 @@ public class ProductService {
             productDTOs.add(productEntities.get(i).toDto());
 
         }
+        Collections.shuffle(productDTOs);
         return productDTOs;
     }
 }

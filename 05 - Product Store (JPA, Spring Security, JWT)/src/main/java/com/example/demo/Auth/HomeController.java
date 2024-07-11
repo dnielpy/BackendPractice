@@ -14,6 +14,9 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private ProductService productService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -44,11 +47,8 @@ public class HomeController {
         return "orders";
     }
 
-    @Autowired
-    private ProductService productService;
-
     @GetMapping("/shop")
-    public String shop(@RequestParam(required = false) String name, Model model) {
+    public String shop(@RequestParam(required = false) String name, @RequestParam(required = false) String category, Model model) {
         List<ProductDTO> products = new ArrayList<>();
         String errorMessage = null;
         if (name != null && !name.isEmpty()) {
@@ -60,6 +60,8 @@ public class HomeController {
             } catch (IllegalArgumentException e) {
                 errorMessage = "El producto no existe en la base de datos";
             }
+        } else if (category != null && !category.isEmpty()) {
+            products = productService.getProductsByCategory(category.charAt(0));
         } else {
             products = productService.getNineRandomProducts();
         }
