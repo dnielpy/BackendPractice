@@ -124,7 +124,7 @@ public class ProductService {
         List<ProductEntity> productEntities = productRepository.findAll();
         List<ProductDTO> productDTOs = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             productDTOs.add(productEntities.get(i).toDto());
 
         }

@@ -47,7 +47,7 @@ public class HomeController {
 
     @GetMapping("/shop")
     public String shop(Model model) {
-        List<ProductDTO> products = productService.getAllProducts();
+        List<ProductDTO> products = productService.getNineRandomProducts();
         model.addAttribute("products", products);
         return "shop";
     }

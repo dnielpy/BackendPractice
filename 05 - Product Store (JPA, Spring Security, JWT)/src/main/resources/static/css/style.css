@@ -1036,18 +1036,52 @@ main .account-page .account-detail table td{
 	text-align: center;
 	border: 1px solid #eee;
 }
-.product-contents {
+
+.new-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.new-product {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.new-product-detail {
+    text-align: center;
+}
+
+.new-product-detail h2 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.new-product-detail p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.new-product img {
+    width: 100%;  /* Ajusta este valor según tus necesidades */
+    height: 200px;  /* Ajusta este valor según tus necesidades */
+    object-fit: cover;
+}
+
+.new-product-detail a {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 1em;
+}
+.new-product-container ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 20%;
-    height: 2px;
-    object-fit: cover;
+    padding: 0;
+}
+
+.new-product-container li {
+    flex: 0 0 calc(33.3333% - 20px);
     margin: 10px;
 }
-
-.products {
-    flex: 0 0 30%;
-    margin-bottom: 20px;
-}
-

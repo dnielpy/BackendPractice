@@ -143,18 +143,22 @@
                     <div id="slider-range"></div>
                 </div>
             </div>
-            <div class="product-contents" th:each="product : ${products}">
-                <div class="products">
-                    <a href="product">
-                        <img th:src="@{'/static/img/product/' + ${product.imageUrl}}">
-                    </a>
-                    <div class="product-detail">
-                        <h3 th:text="${product.category.name}"></h3>
-                        <h2 th:text="${product.name}"></h2>
-                        <a href="#">Add to Cart</a>
-                        <p th:text="${'$' + product.cost}"></p>
-                    </div>
-                </div>
+            <div class="new-product-container">
+                <ul style="list-style-type: none;">
+                    <li th:each="product : ${products}">
+                        <div class="new-product">
+                            <a href="product">
+                                <img th:src="@{'/static/img/product/' + ${product.imageUrl}}">
+                            </a>
+                            <div class="new-product-detail">
+                                <h3 th:text="${product.category.name}"></h3>
+                                <h2 th:text="${product.name}"></h2>
+                                <a href="#">Add to Cart</a>
+                                <p th:text="${'$' + product.cost}"></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div> <!-- New Product Section -->
         <div class="load-more">
