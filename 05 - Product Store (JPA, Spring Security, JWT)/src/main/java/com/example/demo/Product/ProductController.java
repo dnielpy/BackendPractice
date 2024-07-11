@@ -20,7 +20,7 @@ public class ProductController {
     @PostMapping("/create")
     public ResponseEntity<ProductDTO> createProduct(@RequestParam String name, @RequestParam double cost, @RequestParam String longDescription, @RequestParam String shortDescription, @RequestParam long stock, @RequestParam String image_path, @RequestParam CategoryEntity category) {
         try {
-            ProductDTO productDTO = productService.createProduct(name, cost, longDescription, shortDescription, stock, productService.convertImageToByteArray(image_path), category);
+            ProductDTO productDTO = productService.createProduct(name, cost, longDescription, shortDescription, stock, image_path, category);
             return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
@@ -58,7 +58,7 @@ public class ProductController {
     }
 
     @PutMapping("/{name}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable String name, @RequestParam String new_name, @RequestParam double new_cost, @RequestParam String new_longDescription, @RequestParam String new_shortDescription, @RequestParam long new_stock, @RequestParam byte[] new_image, @RequestParam CategoryEntity new_category) {
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable String name, @RequestParam String new_name, @RequestParam double new_cost, @RequestParam String new_longDescription, @RequestParam String new_shortDescription, @RequestParam long new_stock, @RequestParam String new_image, @RequestParam CategoryEntity new_category) {
         try {
             ProductDTO productDTO = productService.updateProducts(name, new_name, new_cost, new_longDescription, new_shortDescription, new_stock, new_image, new_category);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);

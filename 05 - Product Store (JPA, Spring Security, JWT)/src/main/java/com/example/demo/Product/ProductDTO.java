@@ -10,10 +10,10 @@ public class ProductDTO {
     final String longDescription;
     final String shortDescription;
     final long stock;
-    final byte[] image;
+    final String image;
     final CategoryEntity category;
 
-    public ProductDTO(String name, double cost, String longDescription, String shortDescription, Long stock, byte[] image, CategoryEntity category) {
+    public ProductDTO(String name, double cost, String longDescription, String shortDescription, Long stock, String image, CategoryEntity category) {
         this.name = name;
         this.cost = cost;
         this.longDescription = longDescription;
@@ -43,7 +43,7 @@ public class ProductDTO {
         return stock;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 

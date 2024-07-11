@@ -3,8 +3,6 @@ package com.example.demo.Product;
 import com.example.demo.Category.CategoryEntity;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "products")
 public class ProductEntity {
@@ -28,28 +26,28 @@ public class ProductEntity {
     @Column(name = "stock")
     private long stock;
 
-    @Column(name = "image")
-    private byte[] image;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    public ProductEntity(String name, double cost, String longDescription, String shortDescription, long stock, byte[] image, CategoryEntity category) {
+    public ProductEntity(String name, double cost, String longDescription, String shortDescription, long stock, String imageUrl, CategoryEntity category) {
         this.name = name;
         this.cost = cost;
         this.longDescription = longDescription;
         this.shortDescription = shortDescription;
         this.stock = stock;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.category = category;
     }
 
     public ProductEntity() {
     }
 
-    public ProductDTO toDto(){
-        return new ProductDTO(name, cost, longDescription, shortDescription, stock, image, category);
+    public ProductDTO toDto() {
+        return new ProductDTO(name, cost, longDescription, shortDescription, stock, imageUrl, category);
     }
 
     public long getId() {
@@ -100,12 +98,12 @@ public class ProductEntity {
         this.stock = stock;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public CategoryEntity getCategory() {
@@ -115,4 +113,5 @@ public class ProductEntity {
     public void setCategory(CategoryEntity category) {
         this.category = category;
     }
+
 }

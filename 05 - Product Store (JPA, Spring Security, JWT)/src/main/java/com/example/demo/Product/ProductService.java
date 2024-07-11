@@ -23,19 +23,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public byte[] convertImageToByteArray(String imagePath) {
-        try {
-            BufferedImage bImage = ImageIO.read(new File(imagePath));
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ImageIO.write(bImage, "jpg", bos);
-            return bos.toByteArray();
-        } catch (IOException e) {
-            throw new RuntimeException("Error al convertir la imagen a un array de bytes", e);
-        }
-    }
-
     //Create
-    public ProductDTO createProduct(String name, double cost, String longDescription, String shortDescription, long stock, byte[] image, CategoryEntity category) {
+    public ProductDTO createProduct(String name, double cost, String longDescription, String shortDescription, long stock, String image, CategoryEntity category) {
         ProductEntity new_product = productRepository.findByName(name);
         if (new_product == null) {
             new_product = new ProductEntity(name.toLowerCase(), cost, longDescription, shortDescription, stock, image, category);
@@ -81,7 +70,7 @@ public class ProductService {
     }
 
     //Update
-    public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, byte[] new_image, CategoryEntity new_category) {
+    public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, String new_image, CategoryEntity new_category) {
         ProductEntity product = productRepository.findByName(name);
         if (product != null) {
             if (productRepository.findByName(new_name) != null) {
@@ -92,7 +81,7 @@ public class ProductService {
                 product.setLongDescription(new_longDescription);
                 product.setShortDescription(new_shortDescription);
                 product.setStock(new_stock);
-                product.setImage(new_image);
+                product.setImageUrl(new_image);
                 product.setCategory(new_category);
                 productRepository.save(product);
                 return product.toDto();

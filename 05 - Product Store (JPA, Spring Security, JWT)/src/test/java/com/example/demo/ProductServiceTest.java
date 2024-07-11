@@ -33,7 +33,7 @@ public class ProductServiceTest {
         when(productRepository.findByName(name)).thenReturn(null);
 
         // Act
-        ProductDTO result = productService.createProduct(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        ProductDTO result = productService.createProduct(name, 10.0, "longDescription", "shortDescription", 100, "Str", new CategoryEntity());
 
         // Assert
         assertNotNull(result);
@@ -44,7 +44,7 @@ public class ProductServiceTest {
     public void testGetProduct() {
         // Arrange
         String name = "testProduct";
-        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, "", new CategoryEntity());
         when(productRepository.findByName(name)).thenReturn(productEntity);
 
         // Act
@@ -60,8 +60,8 @@ public class ProductServiceTest {
         // Arrange
         char gender = 'M';
         List<ProductEntity> productEntities = new ArrayList<>();
-        productEntities.add(new ProductEntity("testProduct1", 10.0, "longDescription1", "shortDescription1", 100, new byte[0], new CategoryEntity("category1", gender)));
-        productEntities.add(new ProductEntity("testProduct2", 20.0, "longDescription2", "shortDescription2", 200, new byte[0], new CategoryEntity("category2", gender)));
+        productEntities.add(new ProductEntity("testProduct1", 10.0, "longDescription1", "shortDescription1", 100, "", new CategoryEntity("category1", gender)));
+        productEntities.add(new ProductEntity("testProduct2", 20.0, "longDescription2", "shortDescription2", 200, "", new CategoryEntity("category2", gender)));
         when(productRepository.findAll()).thenReturn(productEntities);
 
         // Act
@@ -81,8 +81,8 @@ public class ProductServiceTest {
         double min = 10.0;
         double max = 20.0;
         List<ProductEntity> productEntities = new ArrayList<>();
-        productEntities.add(new ProductEntity("testProduct1", 10.0, "longDescription1", "shortDescription1", 100, new byte[0], new CategoryEntity("category1", 'M')));
-        productEntities.add(new ProductEntity("testProduct2", 20.0, "longDescription2", "shortDescription2", 200, new byte[0], new CategoryEntity("category2", 'F')));
+        productEntities.add(new ProductEntity("testProduct1", 10.0, "longDescription1", "shortDescription1", 100, "", new CategoryEntity("category1", 'M')));
+        productEntities.add(new ProductEntity("testProduct2", 20.0, "longDescription2", "shortDescription2", 200, "", new CategoryEntity("category2", 'F')));
         when(productRepository.findAll()).thenReturn(productEntities);
 
         // Act
@@ -101,12 +101,12 @@ public class ProductServiceTest {
         // Arrange
         String name = "testProduct";
         String newName = "newTestProduct";
-        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, "", new CategoryEntity());
         when(productRepository.findByName(name)).thenReturn(productEntity);
         when(productRepository.findByName(newName)).thenReturn(null);
 
         // Act
-        ProductDTO result = productService.updateProducts(name, newName, 20.0, "newLongDescription", "newShortDescription", 200, new byte[0], new CategoryEntity());
+        ProductDTO result = productService.updateProducts(name, newName, 20.0, "newLongDescription", "newShortDescription", 200, "", new CategoryEntity());
 
         // Assert
         assertNotNull(result);
@@ -117,7 +117,7 @@ public class ProductServiceTest {
     public void testUpdateProductsStock() {
         // Arrange
         String name = "testProduct";
-        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, "", new CategoryEntity());
         when(productRepository.findByName(name)).thenReturn(productEntity);
 
         // Act
@@ -132,7 +132,7 @@ public class ProductServiceTest {
 //    public void testDeleteProduct() {
 //        // Arrange
 //        String name = "testProduct";
-//        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, new byte[0], new CategoryEntity());
+//        ProductEntity productEntity = new ProductEntity(name, 10.0, "longDescription", "shortDescription", 100, "", new CategoryEntity());
 //        when(productRepository.findByName(name)).thenReturn(productEntity);
 //
 //        // Act
