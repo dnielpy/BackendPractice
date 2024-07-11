@@ -13,7 +13,7 @@ Ex: 04 - Refactoring Frontend
 ### 1. **Portfolio (Spring Routing)**
 ### 2. **Auth and Registration (Spring Security)**
 ### 3. **Weather API**
-### 4. **Notes App**
+### 4. **Notes App (JPA)**
 ### 5. **Product Store (JPA, Spring Security, JWT)**
 
 
