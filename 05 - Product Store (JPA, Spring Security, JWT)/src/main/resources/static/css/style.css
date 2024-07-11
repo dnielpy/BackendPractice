@@ -1085,3 +1085,13 @@ main .account-page .account-detail table td{
     flex: 0 0 calc(33.3333% - 20px);
     margin: 10px;
 }
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-image {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+}

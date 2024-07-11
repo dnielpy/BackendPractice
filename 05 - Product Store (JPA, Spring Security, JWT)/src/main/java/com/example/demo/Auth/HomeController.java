@@ -49,17 +49,22 @@ public class HomeController {
 
     @GetMapping("/shop")
     public String shop(@RequestParam(required = false) String name, Model model) {
-        List<ProductDTO> products;
+        List<ProductDTO> products = new ArrayList<>();
+        String errorMessage = null;
         if (name != null && !name.isEmpty()) {
-            ProductDTO product = productService.getProduct(name);
-            products = new ArrayList<>();
-            if (product != null) {
-                products.add(product);
+            try {
+                ProductDTO product = productService.getProduct(name);
+                if (product != null) {
+                    products.add(product);
+                }
+            } catch (IllegalArgumentException e) {
+                errorMessage = "El producto no existe en la base de datos";
             }
         } else {
             products = productService.getNineRandomProducts();
         }
         model.addAttribute("products", products);
+        model.addAttribute("errorMessage", errorMessage);
         return "shop";
     }
 

@@ -159,10 +159,13 @@
                         </div>
                     </li>
                 </ul>
+                <div class="error-container" th:if="${errorMessage != null}">
+                    <img src="/static/img/other/notfound.png" class="error-image">
+                </div>
             </div>
         </div> <!-- New Product Section -->
         <div class="load-more">
-            <a href="#">Load More</a>
+            <a href="shop">Load More</a>
         </div>
     </main> <!-- Main Area -->
 </div>
