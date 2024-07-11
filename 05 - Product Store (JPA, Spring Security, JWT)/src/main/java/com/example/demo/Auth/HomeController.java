@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,12 @@ public class HomeController {
         model.addAttribute("products", products);
         model.addAttribute("errorMessage", errorMessage);
         return "shop";
+    }
+
+    @GetMapping("/shop/range")
+    @ResponseBody
+    public List<ProductDTO> getProductsByRange(@RequestParam double min, @RequestParam double max) {
+        return productService.getProductByRange(min, max);
     }
 
     @GetMapping("/product")

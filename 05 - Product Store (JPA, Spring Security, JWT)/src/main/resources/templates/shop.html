@@ -236,6 +236,65 @@
     </div>
 </footer> <!-- Footer Area -->
 
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+    $( "#slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 10000,
+        values: [ 1000, 3000 ],
+        slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        },
+        stop: function( event, ui ) {
+            $.ajax({
+                url: '/shop/range',
+                data: {
+                    min: ui.values[0],
+                    max: ui.values[1]
+                },
+                success: function(data) {
+                    // Vaciar el contenedor de productos
+                    $('.new-product-container ul').empty();
+
+                    // Verificar si los datos están vacíos
+                    if (data.length === 0) {
+                        // Mostrar una imagen o un mensaje indicando que no se encontraron productos
+                        $('.new-product-container ul').append('<li><img src="static/img/other/notfound.png" alt="No products found"></li>');
+                    } else {
+                        // Iterar sobre los datos recibidos
+                        $.each(data, function(i, product) {
+                            // Crear un nuevo elemento de producto
+                            var productElement = '<li>' +
+                                '<div class="new-product">' +
+                                '<a href="product">' +
+                                '<img src="/static/img/product/' + product.imageUrl + '">' +
+                                '</a>' +
+                                '<div class="new-product-detail">' +
+                                '<h3>' + product.category.name + '</h3>' +
+                                '<h2>' + product.name + '</h2>' +
+                                '<a href="#">Add to Cart</a>' +
+                                '<p>$' + product.cost + '</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>';
+
+                            // Agregar el nuevo elemento al contenedor de productos
+                            $('.new-product-container ul').append(productElement);
+                        });
+                    }
+                }
+            });
+        }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+        " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+});
+</script>
+
+
 </body>
 
 </html>
