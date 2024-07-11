@@ -4,11 +4,6 @@ import com.example.demo.Category.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +38,16 @@ public class ProductService {
         } else {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
+    }
+
+    //getAllProducts
+    public List<ProductDTO> getAllProducts() {
+        List<ProductEntity> all_products_entitys = productRepository.findAll();
+        List<ProductDTO> products = new ArrayList<>();
+        for (ProductEntity allProductsEntity : all_products_entitys) {
+            products.add(allProductsEntity.toDto());
+        }
+        return products;
     }
 
     //getProductsByGender
@@ -113,5 +118,16 @@ public class ProductService {
         } else {
             throw new IllegalArgumentException("El producto no existe en la base de datos");
         }
+    }
+
+    public List<ProductDTO> getNineRandomProducts() {
+        List<ProductEntity> productEntities = productRepository.findAll();
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            productDTOs.add(productEntities.get(i).toDto());
+
+        }
+        return productDTOs;
     }
 }

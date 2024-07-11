@@ -4,7 +4,9 @@ import com.example.demo.Category.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -16,6 +18,13 @@ public class ProductController {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
+//
+//    @GetMapping("/shop")
+//    public String shop(Model model) {
+//        List<ProductDTO> products = productService.getAllProducts();
+//        model.addAttribute("products", products);
+//        return "shop";
+//    }
 
     @PostMapping("/create")
     public ResponseEntity<ProductDTO> createProduct(@RequestParam String name, @RequestParam double cost, @RequestParam String longDescription, @RequestParam String shortDescription, @RequestParam long stock, @RequestParam String image_path, @RequestParam CategoryEntity category) {

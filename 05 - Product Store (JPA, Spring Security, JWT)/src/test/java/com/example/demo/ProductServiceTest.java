@@ -128,6 +128,32 @@ public class ProductServiceTest {
         assertEquals(200, result.getStock());
     }
 
+    @Test
+    public void testGetNineRandomProducts() {
+        // Arrange
+        List<ProductEntity> productEntities = new ArrayList<>();
+        for (int i = 1; i <= 9; i++) {
+            productEntities.add(new ProductEntity("Product " + i, 1000.0 + i * 100, "Long description for Product " + i, "Short description " + i, 50 + i * 10, "/static/img/product/img" + i + ".jpg", new CategoryEntity()));
+        }
+        when(productRepository.findRandomProducts()).thenReturn(productEntities);
+
+        // Act
+        List<ProductDTO> result = productService.getNineRandomProducts();
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(9, result.size());
+        for (int i = 0; i < 9; i++) {
+            ProductDTO productDTO = result.get(i);
+            assertEquals("Product " + (i + 1), productDTO.getName());
+            assertEquals(1000.0 + (i + 1) * 100, productDTO.getCost());
+            assertEquals("Long description for Product " + (i + 1), productDTO.getLongDescription());
+            assertEquals("Short description " + (i + 1), productDTO.getShortDescription());
+            assertEquals(50 + (i + 1) * 10, productDTO.getStock());
+            assertEquals("/static/img/product/img" + (i + 1) + ".jpg", productDTO.getImage());
+        }
+    }
+
 //    @Test
 //    public void testDeleteProduct() {
 //        // Arrange

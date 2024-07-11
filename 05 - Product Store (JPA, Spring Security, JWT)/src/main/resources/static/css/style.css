@@ -1036,3 +1036,18 @@ main .account-page .account-detail table td{
 	text-align: center;
 	border: 1px solid #eee;
 }
+.product-contents {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 20%;
+    height: 2px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.products {
+    flex: 0 0 30%;
+    margin-bottom: 20px;
+}
+
