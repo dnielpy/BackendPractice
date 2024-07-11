@@ -10,6 +10,11 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/index")
+    public String index2() {
+        return index();
+    }
+
     @RequestMapping("/change-password")
     public String changePassword() {
         return "change-password";
