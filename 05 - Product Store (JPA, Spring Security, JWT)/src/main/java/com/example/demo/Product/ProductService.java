@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ProductService {
@@ -20,9 +21,9 @@ public class ProductService {
 
     //Create
     public ProductDTO createProduct(String name, double cost, String longDescription, String shortDescription, long stock, String image, CategoryEntity category) {
-        ProductEntity new_product = productRepository.findByName(name);
+        ProductEntity new_product = productRepository.findByName(name.toLowerCase(Locale.ROOT));
         if (new_product == null) {
-            new_product = new ProductEntity(name.toLowerCase(), cost, longDescription, shortDescription, stock, image, category);
+            new_product = new ProductEntity(name.toLowerCase(Locale.ROOT), cost, longDescription, shortDescription, stock, image, category);
             productRepository.save(new_product);
             return new_product.toDto();
         } else {
@@ -32,7 +33,7 @@ public class ProductService {
 
     //Get
     public ProductDTO getProduct(String name) {
-        ProductEntity new_product = productRepository.findByName(name);
+        ProductEntity new_product = productRepository.findByName(name.toLowerCase(Locale.ROOT));
         if (new_product != null) {
             return new_product.toDto();
         } else {
@@ -76,7 +77,7 @@ public class ProductService {
 
     //Update
     public ProductDTO updateProducts(String name, String new_name, double new_cost, String new_longDescription, String new_shortDescription, long new_stock, String new_image, CategoryEntity new_category) {
-        ProductEntity product = productRepository.findByName(name);
+        ProductEntity product = productRepository.findByName(name.toLowerCase(Locale.ROOT));
         if (product != null) {
             if (productRepository.findByName(new_name) != null) {
                 throw new IllegalArgumentException("Ya existe un producto con ese nombre en la base de datos");
@@ -98,7 +99,7 @@ public class ProductService {
 
     //Update Stock
     public ProductDTO updateProductsStock(String name, long new_stock) {
-        ProductEntity product = productRepository.findByName(name);
+        ProductEntity product = productRepository.findByName(name.toLowerCase(Locale.ROOT));
         if (product != null) {
             product.setStock(new_stock);
             productRepository.save(product);
@@ -110,7 +111,7 @@ public class ProductService {
 
     //Delete
     public ProductDTO deleteProduct(String name) {
-        ProductEntity new_product = productRepository.findByName(name.toLowerCase());
+        ProductEntity new_product = productRepository.findByName(name.toLowerCase(Locale.ROOT));
         if (new_product != null) {
             productRepository.deleteById(new_product.getId());
             return null;

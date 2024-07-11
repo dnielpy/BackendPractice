@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -46,10 +48,26 @@ public class HomeController {
     private ProductService productService;
 
     @GetMapping("/shop")
-    public String shop(Model model) {
-        List<ProductDTO> products = productService.getNineRandomProducts();
+    public String shop(@RequestParam(required = false) String name, Model model) {
+        List<ProductDTO> products;
+        if (name != null && !name.isEmpty()) {
+            ProductDTO product = productService.getProduct(name);
+            products = new ArrayList<>();
+            if (product != null) {
+                products.add(product);
+            }
+        } else {
+            products = productService.getNineRandomProducts();
+        }
         model.addAttribute("products", products);
         return "shop";
+    }
+
+    @GetMapping("/product")
+    public String getProduct(@RequestParam String name, Model model) {
+        ProductDTO product = productService.getProduct(name);
+        model.addAttribute("product", product);
+        return "product";
     }
 
     @RequestMapping("/shop")
