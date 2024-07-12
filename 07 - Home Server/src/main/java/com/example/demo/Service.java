@@ -48,11 +48,11 @@ public class Service {
     }
 
     //Get Videos
-    public List<String> getVideoFiles() {
-        List<String> videoFiles = new ArrayList<>();
+    public List<Path> getVideoFiles() {
+        List<Path> videoFiles = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(path), "*.{ts,mp4,mkv,avi}")) {
             for (Path path : stream) {
-                videoFiles.add(path.getFileName().toString());
+                videoFiles.add(path);
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading video folder", e);
