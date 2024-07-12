@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Videos</title>
+    <link rel="stylesheet" type="text/css" href="/css/video.css">
+</head>
+<body>
+<div class="container">
+    <div class="home-server-title">
+        <h1>Home Server</h1>
+    </div>
+    <div class="videos-list">
+        <ul>
+            <li th:each="video : ${videos}">
+                <a class="video-button-home-server" th:href="@{${path} + '/' + ${video}}" th:text="${video}"  download></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
